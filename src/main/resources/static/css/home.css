@@ -1,0 +1,36 @@
+header{
+  border-bottom: solid 1px black;
+  padding : 10px;
+  margin : 10px;
+  text-align: center;
+}
+
+header p{
+  font-size:20px;
+}
+#game-container{
+  text-align: center;
+}
+#game-board{
+  display: grid;
+}
+.game-tile-row{
+  display:flex;
+  justify-content: center;
+  margin-bottom:50px;
+}
+.game-tile{
+  font-size: 60px;
+  letter-spacing: 10px;
+
+  margin : 5px;
+  width:75px;
+  height:75px;
+  border:solid black 1px;
+}
+
+.keyboard-row{
+  display:flex;
+  justify-content: center;
+}
+
