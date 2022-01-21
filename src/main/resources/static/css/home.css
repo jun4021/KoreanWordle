@@ -13,13 +13,18 @@ header p{
 }
 #game-board{
   display: grid;
+  justify-content: center;
 }
 .game-tile-row{
-  display:flex;
-  justify-content: center;
-  margin-bottom:50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr ;
+  width:240px;
+  height:87px;
+
 }
+
 .game-tile{
+
   font-size: 60px;
   letter-spacing: 10px;
 
@@ -28,6 +33,23 @@ header p{
   height:75px;
   border:solid black 1px;
 }
+.color-tile-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  width:240px;
+  height:30px;
+  margin-bottom:10px;
+}
+.color-tile{
+
+  width:25px;
+  height:25px;
+  border:solid black 1px;
+}
+.third{
+  margin-right: 10px;
+}
+
 
 .keyboard-row{
   display:flex;

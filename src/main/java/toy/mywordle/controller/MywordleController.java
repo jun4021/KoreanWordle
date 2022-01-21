@@ -1,14 +1,23 @@
 package toy.mywordle.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import toy.mywordle.service.AnswerToColor;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 @Controller
 public class MywordleController {
+    private final AnswerToColor answertocolor;
+
+    @Autowired
+    public MywordleController(AnswerToColor answertocolor){
+        this.answertocolor = answertocolor;
+    }
+
     @GetMapping("/")
     public String home(){
         return "home";
@@ -16,10 +25,15 @@ public class MywordleController {
 
     @PostMapping("/correct")
     @ResponseBody
-    public HashMap<String,Integer> CheckCorrect(CheckAnswer ob){
-        HashMap<String, Integer> result = new HashMap<String,Integer>();
-        System.out.println(ob.getAnswer());
-        result.put(ob.getAnswer(),1);
+    public ColorInfo CheckCorrect(InputAnswer ob){
+
+        String inputAnswer = ob.getAnswer();
+        // DB에 단어 list 확인
+        String correctAnswer = "박준영";
+        // 있을 시 정답이랑 비교
+        ColorInfo result = answertocolor.RecordColorInfo(correctAnswer,inputAnswer);
+
+
         return result;
     }
 }

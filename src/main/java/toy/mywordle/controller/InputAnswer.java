@@ -1,6 +1,6 @@
 package toy.mywordle.controller;
 
-public class CheckAnswer {
+public class InputAnswer {
     private String answer;
 
     public String getAnswer() {

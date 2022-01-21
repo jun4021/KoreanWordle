@@ -1,5 +1,7 @@
+import {CheckAnswerCorrect} from "./correct.js";
+let MAX_ROW = 4;
+
 let row = 1;
-let MAX_ROW = 2 *2-1
 let letters = [];
 
 import * as correct from "./correct.js";
@@ -58,17 +60,21 @@ $(document).ready(function(){
     if(lettersAssemble.length == 3 && Hangul.isCompleteAll(lettersAssemble)) // 정상 종료 조건
     {
       letters = [];
-      row += 2
+      row += 2;
       alert("정답 체크");
 
-      correct.ajaxTest(lettersAssemble);
+      let data = correct.CheckAnswerCorrect(lettersAssemble);
+
+      PaintColor(data);
+      row += 2;
     }
     else{
       alert("완성되지 않은 글자가 있습니다");
     }
     $(".add").attr("disabled",false);
+
     // try 횟수 끝
-    if(row > MAX_ROW){
+    if(row > MAX_ROW*4-1){
       $("button").attr("disabled",true);
       alert("END");
 
@@ -76,4 +82,20 @@ $(document).ready(function(){
 
   });
 
+  function PaintColor(colorData){
+    let rowColorTile = document.getElementById('game-board')
+        .childNodes[row]
+
+
+    for(let i of colorData.green){
+      rowColorTile.childNodes[2*i+1].style.backgroundColor ="green";
+    }
+    for(let i of colorData.yellow){
+      rowColorTile.childNodes[2*i+1].style.backgroundColor ="yellow";
+    }
+    for(let i of colorData.grey){
+      rowColorTile.childNodes[2*i+1].style.backgroundColor ="grey";
+    }
+
+  }
 });
