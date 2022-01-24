@@ -30,9 +30,11 @@ public class MywordleController {
         ColorInfo result = new ColorInfo();
         String inputAnswer = ob.getAnswer();
         // DB에 단어 list 확인
-        String correctAnswer = "박준영";
+        String correctAnswer = "운동화";
         // 있을 시 정답이랑 비교
         if(correctAnswer.equals(inputAnswer)){
+
+            result = answertocolor.RecordColorInfo(correctAnswer,inputAnswer);
             result.setCorrect(true);
             return result;
         }

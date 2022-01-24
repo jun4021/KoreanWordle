@@ -1,3 +1,14 @@
+p{
+  font-family: pretendard;
+
+}
+div{
+  font-family:pretendard;
+  font-weight: 700;
+}
+button{
+  font-family: pretendard;
+}
 header{
   border-bottom: solid 1px black;
   padding : 10px;
@@ -62,4 +73,11 @@ header p{
 button{
   height: 45px;
   width: 45px;
+}
+
+.shiftkey{
+  width : 67.5px;
+}
+.enter{
+  width : 67.5px
 }

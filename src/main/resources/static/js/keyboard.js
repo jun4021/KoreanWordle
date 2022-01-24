@@ -1,5 +1,5 @@
 import {CheckAnswerCorrect} from "./correct.js";
-let MAX_ROW = 4;
+let MAX_ROW = 5;
 
 let row = 1;
 let letters = [];
@@ -63,14 +63,15 @@ $(document).ready(function(){
       row += 2;
       alert("정답 체크");
       let data = correct.CheckAnswerCorrect(lettersAssemble);
-      painting.PaintDisplay(letters,row,data);
-      row += 2;
-
       if(data.correct){
         alert("정답입니다.");
+        painting.PaintDisplay(row,data);
         $("button").attr("disabled",true);
         return;
       }
+
+      painting.PaintDisplay(row,data);
+      row += 2;
       letters = [];
     }
     else{
@@ -87,11 +88,13 @@ $(document).ready(function(){
 
   });
 
-  $(".shiftAfter").click(function(){
+
+// shift 키
+  $(".shiftkey").click(function ShiftLetter(){
     $(".shift").toggle();
   });
 
-    $(".shiftkey").click(function ShiftLetter(){
+  $(".shiftAfter").click(function(){
     $(".shift").toggle();
   });
 
