@@ -5,6 +5,7 @@ let row = 1;
 let letters = [];
 
 import * as correct from "./correct.js";
+import * as painting from "./paintColor.js";
 
 $(document).ready(function(){
   // 칸에 현재 입력 받은 문자열 출력
@@ -45,7 +46,7 @@ $(document).ready(function(){
     }
   });
   // 글자 지우기
-  $(".del").click(function AddLetter(){
+  $(".del").click(function DelLetter(){
     letters.pop();
     let lettersAssemble = Hangul.assemble(letters);
     PrintLetters(lettersAssemble);
@@ -54,19 +55,23 @@ $(document).ready(function(){
   });
 
   // 답장 전송
-  $(".enter").click(function AddLetter(){
+  $(".enter").click(function EnterLetter(){
     let lettersAssemble = Hangul.assemble(letters);
 
     if(lettersAssemble.length == 3 && Hangul.isCompleteAll(lettersAssemble)) // 정상 종료 조건
     {
-      letters = [];
       row += 2;
       alert("정답 체크");
-
       let data = correct.CheckAnswerCorrect(lettersAssemble);
-
-      PaintColor(data);
+      painting.PaintDisplay(letters,row,data);
       row += 2;
+
+      if(data.correct){
+        alert("정답입니다.");
+        $("button").attr("disabled",true);
+        return;
+      }
+      letters = [];
     }
     else{
       alert("완성되지 않은 글자가 있습니다");
@@ -82,20 +87,13 @@ $(document).ready(function(){
 
   });
 
-  function PaintColor(colorData){
-    let rowColorTile = document.getElementById('game-board')
-        .childNodes[row]
+  $(".shiftAfter").click(function(){
+    $(".shift").toggle();
+  });
+
+    $(".shiftkey").click(function ShiftLetter(){
+    $(".shift").toggle();
+  });
 
 
-    for(let i of colorData.green){
-      rowColorTile.childNodes[2*i+1].style.backgroundColor ="green";
-    }
-    for(let i of colorData.yellow){
-      rowColorTile.childNodes[2*i+1].style.backgroundColor ="yellow";
-    }
-    for(let i of colorData.grey){
-      rowColorTile.childNodes[2*i+1].style.backgroundColor ="grey";
-    }
-
-  }
 });

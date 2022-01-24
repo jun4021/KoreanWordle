@@ -8,12 +8,8 @@ export function CheckAnswerCorrect(checkAnswer){
         },
         async:false,
         success:function(data){
-            console.log(data);
-            console.log(data.grey);
-            console.log(data.yellow);
-            console.log(data.green);
-            dataResult = data;
 
+            dataResult = data;
         },
         error: function(){
             alert("error");

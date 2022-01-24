@@ -8,10 +8,9 @@ header{
 header p{
   font-size:20px;
 }
-#game-container{
-  text-align: center;
-}
+
 #game-board{
+  text-align: center;
   display: grid;
   justify-content: center;
 }
@@ -26,7 +25,6 @@ header p{
 .game-tile{
 
   font-size: 60px;
-  letter-spacing: 10px;
 
   margin : 5px;
   width:75px;
@@ -50,9 +48,18 @@ header p{
   margin-right: 10px;
 }
 
+#keyboard{
+  display: grid;
+  justify-content: center;
 
+}
 .keyboard-row{
   display:flex;
   justify-content: center;
+  width:500px;
 }
 
+button{
+  height: 45px;
+  width: 45px;
+}

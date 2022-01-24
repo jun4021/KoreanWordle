@@ -27,11 +27,17 @@ public class MywordleController {
     @ResponseBody
     public ColorInfo CheckCorrect(InputAnswer ob){
 
+        ColorInfo result = new ColorInfo();
         String inputAnswer = ob.getAnswer();
         // DB에 단어 list 확인
         String correctAnswer = "박준영";
         // 있을 시 정답이랑 비교
-        ColorInfo result = answertocolor.RecordColorInfo(correctAnswer,inputAnswer);
+        if(correctAnswer.equals(inputAnswer)){
+            result.setCorrect(true);
+            return result;
+        }
+        result.setCorrect(false);
+        result = answertocolor.RecordColorInfo(correctAnswer,inputAnswer);
 
 
         return result;

@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <title>WORDLE with friends</title>
     <script src="https://unpkg.com/hangul-js" type="text/javascript"></script>
-
     <link rel="stylesheet" type="text/css" href="css/home.css">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script type="module" src="js/keyboard.js"></script>
+
 
   </head>
   <body>
@@ -90,38 +90,45 @@
 
     <div id="keyboard">
       <div class="keyboard-row">
-        <button class="add">ㅂ</button>
-        <button class="add">ㅈ</button>
-        <button class="add">ㄷ</button>
-        <button class="add">ㄱ</button>
-        <button class="add">ㅅ</button>
-        <button class="add">ㅛ</button>
-        <button class="add">ㅕ</button>
-        <button class="add">ㅑ</button>
-        <button class="add">ㅐ</button>
-        <button class="add">ㅔ</button>
+        <button id = "ㅂ" class="add shift">ㅂ</button>
+        <button id = "ㅃ" class="add shift shiftAfter"style="display:none;">ㅃ</button>
+        <button id = "ㅈ" class="add shift">ㅈ</button>
+        <button id = "ㅉ" class="add shift shiftAfter"style="display:none;">ㅉ</button>
+        <button id = "ㄷ" class="add shift">ㄷ</button>
+        <button id = "ㄸ" class="add shift shiftAfter"style="display:none;">ㄸ</button>
+        <button id = "ㄱ" class="add shift">ㄱ</button>
+        <button id = "ㄲ" class="add shift shiftAfter"style="display:none;">ㄲ</button>
+        <button id = "ㅅ" class="add shift">ㅅ</button>
+        <button id = "ㅆ" class="add shift shiftAfter"style="display:none;">ㅆ</button>
+        <button id = "ㅛ" class="add">ㅛ</button>
+        <button id = "ㅕ" class="add">ㅕ</button>
+        <button id = "ㅑ" class="add">ㅑ</button>
+        <button id = "ㅐ" class="add shift">ㅐ</button>
+        <button id = "ㅒ" class="add shift shiftAfter"style="display:none;">ㅒ</button>
+        <button id = "ㅔ" class="add shift">ㅔ</button>
+        <button id = "ㅖ" class="add shift shiftAfter"style="display:none;">ㅖ</button>
       </div>
       <div class="keyboard-row">
-        <button class="add">ㅁ</button>
-        <button class="add">ㄴ</button>
-        <button class="add">ㅇ</button>
-        <button class="add">ㄹ</button>
-        <button class="add">ㅎ</button>
-        <button class="add">ㅗ</button>
-        <button class="add">ㅓ</button>
-        <button class="add">ㅏ</button>
-        <button class="add">ㅣ</button>
+        <button id = "ㅁ" class="add">ㅁ</button>
+        <button id = "ㄴ" class="add">ㄴ</button>
+        <button id = "ㅇ" class="add">ㅇ</button>
+        <button id = "ㄹ" class="add">ㄹ</button>
+        <button id = "ㅎ" class="add">ㅎ</button>
+        <button id = "ㅗ" class="add">ㅗ</button>
+        <button id = "ㅓ" class="add">ㅓ</button>
+        <button id = "ㅏ" class="add">ㅏ</button>
+        <button id = "ㅣ" class="add">ㅣ</button>
         <button class="del"><-</button>
       </div>
       <div class="keyboard-row">
-        <button class="shift">shift</button>
-        <button class="add">ㅋ</button>
-        <button class="add">ㅌ</button>
-        <button class="add">ㅊ</button>
-        <button class="add">ㅍ</button>
-        <button class="add">ㅠ</button>
-        <button class="add">ㅜ</button>
-        <button class="add">ㅡ</button>
+        <button class="shiftkey">shift</button>
+        <button id = "ㅋ" class="add">ㅋ</button>
+        <button id = "ㅌ" class="add">ㅌ</button>
+        <button id = "ㅊ" class="add">ㅊ</button>
+        <button id = "ㅍ" class="add">ㅍ</button>
+        <button id = "ㅠ" class="add">ㅠ</button>
+        <button id = "ㅜ" class="add">ㅜ</button>
+        <button id = "ㅡ" class="add">ㅡ</button>
         <button class="enter">enter</button>
       </div>
 

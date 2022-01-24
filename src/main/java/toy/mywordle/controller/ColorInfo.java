@@ -7,6 +7,15 @@ public class ColorInfo {
     private ArrayList grey;
     private ArrayList yellow;
     private ArrayList green;
+    private boolean correct;
+
+    public boolean isCorrect() {
+        return correct;
+    }
+
+    public void setCorrect(boolean correct) {
+        this.correct = correct;
+    }
 
     public ArrayList getGrey() {
         return grey;
