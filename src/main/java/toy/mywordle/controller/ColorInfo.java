@@ -8,11 +8,11 @@ public class ColorInfo {
     private ArrayList grey;
     private ArrayList yellow;
     private ArrayList green;
-    private boolean correct;
-    private String[] separateLetters;
     private ArrayList grey_keyboard;
     private ArrayList yellow_keyboard;
     private ArrayList green_keyboard;
+    private boolean correct;
+    private String[] separateLetters;
 
     public ArrayList getGrey_keyboard() {
         return grey_keyboard;
