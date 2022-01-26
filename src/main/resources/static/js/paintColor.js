@@ -8,8 +8,6 @@ export function PaintDisplay(row, colorData){
 
     let letter = colorData.separateLetters;
 
-    console.log(colorData);
-
     for(let i of colorData.grey){
         if ( document.getElementById(letter[i]) != null ) {
             document.getElementById(letter[i]).style.backgroundColor ="grey";
