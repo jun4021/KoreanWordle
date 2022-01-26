@@ -5,21 +5,32 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import toy.mywordle.service.AnswerToColor;
-
-import java.util.ArrayList;
+import toy.mywordle.service.AnswerToColorService;
+import toy.mywordle.service.AnswerWordService;
+import toy.mywordle.service.CheckWordService;
 
 @Controller
 public class MywordleController {
-    private final AnswerToColor answertocolor;
+    private final AnswerToColorService answerToColorService;
+    private final AnswerWordService answerWordService;
+    private final CheckWordService checkWordService;
+    private String correctAnswer;
 
     @Autowired
-    public MywordleController(AnswerToColor answertocolor){
-        this.answertocolor = answertocolor;
+    public MywordleController(AnswerToColorService answerToColorService, AnswerWordService answerWordService, CheckWordService checkWordService) {
+        this.answerToColorService = answerToColorService;
+        this.answerWordService = answerWordService;
+        this.checkWordService = checkWordService;
     }
+
+
 
     @GetMapping("/")
     public String home(){
+        // DB에서 정답 불러오기
+        Integer code = answerWordService.ChooseRandomId();
+        correctAnswer = answerWordService.SelectWordByCode(code).getWord();
+        System.out.println(correctAnswer);
         return "home";
     }
 
@@ -30,10 +41,16 @@ public class MywordleController {
         ColorInfo result = new ColorInfo();
         String inputAnswer = ob.getAnswer();
 
+
         // DB에 단어 list 확인
-        String correctAnswer = "운동화";
+        if(!checkWordService.InCheckWord(inputAnswer)) {
+            result.setValidWord(false);
+
+            return result;
+        }
+
         // 있을 시 정답이랑 비교
-        result = answertocolor.RecordColorInfo(correctAnswer,inputAnswer);
+        result = answerToColorService.RecordColorInfo(correctAnswer,inputAnswer);
         if(correctAnswer.equals(inputAnswer)){
             result.setCorrect(true);
             return result;

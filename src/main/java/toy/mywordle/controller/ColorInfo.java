@@ -1,8 +1,6 @@
 package toy.mywordle.controller;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 public class ColorInfo {
     private ArrayList grey;
@@ -12,7 +10,16 @@ public class ColorInfo {
     private ArrayList yellow_keyboard;
     private ArrayList green_keyboard;
     private boolean correct;
+    private boolean validWord = true;
     private String[] separateLetters;
+
+    public boolean isValidWord() {
+        return validWord;
+    }
+
+    public void setValidWord(boolean validWord) {
+        this.validWord = validWord;
+    }
 
     public ArrayList getGrey_keyboard() {
         return grey_keyboard;

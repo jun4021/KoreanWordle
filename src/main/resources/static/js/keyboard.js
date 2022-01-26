@@ -63,7 +63,12 @@ $(document).ready(function(){
       row += 2;
       alert("정답 체크");
       let data = correct.CheckAnswerCorrect(lettersAssemble);
-      if(data.correct){
+      if(!data.validWord){
+        alert("단어 리스트에 없습니다.")
+        row -= 2;
+        return;
+      }
+      else if(data.correct){
         alert("정답입니다.");
         painting.PaintDisplay(row,data);
         $("button").attr("disabled",true);

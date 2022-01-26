@@ -5,7 +5,7 @@ import toy.mywordle.controller.ColorInfo;
 import java.util.*;
 
 
-public class AnswerToColor {
+public class AnswerToColorService {
 
     public ColorInfo RecordColorInfo(String correctAnswer, String InputAnswer){
 
@@ -119,8 +119,6 @@ public class AnswerToColor {
                     else{
                         defaultColor = "yellow";
                     }
-                    System.out.println(pos.size() + defaultColor);
-
                 }
 
                 //(Ex){"ㄱ","ㅅ","ㄳ"}

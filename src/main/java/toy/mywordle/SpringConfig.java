@@ -3,8 +3,11 @@ package toy.mywordle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import toy.mywordle.repository.WordRepository;
-import toy.mywordle.service.AnswerToColor;
+import toy.mywordle.repository.AnswerWordRepository;
+import toy.mywordle.repository.CheckWordRepository;
+import toy.mywordle.service.AnswerToColorService;
+import toy.mywordle.service.AnswerWordService;
+import toy.mywordle.service.CheckWordService;
 
 import javax.persistence.EntityManager;
 
@@ -18,12 +21,24 @@ public class SpringConfig {
     }
 
     @Bean
-    public AnswerToColor answertocolor(){
-        return new AnswerToColor();
+    public AnswerToColorService answertocolor(){
+        return new AnswerToColorService();
     }
     @Bean
-    public WordRepository wordRepository(){
-        return new WordRepository(em);
+    public AnswerWordService answerWordService(){
+        return new AnswerWordService(answerWordRepository());
+    }
+    @Bean
+    public AnswerWordRepository answerWordRepository(){
+        return new AnswerWordRepository(em);
+    }
+    @Bean
+    public CheckWordService checkWordService(){
+        return new CheckWordService(checkWordRepository());
+    }
+    @Bean
+    public CheckWordRepository checkWordRepository(){
+        return new CheckWordRepository(em);
     }
 
 }
