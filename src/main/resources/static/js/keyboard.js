@@ -11,7 +11,8 @@ import * as painting from "./paintColor.js";
 // 칸에 현재 입력 받은 문자열 출력
 function PrintLetters(lettersAssemble){
   let rowTile = document.getElementById('game-board')
-      .childNodes[row]
+      .childNodes[row].childNodes[1]
+
 
   rowTile.childNodes[1].innerText ="";
   rowTile.childNodes[3].innerText ="";
@@ -56,17 +57,19 @@ function EnterLetter() {
 
   if (lettersAssemble.length == 3 && Hangul.isCompleteAll(lettersAssemble)) // 정상 종료 조건
   {
-    row += 2;
+
     alert("정답 체크");
     let data = correct.CheckAnswerCorrect(lettersAssemble);
     if (!data.validWord) {
       alert("단어 리스트에 없습니다.")
-      row -= 2;
+
       return;
     } else if (data.correct) {
       alert("정답입니다.");
       painting.PaintDisplay(row, data);
-      $("button").attr("disabled", true);
+      $(".add").attr("disabled", true);
+      $(".del").attr("disabled", true);
+      $(".enter").attr("disabled", true);
       return;
     }
 
@@ -80,7 +83,9 @@ function EnterLetter() {
 
   // try 횟수 끝
   if (row > MAX_ROW * 4 - 1) {
-    $("button").attr("disabled", true);
+    $(".add").attr("disabled", true);
+    $(".del").attr("disabled", true);
+    $(".enter").attr("disabled", true);
     alert("END");
 
   }
@@ -89,7 +94,7 @@ let EnglishToKorean = {"Q":"ㅂ","W":"ㅈ","E":"ㄷ","R":"ㄱ","T":"ㅅ","Y":"�
 let shiftTo = {81:"ㅃ",87:"ㅉ",69:"ㄸ",82:"ㄲ",84:"ㅆ",79:"ㅒ",80:"ㅖ"};
 
 $(document).ready(function(){
-
+  $(".modal").hide();
   // 글자 추가
   $(".add").on("click",function(){AddLetter($(this).text())});
 
