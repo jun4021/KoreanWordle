@@ -5,102 +5,208 @@
     <title>WORDLE with friends</title>
     <script src="https://unpkg.com/hangul-js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="css/home.css">
+    <link rel="stylesheet" type="text/css" href="css/modal.css">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script type="module" src="js/keyboard.js"></script>
+    <script type="module" src="js/modal.js"></script>
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+
 
   </head>
   <body>
 
     <header>
-      <p>Wordle</p>
-    </header>
-    <div id="game-container">
-      <div id="game-board">
-        <div class="game-tile-row">
-          <div class="game-tile"></div>
-          <div class="game-tile"></div>
-          <div class="game-tile"></div>
-        </div>
-        <div class="color-tile-row">
-          <div class="color-tile"></div>
-          <div class="color-tile"></div>
-          <div class="color-tile third"></div>
-          <div class="color-tile"></div>
-          <div class="color-tile"></div>
-          <div class="color-tile third"></div>
-          <div class="color-tile"></div>
-          <div class="color-tile"></div>
-          <div class="color-tile"></div>
-        </div>
-        <div class="game-tile-row">
-          <div class="game-tile"></div>
-          <div class="game-tile"></div>
-          <div class="game-tile"></div>
-        </div>
-        <div class="color-tile-row">
-          <div class="color-tile"></div>
-          <div class="color-tile"></div>
-          <div class="color-tile third"></div>
-          <div class="color-tile"></div>
-          <div class="color-tile"></div>
-          <div class="color-tile third"></div>
-          <div class="color-tile"></div>
-          <div class="color-tile"></div>
-          <div class="color-tile"></div>
-        </div>
-        <div class="game-tile-row">
-          <div class="game-tile"></div>
-          <div class="game-tile"></div>
-          <div class="game-tile"></div>
-        </div>
-        <div class="color-tile-row">
-          <div class="color-tile"></div>
-          <div class="color-tile"></div>
-          <div class="color-tile third"></div>
-          <div class="color-tile"></div>
-          <div class="color-tile"></div>
-          <div class="color-tile third"></div>
-          <div class="color-tile"></div>
-          <div class="color-tile"></div>
-          <div class="color-tile"></div>
-        </div>
-        <div class="game-tile-row">
-          <div class="game-tile"></div>
-          <div class="game-tile"></div>
-          <div class="game-tile"></div>
-        </div>
-        <div class="color-tile-row">
-          <div class="color-tile"></div>
-          <div class="color-tile"></div>
-          <div class="color-tile third"></div>
-          <div class="color-tile"></div>
-          <div class="color-tile"></div>
-          <div class="color-tile third"></div>
-          <div class="color-tile"></div>
-          <div class="color-tile"></div>
-          <div class="color-tile"></div>
-        </div>
-        <div class="game-tile-row">
-          <div class="game-tile"></div>
-          <div class="game-tile"></div>
-          <div class="game-tile"></div>
-        </div>
-        <div class="color-tile-row">
-          <div class="color-tile"></div>
-          <div class="color-tile"></div>
-          <div class="color-tile third"></div>
-          <div class="color-tile"></div>
-          <div class="color-tile"></div>
-          <div class="color-tile third"></div>
-          <div class="color-tile"></div>
-          <div class="color-tile"></div>
-          <div class="color-tile"></div>
-        </div>
+
+      <div>
+        <button class="header_button" id="howtoplay"><img src="image/HowToPlay.svg"></button>
+        <button class="header_button"></button>
       </div>
+      <p>한글 워들</p>
+      <div>
+        <button class="header_button" id="score"><img src="image/Score.svg"></button>
+        <button class="header_button" id="setting"><img src="image/Setting.svg"></button>
       </div>
 
+
+    </header>
+
+    <div class="modal howtoplay">
+      <div class="page">
+        <div class="page_title">
+          <h1>게임 방법</h1>
+          <button class="close"><img src="image/Close_MD.svg"></button>
+        </div>
+        <p>안녕하세요 반갑습니다</p>
+        <div class = "example">
+          내요용요요옹옹
+        </div>
+      </div>
+    </div>
+
+    <div class="modal score">
+      <div class="modal-overlay"></div>
+      <div class="modal-content">
+        <div class = "page_container">
+          <button id="score_close" class="close"><img src="image/Close_MD.svg"></button>
+          <h1>기록</h1>
+          <div class = "record_container">
+            <div class ="record_each">
+              <div class="record">1234</div>
+              <div class="label">플레이</div>
+            </div>
+            <div class ="record_each">
+              <div class="record">123%</div>
+              <div class="label">승률</div>
+            </div>
+            <div class ="record_each">
+              <div class="record">1234</div>
+              <div class="label">현재 콤보</div>
+            </div>
+            <div class ="record_each">
+              <div class="record">1234</div>
+              <div class="label">최대 콤보</div>
+            </div>
+          </div>
+          <div class = "graph_container">
+            <div class = "graph_each">
+              <div class = "try">1</div>
+              <div class = "graph_num">0</div>
+            </div>
+            <div class = "graph_each">
+              <div class = "try">2</div>
+              <div class = "graph_num">0</div>
+            </div>
+            <div class = "graph_each">
+              <div class = "try">3</div>
+              <div class = "graph_num">0</div>
+            </div>
+            <div class = "graph_each">
+              <div class = "try">4</div>
+              <div class = "graph_num">0</div>
+            </div>
+            <div class = "graph_each">
+              <div class = "try">5</div>
+              <div class = "graph_num">0</div>
+            </div>
+          </div>
+          <button class="share">공유하기 <img src="image/Share_Android.svg"></button>
+
+        </div>
+
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="modal setting">
+      <div class="page">
+        <div class="page_title">
+          <h1>설정</h1>
+          <button class="close"><img src="image/Close_MD.svg"></button>
+        </div>
+        <p>안녕하세요 반갑습니다</p>
+        <div class = "example">
+          내요용요요옹옹
+        </div>
+      </div>
+    </div>
+
+    <div id="game-board">
+      <div class="tile-row">
+        <div class="game-tile-row">
+          <div class="game-tile"></div>
+          <div class="game-tile"></div>
+          <div class="game-tile"></div>
+        </div>
+        <div class="color-tile-row">
+          <div class="color-tile"></div>
+          <div class="color-tile"></div>
+          <div class="color-tile third"></div>
+          <div class="color-tile"></div>
+          <div class="color-tile"></div>
+          <div class="color-tile third"></div>
+          <div class="color-tile"></div>
+          <div class="color-tile"></div>
+          <div class="color-tile"></div>
+        </div>
+      </div>
+      <div class="tile-row">
+        <div class="game-tile-row">
+          <div class="game-tile"></div>
+          <div class="game-tile"></div>
+          <div class="game-tile"></div>
+        </div>
+        <div class="color-tile-row">
+          <div class="color-tile"></div>
+          <div class="color-tile"></div>
+          <div class="color-tile third"></div>
+          <div class="color-tile"></div>
+          <div class="color-tile"></div>
+          <div class="color-tile third"></div>
+          <div class="color-tile"></div>
+          <div class="color-tile"></div>
+          <div class="color-tile"></div>
+        </div>
+      </div>
+      <div class="tile-row">
+        <div class="game-tile-row">
+          <div class="game-tile"></div>
+          <div class="game-tile"></div>
+          <div class="game-tile"></div>
+        </div>
+        <div class="color-tile-row">
+          <div class="color-tile"></div>
+          <div class="color-tile"></div>
+          <div class="color-tile third"></div>
+          <div class="color-tile"></div>
+          <div class="color-tile"></div>
+          <div class="color-tile third"></div>
+          <div class="color-tile"></div>
+          <div class="color-tile"></div>
+          <div class="color-tile"></div>
+        </div>
+      </div>
+      <div class="tile-row">
+        <div class="game-tile-row">
+          <div class="game-tile"></div>
+          <div class="game-tile"></div>
+          <div class="game-tile"></div>
+        </div>
+        <div class="color-tile-row">
+          <div class="color-tile"></div>
+          <div class="color-tile"></div>
+          <div class="color-tile third"></div>
+          <div class="color-tile"></div>
+          <div class="color-tile"></div>
+          <div class="color-tile third"></div>
+          <div class="color-tile"></div>
+          <div class="color-tile"></div>
+          <div class="color-tile"></div>
+        </div>
+      </div>
+      <div class="tile-row">
+        <div class="game-tile-row">
+          <div class="game-tile"></div>
+          <div class="game-tile"></div>
+          <div class="game-tile"></div>
+        </div>
+        <div class="color-tile-row">
+          <div class="color-tile"></div>
+          <div class="color-tile"></div>
+          <div class="color-tile third"></div>
+          <div class="color-tile"></div>
+          <div class="color-tile"></div>
+          <div class="color-tile third"></div>
+          <div class="color-tile"></div>
+          <div class="color-tile"></div>
+          <div class="color-tile"></div>
+        </div>
+      </div>
+
+
+    </div>
 
     <div id="keyboard">
       <div class="keyboard-row">
@@ -132,10 +238,10 @@
         <button id = "ㅓ" class="add">ㅓ</button>
         <button id = "ㅏ" class="add">ㅏ</button>
         <button id = "ㅣ" class="add">ㅣ</button>
-        <button class="del"><-</button>
+
       </div>
       <div class="keyboard-row">
-        <button class="shiftkey">shift</button>
+        <button class="shiftkey"><img src="image/shift_icon_159877 1.svg"></button>
         <button id = "ㅋ" class="add">ㅋ</button>
         <button id = "ㅌ" class="add">ㅌ</button>
         <button id = "ㅊ" class="add">ㅊ</button>
@@ -143,7 +249,11 @@
         <button id = "ㅠ" class="add">ㅠ</button>
         <button id = "ㅜ" class="add">ㅜ</button>
         <button id = "ㅡ" class="add">ㅡ</button>
-        <button class="enter">enter</button>
+        <button class="del"><img src="image/Erase%20icon.svg"></button>
+
+      </div>
+      <div class="keyboard-row">
+        <button class="enter">확인하기</button>
       </div>
     </div>
   </body>

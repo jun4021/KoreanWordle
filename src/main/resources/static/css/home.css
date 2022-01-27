@@ -1,83 +1,179 @@
+/*전체 글씨체*/
 p{
   font-family: pretendard;
-
 }
 div{
   font-family:pretendard;
   font-weight: 700;
 }
-button{
-  font-family: pretendard;
-}
-header{
-  border-bottom: solid 1px black;
-  padding : 10px;
-  margin : 10px;
-  text-align: center;
-}
 
+
+/* Header */
+header {
+  margin: 0 auto;
+  display:flex;
+  justify-content: space-between;
+  border-bottom:1px solid #D3D6DA;
+  width: 365px;
+  height: 32px;
+  text-align: center;
+
+  padding: 5px;
+}
 header p{
+  display:inline;
   font-size:20px;
+  margin:0px;
+  font-size: 22px;
+  font-weight: 900;
+}
+.header_button{
+  display:inline-block;
+  width: 32px;
+  height: 32px;
+  background: white;
+  padding:0px;
+
 }
 
+
+
+/* Game board */
 #game-board{
-  text-align: center;
   display: grid;
+  text-align: center;
   justify-content: center;
+
+
+  padding: 12px;
+
 }
+.tile-row{
+  margin-bottom:12px;
+}
+
 .game-tile-row{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr ;
-  width:240px;
-  height:87px;
+  width:232px;
+  height:72px;
+  margin-bottom:-1px;
 
+}
+.color-tile-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  width:232px;
+  height:24px;
 }
 
 .game-tile{
 
   font-size: 60px;
+  width:70px;
+  height:70px;
+  border:solid 1px #D3D6DA;
+  margin-right: 8px;
+  background:white;
+}
 
-  margin : 5px;
-  width:75px;
-  height:75px;
-  border:solid black 1px;
-}
-.color-tile-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  width:240px;
-  height:30px;
-  margin-bottom:10px;
-}
 .color-tile{
-
-  width:25px;
-  height:25px;
-  border:solid black 1px;
+  width:22px;
+  height:22px;
+  border:solid #D3D6DA 1px;
+  background:white;
 }
 .third{
-  margin-right: 10px;
+  margin-right: 8px;
 }
 
+/* keyboard */
 #keyboard{
   display: grid;
   justify-content: center;
+  width:376px;
+  height: 233px;
+  margin: 0 auto;
 
 }
 .keyboard-row{
   display:flex;
   justify-content: center;
-  width:500px;
+
+  height:48px;
 }
 
 button{
-  height: 45px;
-  width: 45px;
-}
+  width: 32px;
+  height: 48px;
+  background: #D3D6DA;
+  border-radius: 5px;
+  margin: 0px 2px;
+  border: none;
 
+  font-family: Pretendard;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+
+  align-items: center;
+  text-align: center;
+}
+img{
+  display: block;
+  margin: auto;
+
+}
 .shiftkey{
-  width : 67.5px;
+  width : 48px;
+  height: 48px;
+  background: #666666;
+}
+.del{
+  width: 48px;
+  height: 48px;
+  background: #666666;
 }
 .enter{
-  width : 67.5px
+  width: 176px;
+  height: 51px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 24px;
+  background: #05944F;
+  color: white;
+}
+
+/*modal*/
+.page{
+  width: 375px;
+  height: 42px;
+}
+.page_title{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.page_title h1{
+  font-size: 24px;
+  font-weight: 900;
+  color: #080B14;
+}
+.close{
+  background: white;
+  position: absolute;
+  top:16px;
+  right:16px;
+  cursor:pointer;
+}
+.page p{
+  font-weight: 500;
+  font-size: 16px;
+  color: #080B14;
+  text-align:left;
+}
+.page .example{
+  border-top : 1px solid #E5E5E5;
+  border-bottom : 1px solid #E5E5E5;
 }

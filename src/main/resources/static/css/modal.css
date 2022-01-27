@@ -1,0 +1,136 @@
+.modal{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    /*box-shadow: 0 10px 20px rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);*/
+    position:fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+}
+.page{
+    background: white;
+    position:relative;
+    width: 376px;
+    height: 100%;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.modal-overlay{
+    background: rgba(0,0,0,0.6);
+    width: 100%;
+    height: 100%;
+    position:absolute;
+}
+.modal-content{
+    background: white;
+    position:absolute;
+    width: 336px;
+    height: 344px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);
+
+    top: calc(50% - 344px/2 - 72px);
+}
+#score_close{
+    display: block;
+    width: 24px;
+    height: 24px;
+
+    top:10px;
+    right:12px;
+}
+.score h1{
+
+    width:28px;
+    height: 24px;
+    font-weight: 900;
+    font-size: 16px;
+    margin:0px;
+    text-align: center;
+
+}
+
+.page_container{
+    padding-top:34px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.record_container{
+    display:flex;
+
+    align-items: center;
+    justify-content: center;
+    padding-top:8px;
+
+}
+.record_each{
+    padding: 8px;
+
+}
+.record{
+    font-size:24px;
+    height: 35px;
+}
+.label{
+    font-weight: 500;
+    font-size: 16px;
+    padding-top:8px;
+    color: #818384;
+    height: 23px;
+}
+.graph_container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-top:10px;
+    width: 100%;
+    padding-bottom: 10px;
+}
+.graph_each{
+    display: flex;
+    height: 24px;
+    width: 286px;
+    align-content: flex-start;
+
+
+}
+.try{
+    width: 24px;
+    height: 24px;
+}
+.graph_num{
+    background: #818384;
+    color:white;
+    width: 16px;
+    height: 16px;
+
+}
+.share{
+
+
+
+    width:128px;
+    height: 40px;
+    font-weight: bold;
+    font-size: 16px;
+    background: #05944F;
+    color:white;
+}
+.share{
+
+}
+.share img{
+    display: inline;
+    width: 16px;
+    height: 16px;
+    vertical-align:middle;
+
+}
