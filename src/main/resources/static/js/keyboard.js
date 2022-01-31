@@ -1,18 +1,19 @@
 import {CheckAnswerCorrect} from "./correct.js";
 let MAX_ROW = 5;
 
-let row = 1;
+let row;
 let letters = [];
-let shiftFlag = false;
+
 
 import * as correct from "./correct.js";
 import * as painting from "./paintColor.js";
+import * as local from "./localStorageControl.js";
+import * as toast from "./toast.js";
 
 // 칸에 현재 입력 받은 문자열 출력
-function PrintLetters(lettersAssemble){
+function PrintLetters(Row, lettersAssemble){
   let rowTile = document.getElementById('game-board')
-      .childNodes[row].childNodes[1]
-
+      .childNodes[Row].childNodes[1]
 
   rowTile.childNodes[1].innerText ="";
   rowTile.childNodes[3].innerText ="";
@@ -29,25 +30,38 @@ function PrintLetters(lettersAssemble){
   }
 }
 
+function PrintLetter(Row, lettersAssemble){
+  let rowTile = document.getElementById('game-board')
+      .childNodes[Row].childNodes[1]
+
+  rowTile.childNodes[1].innerText = lettersAssemble[0];
+  rowTile.childNodes[3].innerText = lettersAssemble[1];
+  rowTile.childNodes[5].innerText = lettersAssemble[2];
+
+
+
+}
+
 function AddLetter(letter) {
 
   letters.push(letter);
-  let lettersAssemble = Hangul.assemble(letters)
+  let lettersAssemble = Hangul.assemble(letters);
 
   if (lettersAssemble.length == 4) // 글자 수 제한 초과
   {
     letters.pop();
-    alert("글자는 3글자 제한");
+    toast.toast("글자는 3글자 제한");
     $(".add").attr("disabled", true);
     return;
   } else {
-    PrintLetters(lettersAssemble);
+
+    PrintLetters(row, lettersAssemble);
   }
 }
 function DelLetter(){
   letters.pop();
   let lettersAssemble = Hangul.assemble(letters);
-  PrintLetters(lettersAssemble);
+  PrintLetters(row,lettersAssemble);
 
   $(".add").attr("disabled",false);
 }
@@ -58,35 +72,39 @@ function EnterLetter() {
   if (lettersAssemble.length == 3 && Hangul.isCompleteAll(lettersAssemble)) // 정상 종료 조건
   {
 
-    alert("정답 체크");
+    toast.toast("정답 체크");
     let data = correct.CheckAnswerCorrect(lettersAssemble);
+
     if (!data.validWord) {
-      alert("단어 리스트에 없습니다.")
+      toast.toast("단어 리스트에 없습니다.")
 
       return;
     } else if (data.correct) {
-      alert("정답입니다.");
-      painting.PaintDisplay(row, data);
+      toast.toast("정답입니다.");
+      local.writeLocal(data,lettersAssemble);
+      painting.PaintDisplay(row);
       $(".add").attr("disabled", true);
       $(".del").attr("disabled", true);
       $(".enter").attr("disabled", true);
       return;
     }
 
-    painting.PaintDisplay(row, data);
-    row += 2;
+    local.writeLocal(data,lettersAssemble);
+    painting.PaintDisplay(row);
+    row+=2;
     letters = [];
   } else {
-    alert("완성되지 않은 글자가 있습니다");
+    toast.toast("완성되지 않은 글자가 있습니다");
   }
   $(".add").attr("disabled", false);
 
   // try 횟수 끝
-  if (row > MAX_ROW * 4 - 1) {
+  JSON.parse(localStorage.getItem("colorData")).try
+  if (JSON.parse(localStorage.getItem("colorData")).try == MAX_ROW) {
     $(".add").attr("disabled", true);
     $(".del").attr("disabled", true);
     $(".enter").attr("disabled", true);
-    alert("END");
+    toast.toast("END");
 
   }
 }
@@ -95,11 +113,32 @@ let shiftTo = {81:"ㅃ",87:"ㅉ",69:"ㄸ",82:"ㄲ",84:"ㅆ",79:"ㅒ",80:"ㅖ"};
 
 $(document).ready(function(){
   $(".modal").hide();
+
+  // 처음 접속했을 때
+  if(localStorage.getItem("entered") == null){
+    document.getElementsByClassName("howtoplay")[0].style.display = "flex";
+    localStorage.setItem("entered","true");
+    localStorage.setItem("colorData",JSON.stringify(local.NewLocal()));
+    row = 1;
+  }
+  // 나중에 colordata 초기화 시 New를 꼭 만들어 주어야 함.
+  else{
+    let tryNumber = JSON.parse(localStorage.getItem("colorData")).try;
+    let words = JSON.parse(localStorage.getItem("colorData")).word;
+
+    row = 2*tryNumber+1;
+    for(let i=0; i<tryNumber;i++){
+      painting.PaintDisplay(2*i +1);
+
+
+      PrintLetter(2*i +1,words[i]);
+    }
+  }
+
   // 글자 추가
   $(".add").on("click",function(){AddLetter($(this).text())});
 
   $(document).keydown(function(event){
-
     switch (event.keyCode){
       case 8:
         DelLetter();
@@ -112,7 +151,6 @@ $(document).ready(function(){
 
     if((65 <= event.keyCode) && (event.keyCode <= 90)) {
       if (event.shiftKey && Object.keys(shiftTo).indexOf(event.keyCode.toString())!=-1){
-
 
         AddLetter(shiftTo[event.keyCode]);
       }

@@ -134,3 +134,9 @@
     vertical-align:middle;
 
 }
+#ClearTest{
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: white;
+}

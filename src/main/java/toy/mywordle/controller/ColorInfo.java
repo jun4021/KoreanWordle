@@ -1,5 +1,6 @@
 package toy.mywordle.controller;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class ColorInfo {
@@ -12,6 +13,15 @@ public class ColorInfo {
     private boolean correct;
     private boolean validWord = true;
     private String[] separateLetters;
+    private LocalDateTime deadline;
+
+    public LocalDateTime getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(LocalDateTime deadline) {
+        this.deadline = deadline;
+    }
 
     public boolean isValidWord() {
         return validWord;

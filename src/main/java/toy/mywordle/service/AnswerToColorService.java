@@ -100,20 +100,22 @@ public class AnswerToColorService {
     }
 
 
-    private Map<String,String> CheckColorOfDouble(String[] correct, String[] strlist){
-        ArrayList pos = CheckDoubleLetters(strlist);
+    private Map<String,String> CheckColorOfDouble(String[] correct, String[] input){
+        ArrayList answerDoublePosition = CheckDoubleLetters(input);
+        ArrayList correctDoublePosition = CheckDoubleLetters(correct);
         Map<String,String> keymap= new HashMap<String,String>();
         String defaultColor = "grey";
 
-        if(pos.size() != 0) {
-            for (int i = 0; i < pos.size(); i++) {
+        // input 단어의 이중모음 확인
+        if(answerDoublePosition.size() != 0) {
+            for (int i = 0; i < answerDoublePosition.size(); i++) {
                 defaultColor = "grey";
-                String letter = strlist[(int)pos.get(i)]; // Double
+                String letter = input[(int)answerDoublePosition.get(i)]; // Double
 
                 // letter가 correct안에 있는지 확인 후 단모음의 default 색 변경
                 if(Arrays.asList(correct).contains(letter)){
 
-                    if(correct[(int)pos.get(i)].equals(letter)){
+                    if(correct[(int)answerDoublePosition.get(i)].equals(letter)){
                         defaultColor = "green";
                     }
                     else{
@@ -135,32 +137,90 @@ public class AnswerToColorService {
                         break;
                     }
 
-                    if(correct[(int)pos.get(i)].equals(Character.toString(result[res]))) {
+                    if(correct[(int)answerDoublePosition.get(i)].equals(Character.toString(result[res]))) {
+                        keymap.put(Character.toString(result[res]), "green");
+                        greyflag = false;
+                    }
+                    else {
+                        for (int j = 0; j < correct.length; j++) {
+                            if (defaultColor.equals("yellow")) {
+                                keymap.put(Character.toString(result[0]), "yellow");
+                                keymap.put(Character.toString(result[1]), "yellow");
+                                greyflag = false;
+                                break;
+                            }
+                            if (correct[j].equals(Character.toString(result[res]))) {
+                                // Yellow
+                                keymap.put(Character.toString(result[res]), "yellow");
+                                greyflag = false;
+                                break;
+                            }
+                        }
+                        // Grey
+                        if (greyflag) {
+                            keymap.put(Character.toString(result[res]), "grey");
+                        }
+                    }
+                }
+            }
+        }
+
+        // correct 단어의 이중모음 확인
+        if(correctDoublePosition.size() != 0) {
+            for (int i = 0; i < correctDoublePosition.size(); i++) {
+                defaultColor = "grey";
+                String letter = correct[(int)correctDoublePosition.get(i)]; // Double
+
+                // letter가 input안에 있는지 확인 후 단모음의 default 색 변경
+                if(Arrays.asList(input).contains(letter)){
+
+                    if(input[(int)answerDoublePosition.get(i)].equals(letter)){
+                        defaultColor = "green";
+                    }
+                    else{
+                        defaultColor = "yellow";
+                    }
+                }
+
+                //(Ex){"ㄱ","ㅅ","ㄳ"}
+                char[] result = SeparateDouble(letter);
+
+                for(int res=0;res<2;res++){
+                    boolean greyflag = true;
+                    // Green
+
+                    if(defaultColor.equals("green")){
+                        keymap.put(Character.toString(result[0]), "green");
+                        keymap.put(Character.toString(result[1]), "green");
+                        greyflag = false;
+                        break;
+                    }
+
+                    if(input[(int)correctDoublePosition.get(i)].equals(Character.toString(result[res]))) {
                         keymap.put(Character.toString(result[res]), "green");
                         greyflag = false;
                         break;
                     }
-                    for(int j=0;j<correct.length;j++){
+                    for(int j=0;j<input.length;j++){
                         if(defaultColor.equals("yellow")){
                             keymap.put(Character.toString(result[0]), "yellow");
                             keymap.put(Character.toString(result[1]), "yellow");
                             greyflag = false;
                             break;
                         }
-                        if(correct[j].equals(Character.toString(result[res]))) {
+                        if(input[j].equals(Character.toString(result[res]))) {
                             // Yellow
                             keymap.put(Character.toString(result[res]), "yellow");
                             greyflag = false;
                             break;
                         }
                     }
-                    // Grey
-                    if(greyflag){
-                        keymap.put(Character.toString(result[res]), "grey");
-                    }
+
+
                 }
             }
         }
+
         return keymap;
     }
 

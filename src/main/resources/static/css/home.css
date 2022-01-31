@@ -39,6 +39,9 @@ header p{
 
 
 /* Game board */
+button{
+  cursor:pointer;
+}
 #game-board{
   display: grid;
   text-align: center;

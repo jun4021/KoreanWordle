@@ -9,8 +9,19 @@ import toy.mywordle.service.AnswerToColorService;
 import toy.mywordle.service.AnswerWordService;
 import toy.mywordle.service.CheckWordService;
 
+import java.time.LocalDateTime;
+
 @Controller
 public class MywordleController {
+    public LocalDateTime startTime = LocalDateTime.now()
+            .withYear(2022)
+            .withMonth(2)
+            .withDayOfMonth(1)
+            .withHour(0)
+            .withMinute(0)
+            .withSecond(0)
+            .withNano(0);
+
     private final AnswerToColorService answerToColorService;
     private final AnswerWordService answerWordService;
     private final CheckWordService checkWordService;
@@ -28,6 +39,8 @@ public class MywordleController {
     @GetMapping("/")
     public String home(){
         // DB에서 정답 불러오기
+
+
         Integer code = answerWordService.ChooseRandomId();
         correctAnswer = answerWordService.SelectWordByCode(code).getWord();
         System.out.println(correctAnswer);
