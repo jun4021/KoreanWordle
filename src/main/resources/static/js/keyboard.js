@@ -75,14 +75,17 @@ function EnterLetter() {
     toast.toast("정답 체크");
     let data = correct.CheckAnswerCorrect(lettersAssemble);
 
+    // 단어 리스트 확인
     if (!data.validWord) {
-      toast.toast("단어 리스트에 없습니다.")
-
+      toast.toast("단어 리스트에 없습니다.");
       return;
-    } else if (data.correct) {
+    }
+    // 정답 확인
+    else if (data.correct) {
       toast.toast("정답입니다.");
       local.writeLocal(data,lettersAssemble);
       painting.PaintDisplay(row);
+      local.StatisticsEdit(true);
       $(".add").attr("disabled", true);
       $(".del").attr("disabled", true);
       $(".enter").attr("disabled", true);
@@ -101,6 +104,7 @@ function EnterLetter() {
   // try 횟수 끝
   JSON.parse(localStorage.getItem("colorData")).try
   if (JSON.parse(localStorage.getItem("colorData")).try == MAX_ROW) {
+    local.StatisticsEdit(false);
     $(".add").attr("disabled", true);
     $(".del").attr("disabled", true);
     $(".enter").attr("disabled", true);
@@ -116,7 +120,10 @@ $(document).ready(function(){
 
   // 처음 접속했을 때
   if(localStorage.getItem("entered") == null){
+    // 초기 방법 창 띄우기
     document.getElementsByClassName("howtoplay")[0].style.display = "flex";
+    // 초기 local Storage 정보
+    localStorage.setItem("statistics",JSON.stringify(local.NewStatisticsLocal()));
     localStorage.setItem("entered","true");
     localStorage.setItem("colorData",JSON.stringify(local.NewLocal()));
     row = 1;
@@ -129,8 +136,6 @@ $(document).ready(function(){
     row = 2*tryNumber+1;
     for(let i=0; i<tryNumber;i++){
       painting.PaintDisplay(2*i +1);
-
-
       PrintLetter(2*i +1,words[i]);
     }
   }

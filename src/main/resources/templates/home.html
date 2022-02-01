@@ -34,6 +34,7 @@
     </header>
 
     <div id="toast"></div>
+
     <div class="modal howtoplay">
       <div class="page">
         <div class="page_title">
@@ -55,42 +56,43 @@
           <h1>기록</h1>
           <div class = "record_container">
             <div class ="record_each">
-              <div class="record">1234</div>
+              <div id="play" class="record">0</div>
               <div class="label">플레이</div>
             </div>
             <div class ="record_each">
-              <div class="record">123%</div>
+              <div id="winRate" class="record">0%</div>
               <div class="label">승률</div>
             </div>
             <div class ="record_each">
-              <div class="record">1234</div>
+              <div class="record">0</div>
               <div class="label">현재 콤보</div>
             </div>
             <div class ="record_each">
-              <div class="record">1234</div>
+              <div class="record">0</div>
               <div class="label">최대 콤보</div>
             </div>
           </div>
           <div class = "graph_container">
-            <div class = "graph_each">
+            <div class = "graph_each" >
               <div class = "try">1</div>
-              <div class = "graph_num">0</div>
+              <meter class=graph_num id="graph1" min="0" max="10" value="0"></meter>
+
             </div>
-            <div class = "graph_each">
+            <div class = "graph_each" >
               <div class = "try">2</div>
-              <div class = "graph_num">0</div>
+              <meter class=graph_num id="graph2" min="0" max="10" value="0">0</meter>
             </div>
-            <div class = "graph_each">
+            <div class = "graph_each" >
               <div class = "try">3</div>
-              <div class = "graph_num">0</div>
+              <meter class=graph_num id="graph3" min="0" max="10" value="0">0</meter>
             </div>
-            <div class = "graph_each">
+            <div class = "graph_each" >
               <div class = "try">4</div>
-              <div class = "graph_num">0</div>
+              <meter class=graph_num id="graph4" min="0" max="10" value="0">0</meter>
             </div>
-            <div class = "graph_each">
+            <div class = "graph_each" >
               <div class = "try">5</div>
-              <div class = "graph_num">0</div>
+              <meter class=graph_num id="graph5" min="0" max="10" value="0">0</meter>
             </div>
           </div>
           <button class="share">공유하기 <img src="image/Share_Android.svg"></button>

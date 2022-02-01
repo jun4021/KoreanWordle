@@ -27,6 +27,7 @@ export function writeLocal(data,Answer) {
     localStorage.setItem("colorData",JSON.stringify(nowData));
 
 }
+
 function ClassifyKeyboardColor(nowData,inputData){
 
     const letters = inputData.separateLetters;
@@ -63,4 +64,27 @@ function ClassifyKeyboardColor(nowData,inputData){
             nowData.keyboard[i] = "grey";
         }
     }
+}
+
+export function NewStatisticsLocal(){
+    let stat = new Object();
+    stat.play = 0;
+    stat.success = 0;
+    stat.guess ={1:0,2:0,3:0,4:0,5:0,"fail":0};
+    return stat;
+}
+
+export function StatisticsEdit(correctFlag){
+    const stat = JSON.parse(localStorage.getItem("statistics"));
+    const data = JSON.parse(localStorage.getItem("colorData"));
+    stat.play += 1;
+    console.log(correctFlag);
+    if(correctFlag){
+        stat.success +=1;
+        stat.guess[data.try] +=1;
+    }
+    else{
+        stat.guess["fail"] +=1;
+    }
+    localStorage.setItem("statistics",JSON.stringify(stat));
 }

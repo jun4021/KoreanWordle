@@ -105,18 +105,16 @@
 .try{
     width: 24px;
     height: 24px;
+    vertical-align:center;
+
 }
 .graph_num{
-    background: #818384;
-    color:white;
-    width: 16px;
-    height: 16px;
+    width: 256px;
+    height: 24px;
 
 }
+meter::-webkit-meter-bar {background: #e6e6e9;}
 .share{
-
-
-
     width:128px;
     height: 40px;
     font-weight: bold;
