@@ -41,9 +41,10 @@ public class MywordleController {
         // DB에서 정답 불러오기
 
 
-        Integer code = answerWordService.ChooseRandomId();
-        correctAnswer = answerWordService.SelectWordByCode(code).getWord();
-        System.out.println(correctAnswer);
+        //Integer code = answerWordService.ChooseRandomId();
+        correctAnswer = "신호등";
+    //answerWordService.SelectWordByCode(code).getWord();
+        //System.out.println(correctAnswer);
         return "home";
     }
 
