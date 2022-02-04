@@ -70,8 +70,6 @@ public class MywordleController {
         }
         result.setCorrect(false);
 
-
-
         return result;
     }
 }

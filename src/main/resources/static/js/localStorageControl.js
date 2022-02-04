@@ -71,6 +71,8 @@ export function NewStatisticsLocal(){
     stat.play = 0;
     stat.success = 0;
     stat.guess ={1:0,2:0,3:0,4:0,5:0,"fail":0};
+    stat.combo = 0;
+    stat.maxcombo = 0;
     return stat;
 }
 
@@ -81,9 +83,14 @@ export function StatisticsEdit(correctFlag){
     console.log(correctFlag);
     if(correctFlag){
         stat.success +=1;
+        stat.combo += 1;
         stat.guess[data.try] +=1;
+        if(stat.maxcombo < stat.combo){
+            stat.maxcombo = stat.combo;
+        }
     }
     else{
+        stat.combo = 0;
         stat.guess["fail"] +=1;
     }
     localStorage.setItem("statistics",JSON.stringify(stat));

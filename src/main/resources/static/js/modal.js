@@ -36,5 +36,8 @@ $("#score").on("click",function score() {
         document.getElementById("graph4").value = stat.guess[4];
         document.getElementById("graph5").value = stat.guess[5];
 
+        $("#combo").text(stat.combo);
+        $("#maxcombo").text(stat.maxcombo);
+
     }
 });
