@@ -3,6 +3,7 @@ package toy.mywordle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import toy.mywordle.repository.AnswerWordRepository;
 import toy.mywordle.repository.CheckWordRepository;
 import toy.mywordle.service.AnswerToColorService;
@@ -12,6 +13,7 @@ import toy.mywordle.service.CheckWordService;
 import javax.persistence.EntityManager;
 
 @Configuration
+@EnableScheduling
 public class SpringConfig {
     private final EntityManager em;
 

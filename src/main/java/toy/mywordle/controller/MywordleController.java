@@ -1,6 +1,7 @@
 package toy.mywordle.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,15 +14,6 @@ import java.time.LocalDateTime;
 
 @Controller
 public class MywordleController {
-    public LocalDateTime startTime = LocalDateTime.now()
-            .withYear(2022)
-            .withMonth(2)
-            .withDayOfMonth(1)
-            .withHour(0)
-            .withMinute(0)
-            .withSecond(0)
-            .withNano(0);
-
     private final AnswerToColorService answerToColorService;
     private final AnswerWordService answerWordService;
     private final CheckWordService checkWordService;
@@ -35,16 +27,17 @@ public class MywordleController {
     }
 
 
+//    @Scheduled(cron="0 0/1 * * * ?")
+//    public void test(){
+//        Integer code = answerWordService.ChooseRandomId();
+//        correctAnswer = answerWordService.SelectWordByCode(code).getWord();
+//        System.out.println(correctAnswer);
+//    }
 
     @GetMapping("/")
     public String home(){
         // DB에서 정답 불러오기
-
-
-        //Integer code = answerWordService.ChooseRandomId();
-        correctAnswer = "신호등";
-    //answerWordService.SelectWordByCode(code).getWord();
-        //System.out.println(correctAnswer);
+        correctAnswer = "키보드";
         return "home";
     }
 
@@ -54,6 +47,7 @@ public class MywordleController {
 
         ColorInfo result = new ColorInfo();
         String inputAnswer = ob.getAnswer();
+        Integer trynum = ob.getTrynum();
 
 
         // DB에 단어 list 확인
@@ -68,6 +62,9 @@ public class MywordleController {
         if(correctAnswer.equals(inputAnswer)){
             result.setCorrect(true);
             return result;
+        }
+        if(trynum == 4){
+            result.setAnswer(correctAnswer);
         }
         result.setCorrect(false);
 

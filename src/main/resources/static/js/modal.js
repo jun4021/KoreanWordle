@@ -1,25 +1,6 @@
 import * as local from "./localStorageControl.js";
 
-const closebutton = $(".close");
-
-function openModal(a){
-
-    document.getElementsByClassName(a)[0].style.display = "flex";
-}
-const closeModal = () => {
-    $(".modal").hide();
-}
-
-closebutton.on("click",function(){closeModal()});
-$(".header_button").on("click",function(){openModal($(this).attr("id"))});
-$(".modal-overlay").on("click",function(){closeModal()});
-
-$("#ClearTest").on("click",function(){
-    localStorage.removeItem("colorData");
-    localStorage.setItem("colorData",JSON.stringify(local.NewLocal()));
-});
-
-$("#score").on("click",function score() {
+export function score() {
     const stat = JSON.parse(localStorage.getItem("statistics"));
     $("#play").text(stat.play);
     if(stat.success != 0) {
@@ -40,4 +21,29 @@ $("#score").on("click",function score() {
         $("#maxcombo").text(stat.maxcombo);
 
     }
+}
+
+const closebutton = $(".close");
+
+function openModal(a){
+
+    document.getElementsByClassName(a)[0].style.display = "flex";
+}
+const closeModal = () => {
+    $(".modal").hide();
+}
+
+closebutton.on("click",function(){closeModal()});
+$(".header_button").on("click",function(){openModal($(this).attr("id"))});
+$(".modal-overlay").on("click",function(){closeModal()});
+
+$("#ClearTest").on("click",function(){
+    localStorage.removeItem("colorData");
+    localStorage.setItem("colorData",JSON.stringify(local.NewLocal()));
 });
+
+$("#score").on("click", function(){score()});
+
+
+
+

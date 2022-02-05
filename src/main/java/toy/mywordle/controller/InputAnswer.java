@@ -2,6 +2,15 @@ package toy.mywordle.controller;
 
 public class InputAnswer {
     private String answer;
+    private Integer trynum;
+
+    public Integer getTrynum() {
+        return trynum;
+    }
+
+    public void setTrynum(Integer trynum) {
+        this.trynum = trynum;
+    }
 
     public String getAnswer() {
         return answer;

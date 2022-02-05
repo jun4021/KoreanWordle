@@ -9,6 +9,7 @@ import * as correct from "./correct.js";
 import * as painting from "./paintColor.js";
 import * as local from "./localStorageControl.js";
 import * as toast from "./toast.js";
+import * as modal from "./modal.js";
 
 // 칸에 현재 입력 받은 문자열 출력
 function PrintLetters(Row, lettersAssemble){
@@ -72,8 +73,9 @@ function EnterLetter() {
   if (lettersAssemble.length == 3 && Hangul.isCompleteAll(lettersAssemble)) // 정상 종료 조건
   {
 
-    toast.toast("정답 체크");
-    let data = correct.CheckAnswerCorrect(lettersAssemble);
+    let trynum = JSON.parse(localStorage.getItem("colorData")).try
+    let data = correct.CheckAnswerCorrect(trynum,lettersAssemble);
+
 
     // 단어 리스트 확인
     if (!data.validWord) {
@@ -89,28 +91,34 @@ function EnterLetter() {
       $(".add").attr("disabled", true);
       $(".del").attr("disabled", true);
       $(".enter").attr("disabled", true);
+      modal.score();
+      document.getElementsByClassName("score")[0].style.display = "flex";
       return;
     }
 
+    toast.toast("정답 확인")
     local.writeLocal(data,lettersAssemble);
     painting.PaintDisplay(row);
     row+=2;
     letters = [];
-  } else {
+    if (JSON.parse(localStorage.getItem("colorData")).try == MAX_ROW) {
+      local.StatisticsEdit(false);
+      $(".add").attr("disabled", true);
+      $(".del").attr("disabled", true);
+      $(".enter").attr("disabled", true);
+      toast.toast("정답: " + data.answer);
+      modal.score();
+      document.getElementsByClassName("score")[0].style.display = "flex";
+    }
+  }
+  else {
     toast.toast("완성되지 않은 글자가 있습니다");
   }
   $(".add").attr("disabled", false);
 
   // try 횟수 끝
-  JSON.parse(localStorage.getItem("colorData")).try
-  if (JSON.parse(localStorage.getItem("colorData")).try == MAX_ROW) {
-    local.StatisticsEdit(false);
-    $(".add").attr("disabled", true);
-    $(".del").attr("disabled", true);
-    $(".enter").attr("disabled", true);
-    toast.toast("END");
 
-  }
+
 }
 let EnglishToKorean = {"Q":"ㅂ","W":"ㅈ","E":"ㄷ","R":"ㄱ","T":"ㅅ","Y":"ㅛ","U":"ㅕ","I":"ㅑ","O":"ㅐ","P":"ㅔ","A":"ㅁ","S":"ㄴ","D":"ㅇ","F":"ㄹ","G":"ㅎ","H":"ㅗ","J":"ㅓ","K":"ㅏ","L":"ㅣ","Z":"ㅋ","X":"ㅌ","C":"ㅊ","V":"ㅍ","B":"ㅠ","N":"ㅜ","M":"ㅡ"};
 let shiftTo = {81:"ㅃ",87:"ㅉ",69:"ㄸ",82:"ㄲ",84:"ㅆ",79:"ㅒ",80:"ㅖ"};
