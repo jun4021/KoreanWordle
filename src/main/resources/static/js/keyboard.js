@@ -72,10 +72,13 @@ function EnterLetter() {
 
   if (lettersAssemble.length == 3 && Hangul.isCompleteAll(lettersAssemble)) // 정상 종료 조건
   {
+    // 시간 기록
+    let now = new Date();
+
+    localStorage.setItem("recentDate",now.toLocaleDateString());
 
     let trynum = JSON.parse(localStorage.getItem("colorData")).try
     let data = correct.CheckAnswerCorrect(trynum,lettersAssemble);
-
 
     // 단어 리스트 확인
     if (!data.validWord) {
@@ -136,11 +139,18 @@ $(document).ready(function(){
     localStorage.setItem("colorData",JSON.stringify(local.NewLocal()));
     row = 1;
   }
-  // 나중에 colordata 초기화 시 New를 꼭 만들어 주어야 함.
+  // 접속 기록이 있을 때
   else{
+    let recentDate = localStorage.getItem("recentDate");
+    let now = new Date();
+    // 최근 접속 날짜와 다를 때
+    if(recentDate != now.toLocaleDateString()){
+      localStorage.removeItem("colorData");
+      localStorage.setItem("colorData",JSON.stringify(local.NewLocal()));
+    }
+    // localStorage에 있는 data 적용
     let tryNumber = JSON.parse(localStorage.getItem("colorData")).try;
     let words = JSON.parse(localStorage.getItem("colorData")).word;
-
     row = 2*tryNumber+1;
     for(let i=0; i<tryNumber;i++){
       painting.PaintDisplay(2*i +1);
@@ -150,7 +160,7 @@ $(document).ready(function(){
 
   // 글자 추가
   $(".add").on("click",function(){AddLetter($(this).text())});
-
+  // 키보드 눌렀을 때
   $(document).keydown(function(event){
     switch (event.keyCode){
       case 8:
@@ -178,7 +188,9 @@ $(document).ready(function(){
   $(".del").click(function(){DelLetter()});
 
   // 답장 전송
-  $(".enter").click(function() {EnterLetter()});
+  $(".enter").click(function() {
+    EnterLetter()
+  });
 
 
 // shift 키

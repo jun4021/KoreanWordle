@@ -12,7 +12,7 @@
 .page{
     background: white;
     position:relative;
-    /*width: 376px;*/
+    width: 376px;
     height: 100%;
     text-align: center;
     border-radius: 10px;

@@ -17,7 +17,7 @@ public class MywordleController {
     private final AnswerToColorService answerToColorService;
     private final AnswerWordService answerWordService;
     private final CheckWordService checkWordService;
-    private String correctAnswer;
+    private String correctAnswer = "신호등";
 
     @Autowired
     public MywordleController(AnswerToColorService answerToColorService, AnswerWordService answerWordService, CheckWordService checkWordService) {
@@ -27,17 +27,15 @@ public class MywordleController {
     }
 
 
-//    @Scheduled(cron="0 0/1 * * * ?")
-//    public void test(){
-//        Integer code = answerWordService.ChooseRandomId();
-//        correctAnswer = answerWordService.SelectWordByCode(code).getWord();
-//        System.out.println(correctAnswer);
-//    }
+    @Scheduled(cron="0 0 0 * * ?")
+    public void ChooseAnswer(){
+        Integer code = answerWordService.ChooseRandomId();
+        correctAnswer = answerWordService.SelectWordByCode(code).getWord();
+    }
 
     @GetMapping("/")
     public String home(){
         // DB에서 정답 불러오기
-        correctAnswer = "키보드";
         return "home";
     }
 
