@@ -186,19 +186,23 @@ img{
 }
 
 @media only screen and (max-width:450px){
+  html{
+    height: auto;
+  }
 
   header{
+
     width: auto;
   }
   .page{
     width: 100%;
   }
   .modal{
-    z-index: 1;
+    z-index: 2;
   }
 
   #keyboard{
-    z-index: -1;
+    z-index: 1;
     position:fixed;
     bottom :5px;
     left: 0px;
@@ -207,7 +211,7 @@ img{
 
   }
   #game-board{
-    z-index: -1;
+    /*z-index: -1;*/
 
     transform:scale(0.8);
     padding-top:8px;
@@ -239,6 +243,7 @@ img{
   .enter{
     height: 40px;
   }
+
 
 
 

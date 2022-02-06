@@ -101,6 +101,7 @@ function EnterLetter() {
       document.getElementsByClassName("score")[0].style.display = "flex";
       local.writeSolveLocal();
 
+      letters = [];
       return;
     }
 
@@ -119,6 +120,7 @@ function EnterLetter() {
       modal.score();
       local.writeSolveLocal();
       document.getElementsByClassName("score")[0].style.display = "flex";
+      letters = [];
 
     }
   }
@@ -182,24 +184,26 @@ $(document).ready(function(){
     });
     // 키보드 눌렀을 때
     $(document).keydown(function (event) {
-      switch (event.keyCode) {
-        case 8:
-          DelLetter();
-          break;
-        case 13:
-          EnterLetter();
-        default:
-          break;
-      }
-
-      if ((65 <= event.keyCode) && (event.keyCode <= 90)) {
-        if (event.shiftKey && Object.keys(shiftTo).indexOf(event.keyCode.toString()) != -1) {
-
-          AddLetter(shiftTo[event.keyCode]);
-        } else {
-          AddLetter(EnglishToKorean[String.fromCharCode(event.keyCode)]);
+      if(!solved) {
+        switch (event.keyCode) {
+          case 8:
+            DelLetter();
+            break;
+          case 13:
+            EnterLetter();
+          default:
+            break;
         }
 
+        if ((65 <= event.keyCode) && (event.keyCode <= 90)) {
+          if (event.shiftKey && Object.keys(shiftTo).indexOf(event.keyCode.toString()) != -1) {
+
+            AddLetter(shiftTo[event.keyCode]);
+          } else {
+            AddLetter(EnglishToKorean[String.fromCharCode(event.keyCode)]);
+          }
+
+        }
       }
     });
 

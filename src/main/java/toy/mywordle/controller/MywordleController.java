@@ -21,7 +21,7 @@ public class MywordleController {
     private final AnswerWordService answerWordService;
     private final CheckWordService checkWordService;
     private final DailyRecordRepository dailyRecordRepository;
-    private String correctAnswer = "신호등";
+    private String correctAnswer = "내일로";
     private dailyrecord record = new dailyrecord();
 
 

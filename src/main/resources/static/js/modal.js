@@ -1,4 +1,5 @@
 import * as local from "./localStorageControl.js";
+import * as toast from "./toast.js";
 
 export function score() {
     const stat = JSON.parse(localStorage.getItem("statistics"));
@@ -46,6 +47,14 @@ $("#ClearTest").on("click",function(){
 
 $("#score").on("click", function(){score()});
 
+$(".share").on("click",function() {
+    navigator.clipboard.writeText("http://koreanwordle.com");
+    toast.toast("Copied");
+});
+
+$("#opinion").on("click",function() {
+    $(location).attr("href","https://docs.google.com/forms/d/1l1G2ISEw510mXamPKUG6WJ4f6qDni8FowmFCnnwUFD8/edit?ts=61ffe72f");
+});
 
 
 

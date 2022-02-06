@@ -28,7 +28,7 @@
     background: white;
     position:absolute;
     width: 336px;
-    height: 344px;
+    height: 360px;
     text-align: center;
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);
@@ -122,9 +122,7 @@ meter::-webkit-meter-bar {background: #e6e6e9;}
     background: #05944F;
     color:white;
 }
-.share{
 
-}
 .share img{
     display: inline;
     width: 16px;
@@ -137,4 +135,12 @@ meter::-webkit-meter-bar {background: #e6e6e9;}
     width: 32px;
     height: 32px;
     background: white;
+}
+#opinion{
+    width:128px;
+    height: 40px;
+    font-weight: bold;
+    font-size: 16px;
+    background: #D3D6DA;
+    color:black;
 }
