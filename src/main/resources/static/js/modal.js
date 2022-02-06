@@ -53,7 +53,7 @@ $(".share").on("click",function() {
 });
 
 $("#opinion").on("click",function() {
-    $(location).attr("href","https://docs.google.com/forms/d/1l1G2ISEw510mXamPKUG6WJ4f6qDni8FowmFCnnwUFD8/edit?ts=61ffe72f");
+    $(location).attr("href","https://forms.gle/K54r4dB5xxLY7a7S9");
 });
 
 
