@@ -6,6 +6,7 @@ p{
 div{
   font-family:pretendard;
   font-weight: 700;
+  color:#080B14;
 }
 
 
@@ -41,7 +42,9 @@ header p{
 
 /* Game board */
 button{
+  color:#080B14;
   cursor:pointer;
+  -webkit-appearance: none;
 }
 #game-board{
   display: grid;
@@ -190,6 +193,9 @@ img{
   .page{
     width: 100%;
   }
+  .modal{
+    z-index: 1;
+  }
 
   #keyboard{
     z-index: -1;
@@ -201,8 +207,10 @@ img{
 
   }
   #game-board{
+    z-index: -1;
+
     transform:scale(0.8);
-    padding-top:0px
+    padding-top:8px;
   }
 
 
@@ -234,4 +242,22 @@ img{
 
 
 
+}
+
+@media only screen and (max-width:450px) and (min-height:760px){
+  #game-board {
+    transform: scale(1);
+  }
+}
+@media only screen and (max-width:450px) and (max-height:720px){
+  #game-board {
+    transform-origin: 50% 20%;
+    transform: scale(0.8);
+  }
+}
+@media only screen and (max-width:450px) and (max-height:680px){
+  #game-board {
+    transform-origin: 50% 20%;
+    transform: scale(0.7);
+  }
 }
