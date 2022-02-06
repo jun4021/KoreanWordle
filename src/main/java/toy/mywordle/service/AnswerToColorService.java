@@ -53,8 +53,6 @@ public class AnswerToColorService {
             }
         }
 
-
-
         colorinfo.setSeparateLetters(input);
         colorinfo.setYellow(yellow);
         colorinfo.setGreen(green);
