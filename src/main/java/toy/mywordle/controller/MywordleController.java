@@ -27,7 +27,7 @@ public class MywordleController {
     }
 
 
-    @Scheduled(cron="0 0 0 * * ?")
+    @Scheduled(cron="0 0/10 * * * ?")
     public void ChooseAnswer(){
         Integer code = answerWordService.ChooseRandomId();
         correctAnswer = answerWordService.SelectWordByCode(code).getWord();
