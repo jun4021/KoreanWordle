@@ -1,6 +1,7 @@
 export function NewLocal(row, colorData){
 
     let local = new Object();
+    local.solved = false;
     local.try = 0;
     local.word = [];
     local.color = [];
@@ -23,6 +24,13 @@ export function writeLocal(data,Answer) {
     nowData.try += 1;
     nowData.word.push(Answer);
     nowData.color.push(colorData);
+
+    localStorage.setItem("colorData",JSON.stringify(nowData));
+
+}
+export function writeSolveLocal() {
+    const nowData = JSON.parse(localStorage.getItem("colorData"));
+    nowData.solved = true;
 
     localStorage.setItem("colorData",JSON.stringify(nowData));
 

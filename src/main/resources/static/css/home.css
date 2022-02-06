@@ -187,31 +187,46 @@ img{
   header{
     width: auto;
   }
+  .page{
+    width: 100%;
+  }
 
   #keyboard{
     z-index: -1;
     position:fixed;
     bottom :5px;
+    left: 0px;
     width: 100%;
     height: auto;
 
   }
-
+  #game-board{
+    transform:scale(0.8);
+    padding-top:0px
+  }
 
 
   .tile-row{
     margin-bottom: 4px;
   }
   button{
-    height: 40px;
+    width: 28px ;
+    height: 36px;
   }
   .del{
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
   }
   .shiftkey{
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
+
+  }
+  .del img{
+    width: 75%;
+  }
+  .shiftkey img{
+    width: 75%;
   }
   .enter{
     height: 40px;

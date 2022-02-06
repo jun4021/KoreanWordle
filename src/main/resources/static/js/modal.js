@@ -28,9 +28,11 @@ const closebutton = $(".close");
 function openModal(a){
 
     document.getElementsByClassName(a)[0].style.display = "flex";
+
 }
 const closeModal = () => {
     $(".modal").hide();
+    window.location.reload();
 }
 
 closebutton.on("click",function(){closeModal()});

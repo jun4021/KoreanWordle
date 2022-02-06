@@ -36,6 +36,8 @@ public class MywordleController {
     @GetMapping("/")
     public String home(){
         // DB에서 정답 불러오기
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println(now);
         return "home";
     }
 

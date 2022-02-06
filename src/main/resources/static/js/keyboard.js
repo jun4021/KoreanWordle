@@ -10,6 +10,7 @@ import * as painting from "./paintColor.js";
 import * as local from "./localStorageControl.js";
 import * as toast from "./toast.js";
 import * as modal from "./modal.js";
+import {writeSolveLocal} from "./localStorageControl.js";
 
 // 칸에 현재 입력 받은 문자열 출력
 function PrintLetters(Row, lettersAssemble){
@@ -87,6 +88,7 @@ function EnterLetter() {
     }
     // 정답 확인
     else if (data.correct) {
+
       toast.toast("정답입니다.");
       local.writeLocal(data,lettersAssemble);
       painting.PaintDisplay(row);
@@ -94,8 +96,11 @@ function EnterLetter() {
       $(".add").attr("disabled", true);
       $(".del").attr("disabled", true);
       $(".enter").attr("disabled", true);
+
       modal.score();
       document.getElementsByClassName("score")[0].style.display = "flex";
+      local.writeSolveLocal();
+
       return;
     }
 
@@ -104,6 +109,7 @@ function EnterLetter() {
     painting.PaintDisplay(row);
     row+=2;
     letters = [];
+    // try 종료
     if (JSON.parse(localStorage.getItem("colorData")).try == MAX_ROW) {
       local.StatisticsEdit(false);
       $(".add").attr("disabled", true);
@@ -111,15 +117,15 @@ function EnterLetter() {
       $(".enter").attr("disabled", true);
       toast.toast("정답: " + data.answer);
       modal.score();
+      local.writeSolveLocal();
       document.getElementsByClassName("score")[0].style.display = "flex";
+
     }
   }
   else {
     toast.toast("완성되지 않은 글자가 있습니다");
   }
   $(".add").attr("disabled", false);
-
-  // try 횟수 끝
 
 
 }
@@ -151,56 +157,71 @@ $(document).ready(function(){
     // localStorage에 있는 data 적용
     let tryNumber = JSON.parse(localStorage.getItem("colorData")).try;
     let words = JSON.parse(localStorage.getItem("colorData")).word;
+
     row = 2*tryNumber+1;
     for(let i=0; i<tryNumber;i++){
       painting.PaintDisplay(2*i +1);
       PrintLetter(2*i +1,words[i]);
     }
+
+
   }
 
-  // 글자 추가
-  $(".add").on("click",function(){AddLetter($(this).text())});
-  // 키보드 눌렀을 때
-  $(document).keydown(function(event){
-    switch (event.keyCode){
-      case 8:
-        DelLetter();
-        break;
-      case 13:
-        EnterLetter();
-      default:
-        break;
-    }
-
-    if((65 <= event.keyCode) && (event.keyCode <= 90)) {
-      if (event.shiftKey && Object.keys(shiftTo).indexOf(event.keyCode.toString())!=-1){
-
-        AddLetter(shiftTo[event.keyCode]);
+  let solved = JSON.parse(localStorage.getItem("colorData")).solved;
+  if(solved) {
+    $(".add").attr("disabled", true);
+    $(".del").attr("disabled", true);
+    $(".enter").attr("disabled", true);
+    $(document).keypress(function(e){
+      e.preventDefault();
+    })
+  }
+  else {  // 글자 추가
+    $(".add").on("click", function () {
+      AddLetter($(this).text())
+    });
+    // 키보드 눌렀을 때
+    $(document).keydown(function (event) {
+      switch (event.keyCode) {
+        case 8:
+          DelLetter();
+          break;
+        case 13:
+          EnterLetter();
+        default:
+          break;
       }
-      else {
-        AddLetter(EnglishToKorean[String.fromCharCode(event.keyCode)]);
+
+      if ((65 <= event.keyCode) && (event.keyCode <= 90)) {
+        if (event.shiftKey && Object.keys(shiftTo).indexOf(event.keyCode.toString()) != -1) {
+
+          AddLetter(shiftTo[event.keyCode]);
+        } else {
+          AddLetter(EnglishToKorean[String.fromCharCode(event.keyCode)]);
+        }
+
       }
+    });
 
-    }
-  });
+    // 글자 지우기
+    $(".del").click(function () {
+      DelLetter()
+    });
 
-  // 글자 지우기
-  $(".del").click(function(){DelLetter()});
-
-  // 답장 전송
-  $(".enter").click(function() {
-    EnterLetter()
-  });
+    // 답장 전송
+    $(".enter").click(function () {
+      EnterLetter()
+    });
 
 
-// shift 키
-  $(".shiftkey").click(function ShiftLetter(){
-    $(".shift").toggle();
-  });
+    // shift 키
+    $(".shiftkey").click(function ShiftLetter() {
+      $(".shift").toggle();
+    });
 
-  $(".shiftAfter").click(function(){
-    $(".shift").toggle();
-  });
-
+    $(".shiftAfter").click(function () {
+      $(".shift").toggle();
+    });
+  }
 
 });
