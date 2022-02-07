@@ -21,7 +21,7 @@ public class MywordleController {
     private final AnswerWordService answerWordService;
     private final CheckWordService checkWordService;
     private final DailyRecordRepository dailyRecordRepository;
-    private String correctAnswer = "발명품";
+    private String correctAnswer = "메뉴판";
     private dailyrecord record = new dailyrecord();
 
 
@@ -38,6 +38,8 @@ public class MywordleController {
     public void ChooseAnswer(){
         Integer code = answerWordService.ChooseRandomId();
         correctAnswer = answerWordService.SelectWordByCode(code).getWord();
+        LocalDateTime now = LocalDateTime.now();
+        record.setDate(now.toString());
         dailyRecordRepository.SaveRecord(record);
         record = new dailyrecord();
 
@@ -46,8 +48,7 @@ public class MywordleController {
     @GetMapping("/")
     public String home(){
         // DB에서 정답 불러오기
-        LocalDateTime now = LocalDateTime.now();
-        record.setDate(now.toLocalDate().toString());
+
         record.setVisit(record.getVisit()+1);
 
         return "home";
