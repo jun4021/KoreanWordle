@@ -14,6 +14,8 @@ import toy.mywordle.service.CheckWordService;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.TimeZone;
 
 @Controller
 public class MywordleController {
@@ -50,6 +52,7 @@ public class MywordleController {
         // DB에서 정답 불러오기
 
         record.setVisit(record.getVisit()+1);
+        System.out.println(new Date().toString());
 
         return "home";
     }

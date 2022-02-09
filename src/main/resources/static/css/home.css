@@ -45,6 +45,8 @@ button{
   color:#080B14;
   cursor:pointer;
   -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  -webkit-text-size-adjust: none;
 }
 #game-board{
   display: grid;
