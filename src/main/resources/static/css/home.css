@@ -46,7 +46,6 @@ button{
   cursor:pointer;
   -webkit-appearance: none;
   -webkit-border-radius: 0;
-  -webkit-text-size-adjust: none;
 }
 #game-board{
   display: grid;
@@ -106,13 +105,18 @@ button{
 
 }
 .keyboard-row{
-  display:flex;
+  display:-webkit-flex;
   justify-content: center;
 
   height:48px;
 }
 
 button{
+  color:#080B14;
+  cursor:pointer;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+
   width: 32px;
   height: 48px;
   background: #D3D6DA;
@@ -128,6 +132,7 @@ button{
   align-items: center;
   text-align: center;
 }
+
 img{
   display: block;
   margin: auto;

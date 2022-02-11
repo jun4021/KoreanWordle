@@ -30,8 +30,8 @@ export function score() {
 function getTime(){
     const now = new Date();
     const hour = 23-now.getHours();
-    const min = 60-now.getMinutes();
-    const sec = 60-now.getSeconds();
+    const min = 59-now.getMinutes();
+    const sec = 59-now.getSeconds();
     let timetext = `${hour<10 ? `0${hour}`:hour}:${min<10 ? `0${min}`:min}:${sec<10 ? `0${sec}`:sec}`;
     $("#time").text(timetext);
 
