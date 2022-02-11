@@ -23,9 +23,8 @@ public class MywordleController {
     private final AnswerWordService answerWordService;
     private final CheckWordService checkWordService;
     private final DailyRecordRepository dailyRecordRepository;
-    private String correctAnswer = "메뉴판";
+    private String correctAnswer;
     private dailyrecord record = new dailyrecord();
-
 
     @Autowired
     public MywordleController(AnswerToColorService answerToColorService, AnswerWordService answerWordService, CheckWordService checkWordService, DailyRecordRepository dailyRecordRepository) {
@@ -33,7 +32,11 @@ public class MywordleController {
         this.answerWordService = answerWordService;
         this.checkWordService = checkWordService;
         this.dailyRecordRepository = dailyRecordRepository;
+        Integer code = answerWordService.ChooseRandomId();
+        correctAnswer = answerWordService.SelectWordByCode(code).getWord();
+
     }
+
 
 
     @Scheduled(cron="0 0 0 * * ?")

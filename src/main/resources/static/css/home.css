@@ -41,12 +41,6 @@ header p{
 
 
 /* Game board */
-button{
-  color:#080B14;
-  cursor:pointer;
-  -webkit-appearance: none;
-  -webkit-border-radius: 0;
-}
 #game-board{
   display: grid;
   text-align: center;
@@ -123,6 +117,7 @@ button{
   border-radius: 5px;
   margin: 0px 2px;
   border: none;
+  padding : 0;
 
   font-family: Pretendard;
   font-style: normal;
