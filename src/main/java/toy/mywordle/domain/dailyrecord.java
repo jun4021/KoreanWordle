@@ -16,6 +16,15 @@ public class dailyrecord {
     public Integer threetrycorrect=0;
     public Integer fourtrycorrect=0;
     public Integer fivetrycorrect=0;
+    public Integer trystart =0;
+
+    public Integer gettrystart() {
+        return trystart;
+    }
+
+    public void settrystart(Integer trystart) {
+        this.trystart = trystart;
+    }
 
     public String getDate() {
         return date;

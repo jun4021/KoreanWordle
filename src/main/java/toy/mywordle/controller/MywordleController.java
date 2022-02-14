@@ -32,28 +32,27 @@ public class MywordleController {
         this.answerWordService = answerWordService;
         this.checkWordService = checkWordService;
         this.dailyRecordRepository = dailyRecordRepository;
+        // 그 날짜 DB에서 뽑아오면 됨
+
         Integer code = answerWordService.ChooseRandomId();
         correctAnswer = answerWordService.SelectWordByCode(code).getWord();
-
     }
-
-
 
     @Scheduled(cron="0 0 0 * * ?")
     public void ChooseAnswer(){
         Integer code = answerWordService.ChooseRandomId();
         correctAnswer = answerWordService.SelectWordByCode(code).getWord();
+        // 정답 단어 DB에 넣기
+
         LocalDateTime now = LocalDateTime.now();
         record.setDate(now.toString());
         dailyRecordRepository.SaveRecord(record);
         record = new dailyrecord();
-
     }
 
     @GetMapping("/")
     public String home(){
         // DB에서 정답 불러오기
-
         record.setVisit(record.getVisit()+1);
 
         return "home";
@@ -71,13 +70,33 @@ public class MywordleController {
         // DB에 단어 list 확인
         if(!checkWordService.InCheckWord(inputAnswer)) {
             result.setValidWord(false);
-
             return result;
         }
 
         // 있을 시 정답이랑 비교
         result = answerToColorService.RecordColorInfo(correctAnswer,inputAnswer);
+        if(trynum==0){
+            record.settrystart(record.gettrystart()+1);
+        }
         if(correctAnswer.equals(inputAnswer)){
+            // try 횟수에 따른 data 추가
+            switch (trynum+1){
+                case 1:
+                    record.setOnetrycorrect(record.getOnetrycorrect()+1);
+                    break;
+                case 2:
+                    record.setTwotrycorrect(record.getTwotrycorrect()+1);
+                    break;
+                case 3:
+                    record.setThreetrycorrect(record.getThreetrycorrect()+1);
+                    break;
+                case 4:
+                    record.setFourtrycorrect(record.getFourtrycorrect()+1);
+                    break;
+                case 5:
+                    record.setFivetrycorrect(record.getFivetrycorrect()+1);
+                    break;
+            }
             record.setCorrectanswer(record.getCorrectanswer()+1);
             result.setCorrect(true);
             return result;
