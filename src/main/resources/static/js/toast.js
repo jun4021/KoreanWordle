@@ -6,10 +6,10 @@ export function toast(string) {
     toast.classList.contains("reveal") ?
         (clearTimeout(removeToast), removeToast = setTimeout(function () {
             document.getElementById("toast").classList.remove("reveal")
-        }, 1000)) :
+        }, 2800)) :
         removeToast = setTimeout(function () {
             document.getElementById("toast").classList.remove("reveal")
-        }, 1000)
+        }, 2800)
     toast.classList.add("reveal"),
         toast.innerText = string
 }

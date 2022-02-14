@@ -6,7 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import toy.mywordle.domain.dailyanswer;
 import toy.mywordle.domain.dailyrecord;
+import toy.mywordle.repository.DailyAnswerRepository;
 import toy.mywordle.repository.DailyRecordRepository;
 import toy.mywordle.service.AnswerToColorService;
 import toy.mywordle.service.AnswerWordService;
@@ -23,28 +25,36 @@ public class MywordleController {
     private final AnswerWordService answerWordService;
     private final CheckWordService checkWordService;
     private final DailyRecordRepository dailyRecordRepository;
+    private final DailyAnswerRepository dailyAnswerRepository;
     private String correctAnswer;
     private dailyrecord record = new dailyrecord();
 
     @Autowired
-    public MywordleController(AnswerToColorService answerToColorService, AnswerWordService answerWordService, CheckWordService checkWordService, DailyRecordRepository dailyRecordRepository) {
+    public MywordleController(DailyAnswerRepository dailyanswerRepository,AnswerToColorService answerToColorService, AnswerWordService answerWordService, CheckWordService checkWordService, DailyRecordRepository dailyRecordRepository) {
         this.answerToColorService = answerToColorService;
         this.answerWordService = answerWordService;
         this.checkWordService = checkWordService;
         this.dailyRecordRepository = dailyRecordRepository;
-        // 그 날짜 DB에서 뽑아오면 됨
+        this.dailyAnswerRepository = dailyanswerRepository;
 
-        Integer code = answerWordService.ChooseRandomId();
-        correctAnswer = answerWordService.SelectWordByCode(code).getWord();
+        // 그 날짜 DB에서 뽑아오면 됨
+        LocalDateTime now = LocalDateTime.now();
+        correctAnswer = dailyAnswerRepository.FindAnswer(now.toLocalDate().toString());
+
     }
 
     @Scheduled(cron="0 0 0 * * ?")
     public void ChooseAnswer(){
         Integer code = answerWordService.ChooseRandomId();
         correctAnswer = answerWordService.SelectWordByCode(code).getWord();
-        // 정답 단어 DB에 넣기
-
         LocalDateTime now = LocalDateTime.now();
+
+        // 정답 단어 DB에 넣기
+        dailyanswer answerRecord = new dailyanswer();
+        answerRecord.setDate(now.toLocalDate().toString());
+        answerRecord.setAnswer(correctAnswer);
+        dailyAnswerRepository.SaveRecord(answerRecord);
+
         record.setDate(now.toString());
         dailyRecordRepository.SaveRecord(record);
         record = new dailyrecord();

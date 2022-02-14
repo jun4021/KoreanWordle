@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import toy.mywordle.repository.AnswerWordRepository;
 import toy.mywordle.repository.CheckWordRepository;
+import toy.mywordle.repository.DailyAnswerRepository;
 import toy.mywordle.repository.DailyRecordRepository;
 import toy.mywordle.service.AnswerToColorService;
 import toy.mywordle.service.AnswerWordService;
@@ -47,5 +48,8 @@ public class SpringConfig {
     public DailyRecordRepository dailyRecordRepository(){
         return new DailyRecordRepository(em);
     }
-
+    @Bean
+    public DailyAnswerRepository dailyAnswerRepository(){
+        return new DailyAnswerRepository(em);
+    }
 }
