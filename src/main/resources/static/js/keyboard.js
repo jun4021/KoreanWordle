@@ -12,6 +12,7 @@ import * as toast from "./toast.js";
 import * as modal from "./modal.js";
 import {writeSolveLocal} from "./localStorageControl.js";
 
+
 // 칸에 현재 입력 받은 문자열 출력
 function PrintLetters(Row, lettersAssemble){
   let rowTile = document.getElementById('game-board')
@@ -45,91 +46,101 @@ function PrintLetter(Row, lettersAssemble){
 }
 
 function AddLetter(letter) {
+  let solved = JSON.parse(localStorage.getItem("colorData")).solved;
+  if(!solved) {
+    letters.push(letter);
+    let lettersAssemble = Hangul.assemble(letters);
 
-  letters.push(letter);
-  let lettersAssemble = Hangul.assemble(letters);
+    if (lettersAssemble.length == 4) // 글자 수 제한 초과
+    {
+      letters.pop();
+      toast.toast("글자는 3글자 제한");
+      $(".add").attr("disabled", true);
+      return;
+    } else {
 
-  if (lettersAssemble.length == 4) // 글자 수 제한 초과
-  {
-    letters.pop();
-    toast.toast("글자는 3글자 제한");
-    $(".add").attr("disabled", true);
-    return;
-  } else {
-
-    PrintLetters(row, lettersAssemble);
+      PrintLetters(row, lettersAssemble);
+    }
   }
 }
 function DelLetter(){
-  letters.pop();
-  let lettersAssemble = Hangul.assemble(letters);
-  PrintLetters(row,lettersAssemble);
+  let solved = JSON.parse(localStorage.getItem("colorData")).solved;
+  if(!solved) {
+    letters.pop();
+    let lettersAssemble = Hangul.assemble(letters);
+    PrintLetters(row, lettersAssemble);
 
-  $(".add").attr("disabled",false);
+    $(".add").attr("disabled", false);
+  }
 }
 
 function EnterLetter() {
-  let lettersAssemble = Hangul.assemble(letters);
+  let solved = JSON.parse(localStorage.getItem("colorData")).solved;
+  if(!solved) {
+    let lettersAssemble = Hangul.assemble(letters);
 
-  if (lettersAssemble.length == 3 && Hangul.isCompleteAll(lettersAssemble)) // 정상 종료 조건
-  {
-    // 시간 기록
-    let now = new Date();
+    if (lettersAssemble.length == 3 && Hangul.isCompleteAll(lettersAssemble)) // 정상 종료 조건
+    {
+      // 시간 기록
+      let now = new Date();
 
-    localStorage.setItem("recentDate",now.toLocaleDateString());
+      localStorage.setItem("recentDate", now.toLocaleDateString());
 
-    let trynum = JSON.parse(localStorage.getItem("colorData")).try
-    let data = correct.CheckAnswerCorrect(trynum,lettersAssemble);
+      let trynum = JSON.parse(localStorage.getItem("colorData")).try
+      let data = correct.CheckAnswerCorrect(trynum, lettersAssemble);
 
-    // 단어 리스트 확인
-    if (!data.validWord) {
-      toast.toast("단어 리스트에 없습니다.");
-      return;
-    }
-    // 정답 확인
-    else if (data.correct) {
+      // 단어 리스트 확인
+      if (!data.validWord) {
+        toast.toast("단어 리스트에 없습니다.");
+        return;
+      }
+      // 정답 확인
+      else if (data.correct) {
 
-      toast.toast("정답입니다.");
-      local.writeLocal(data,lettersAssemble);
+        toast.toast("정답입니다.");
+        local.writeLocal(data, lettersAssemble);
+        painting.PaintDisplay(row);
+        local.StatisticsEdit(true);
+        $(".add").attr("disabled", true);
+        $(".del").attr("disabled", true);
+        $(".enter").attr("disabled", true);
+        local.writeSolveLocal();
+        letters = [];
+        setTimeout(function () {
+          modal.score();
+          document.getElementsByClassName("score")[0].style.display = "flex";
+        }, 2800);
+        return;
+      }
+
+      toast.toast("정답 확인")
+      local.writeLocal(data, lettersAssemble);
       painting.PaintDisplay(row);
-      local.StatisticsEdit(true);
-      $(".add").attr("disabled", true);
-      $(".del").attr("disabled", true);
-      $(".enter").attr("disabled", true);
-
-      modal.score();
-      document.getElementsByClassName("score")[0].style.display = "flex";
-      local.writeSolveLocal();
-
+      row += 2;
       letters = [];
-      return;
+      // try 종료
+      if (JSON.parse(localStorage.getItem("colorData")).try == MAX_ROW) {
+        local.StatisticsEdit(false);
+        $(".add").attr("disabled", true);
+        $(".del").attr("disabled", true);
+        $(".enter").attr("disabled", true);
+        toast.toast("정답: " + data.answer);
+        local.writeSolveLocal();
+        letters = [];
+
+        setTimeout(function () {
+          modal.score();
+          document.getElementsByClassName("score")[0].style.display = "flex";
+        }, 2800);
+
+
+      }
+    } else {
+      toast.toast("완성되지 않은 글자가 있습니다");
     }
+    $(".add").attr("disabled", false);
 
-    toast.toast("정답 확인")
-    local.writeLocal(data,lettersAssemble);
-    painting.PaintDisplay(row);
-    row+=2;
-    letters = [];
-    // try 종료
-    if (JSON.parse(localStorage.getItem("colorData")).try == MAX_ROW) {
-      local.StatisticsEdit(false);
-      $(".add").attr("disabled", true);
-      $(".del").attr("disabled", true);
-      $(".enter").attr("disabled", true);
-      toast.toast("정답: " + data.answer);
-      modal.score();
-      local.writeSolveLocal();
-      document.getElementsByClassName("score")[0].style.display = "flex";
-      letters = [];
-
-    }
   }
-  else {
-    toast.toast("완성되지 않은 글자가 있습니다");
-  }
-  $(".add").attr("disabled", false);
-
-
 }
 let EnglishToKorean = {"Q":"ㅂ","W":"ㅈ","E":"ㄷ","R":"ㄱ","T":"ㅅ","Y":"ㅛ","U":"ㅕ","I":"ㅑ","O":"ㅐ","P":"ㅔ","A":"ㅁ","S":"ㄴ","D":"ㅇ","F":"ㄹ","G":"ㅎ","H":"ㅗ","J":"ㅓ","K":"ㅏ","L":"ㅣ","Z":"ㅋ","X":"ㅌ","C":"ㅊ","V":"ㅍ","B":"ㅠ","N":"ㅜ","M":"ㅡ"};
 let shiftTo = {81:"ㅃ",87:"ㅉ",69:"ㄸ",82:"ㄲ",84:"ㅆ",79:"ㅒ",80:"ㅖ"};
@@ -165,8 +176,6 @@ $(document).ready(function(){
       painting.PaintDisplay(2*i +1);
       PrintLetter(2*i +1,words[i]);
     }
-
-
   }
 
   let solved = JSON.parse(localStorage.getItem("colorData")).solved;

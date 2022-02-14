@@ -45,7 +45,7 @@ function openModal(a){
 }
 const closeModal = () => {
     $(".modal").hide();
-    window.location.reload();
+
 }
 
 closebutton.on("click",function(){closeModal()});
