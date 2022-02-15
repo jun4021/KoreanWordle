@@ -10,6 +10,7 @@ import toy.mywordle.domain.dailyanswer;
 import toy.mywordle.domain.dailyrecord;
 import toy.mywordle.repository.DailyAnswerRepository;
 import toy.mywordle.repository.DailyRecordRepository;
+import toy.mywordle.repository.NonValidAnswerWordRepository;
 import toy.mywordle.service.AnswerToColorService;
 import toy.mywordle.service.AnswerWordService;
 import toy.mywordle.service.CheckWordService;
@@ -26,21 +27,21 @@ public class MywordleController {
     private final CheckWordService checkWordService;
     private final DailyRecordRepository dailyRecordRepository;
     private final DailyAnswerRepository dailyAnswerRepository;
+    private final NonValidAnswerWordRepository nonValidAnswerWordRepository;
     private String correctAnswer;
     private dailyrecord record = new dailyrecord();
 
     @Autowired
-    public MywordleController(DailyAnswerRepository dailyanswerRepository,AnswerToColorService answerToColorService, AnswerWordService answerWordService, CheckWordService checkWordService, DailyRecordRepository dailyRecordRepository) {
+    public MywordleController(AnswerToColorService answerToColorService, AnswerWordService answerWordService, CheckWordService checkWordService, DailyRecordRepository dailyRecordRepository, DailyAnswerRepository dailyAnswerRepository, NonValidAnswerWordRepository nonValidAnswerWordRepository) {
         this.answerToColorService = answerToColorService;
         this.answerWordService = answerWordService;
         this.checkWordService = checkWordService;
         this.dailyRecordRepository = dailyRecordRepository;
-        this.dailyAnswerRepository = dailyanswerRepository;
-
+        this.dailyAnswerRepository = dailyAnswerRepository;
+        this.nonValidAnswerWordRepository = nonValidAnswerWordRepository;
         // 그 날짜 DB에서 뽑아오면 됨
         LocalDateTime now = LocalDateTime.now();
         correctAnswer = dailyAnswerRepository.FindAnswer(now.toLocalDate().toString());
-
     }
 
     @Scheduled(cron="0 0 0 * * ?")
@@ -80,6 +81,7 @@ public class MywordleController {
         // DB에 단어 list 확인
         if(!checkWordService.InCheckWord(inputAnswer)) {
             result.setValidWord(false);
+            nonValidAnswerWordRepository.SaveWord(inputAnswer);
             return result;
         }
 

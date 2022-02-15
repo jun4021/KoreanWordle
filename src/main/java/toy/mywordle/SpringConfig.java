@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import toy.mywordle.repository.AnswerWordRepository;
-import toy.mywordle.repository.CheckWordRepository;
-import toy.mywordle.repository.DailyAnswerRepository;
-import toy.mywordle.repository.DailyRecordRepository;
+import toy.mywordle.repository.*;
 import toy.mywordle.service.AnswerToColorService;
 import toy.mywordle.service.AnswerWordService;
 import toy.mywordle.service.CheckWordService;
@@ -51,5 +48,9 @@ public class SpringConfig {
     @Bean
     public DailyAnswerRepository dailyAnswerRepository(){
         return new DailyAnswerRepository(em);
+    }
+    @Bean
+    public NonValidAnswerWordRepository nonValidAnswerWordRepository(){
+        return new NonValidAnswerWordRepository(em);
     }
 }
