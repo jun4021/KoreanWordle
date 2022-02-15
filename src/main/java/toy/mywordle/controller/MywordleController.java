@@ -3,11 +3,13 @@ package toy.mywordle.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import toy.mywordle.domain.dailyanswer;
 import toy.mywordle.domain.dailyrecord;
+import toy.mywordle.domain.non_valid_answer_word;
 import toy.mywordle.repository.DailyAnswerRepository;
 import toy.mywordle.repository.DailyRecordRepository;
 import toy.mywordle.repository.NonValidAnswerWordRepository;
@@ -18,6 +20,7 @@ import toy.mywordle.service.CheckWordService;
 import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 @Controller
@@ -67,6 +70,12 @@ public class MywordleController {
         record.setVisit(record.getVisit()+1);
 
         return "home";
+    }
+    @GetMapping("/record")
+    public String CheckRecord(Model model){
+        List<dailyrecord> records = dailyRecordRepository.findAll();
+        model.addAttribute("records",records);
+        return "record";
     }
 
     @PostMapping("/correct")
