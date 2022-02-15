@@ -227,19 +227,19 @@ img{
     height: 40px;
   }
   .del{
-    width: 50px;
+    width: 45px;
     height: 40px;
   }
   .shiftkey{
-    width: 50px;
+    width: 45px;
     height: 40px;
 
   }
   .del img{
-    width: 75%;
+    width: 50%;
   }
   .shiftkey img{
-    width: 75%;
+    width: 50%;
   }
   .enter{
     height: 40px;
