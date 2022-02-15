@@ -224,6 +224,7 @@ img{
     margin-bottom: 4px;
   }
   button{
+    width: 31px;
     height: 40px;
   }
   .del{
