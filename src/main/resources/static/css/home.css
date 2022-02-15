@@ -224,7 +224,7 @@ img{
     margin-bottom: 4px;
   }
   button{
-    width: 31px;
+    width: 35px;
     height: 40px;
   }
   .del{
@@ -250,6 +250,11 @@ img{
 
 
 
+}
+@media only screen and (max-width:400px){
+  button {
+    width: 31px;
+  }
 }
 @media only screen and (max-width:450px){
   #game-board {
