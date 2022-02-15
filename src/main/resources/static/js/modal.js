@@ -59,8 +59,51 @@ $("#ClearTest").on("click",function(){
 
 $("#score").on("click", function(){score()});
 
+function dateFormat(date){
+    let year = date.getFullYear();
+    let month = date.getMonth()+1;
+    let day = date.getDate();
+    return year+". "+month+". "+day+" ";
+}
 $(".share").on("click",function() {
-    navigator.clipboard.writeText("http://koreanwordle.com");
+    let solved = JSON.parse(localStorage.getItem("colorData")).solved;
+    let copyInfo;
+    if(solved) {
+        const data = JSON.parse(localStorage.getItem("colorData"));
+        const date = dateFormat(new Date());
+        copyInfo = "한글 워들 " + date + data.try + "/5" + "\n" + "https://koreanwordle.com" + "\n";
+        for (let i = 0; i < data.try; i++) {
+            let colorRow = "⬜⬜⬜⬜⬜⬜⬜⬜⬜";
+            colorRow = Array.from(colorRow);
+            const colorData = data.color[i];
+
+            for (let i of colorData["grey"]) {
+                colorRow[i] = "⬛";
+            }
+            for (let i of colorData["yellow"]) {
+                colorRow[i] = "🟨";
+            }
+            for (let i of colorData["green"]) {
+                colorRow[i] = "🟩";
+            }
+            let addColorRow = [];
+            for (let i = 0; i < 9; i++) {
+                if ((i == 3) || (i == 6)) {
+                    addColorRow.push(" ");
+                }
+                addColorRow.push(colorRow[i]);
+            }
+            colorRow = addColorRow.join('');
+
+            copyInfo = copyInfo + colorRow + "\n";
+        }
+
+    }
+    else{
+        copyInfo = "한글 워들 " + "https://koreanwordle.com";
+    }
+    navigator.clipboard.writeText(copyInfo);
+
     toast.toast("Copied");
 });
 
