@@ -1,6 +1,7 @@
 package toy.mywordle.repository;
 
 import toy.mywordle.domain.Checkword;
+import toy.mywordle.domain.non_valid_answer_word;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -13,12 +14,16 @@ public class CheckWordRepository {
         this.em = em;
     }
 
-    public Checkword SaveWord(String word){
-        Checkword newWord = new Checkword();
-        newWord.setWord(word);
-        newWord.setCount(0);
-        em.persist(newWord);
-        return newWord;
+    public boolean SaveWord(String word){
+        Checkword a = em.find(Checkword.class,word);
+        if(a==null) {
+            Checkword newWord = new Checkword();
+            newWord.setWord(word);
+            newWord.setCount(0);
+            em.persist(newWord);
+            return true;
+        }
+        return false;
     }
 
 

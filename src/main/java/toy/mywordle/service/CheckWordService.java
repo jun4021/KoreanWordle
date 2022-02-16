@@ -16,17 +16,11 @@ public class CheckWordService {
         this.checkWordRepository = checkWordRepository;
     }
 
-    public Checkword InsertWord(String newWord){
+    public boolean InsertWord(String newWord){
         // 중복 단어 확인
-        ValidDuplicateWord(newWord);
         return checkWordRepository.SaveWord(newWord);
     }
-    private void ValidDuplicateWord(String word){
-        Optional<Checkword> result = SelectWordByWord(word);
-        result.ifPresent(m -> {
-            throw new IllegalStateException("단어가 이미 있습니다.");
-        });
-    }
+
     public Optional<Checkword> SelectWordByWord(String findWord){
         return checkWordRepository.FindByword(findWord);
     }

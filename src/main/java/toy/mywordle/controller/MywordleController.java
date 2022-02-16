@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import toy.mywordle.domain.dailyanswer;
 import toy.mywordle.domain.dailyrecord;
 import toy.mywordle.domain.non_valid_answer_word;
@@ -71,11 +69,35 @@ public class MywordleController {
 
         return "home";
     }
-    @GetMapping("/record")
+    @GetMapping("/admin/record")
     public String CheckRecord(Model model){
         List<dailyrecord> records = dailyRecordRepository.findAll();
         model.addAttribute("records",records);
         return "record";
+    }
+
+    @GetMapping("/admin/add")
+    public String ShowAddList(Model model){
+        List<non_valid_answer_word> wordlist = nonValidAnswerWordRepository.findAll();
+        model.addAttribute("addlist",wordlist);
+
+        return "add";
+    }
+    @PostMapping("/admin/addaction")
+    public String AddAction(@RequestParam List<String> word){
+
+        for (String c : word){
+            checkWordService.InsertWord(c);
+            nonValidAnswerWordRepository.DeleteWord(c);
+        }
+       return "redirect:/admin/add";
+    }
+    @PostMapping("/admin/delete")
+    public String DelAction(@RequestParam List<String> word){
+        for(String c: word){
+            nonValidAnswerWordRepository.DeleteWord(c);
+        }
+        return "redirect:/admin/add";
     }
 
     @PostMapping("/correct")

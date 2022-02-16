@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style type="text/css">
+        table{
+            border:1px solid black;
+        }
+        th, td{
+            border:1px solid black;
+        }
+        td{
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div>
+        <script>
+            function action(){
+                return true;
+            }
+            function action2(form){
+                form.action ='/admin/delete';
+                form.submit();
+                return true;
+            }
+
+        </script>
+        <form th:action="@{/admin/addaction}" th:object="${checkedWord}" method="post" onsubmit ='return action()'>
+            <input type="submit" value="추가">
+            <input type="button" value="삭제" onclick="return action2(this.form)">
+            <p>---------------</p>
+        <table>
+            <thead>
+            <tr>
+
+                <th>단어</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="non_valid_answer_word : ${addlist}">
+
+                <td><input type="checkbox" th:text="${non_valid_answer_word.word}" name="word" th:value="${non_valid_answer_word.word}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        </form>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>
