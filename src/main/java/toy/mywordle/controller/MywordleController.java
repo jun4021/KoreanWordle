@@ -5,9 +5,10 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import toy.mywordle.domain.addcheckword;
 import toy.mywordle.domain.dailyanswer;
 import toy.mywordle.domain.dailyrecord;
-import toy.mywordle.domain.non_valid_answer_word;
+import toy.mywordle.repository.AddCheckWordRepository;
 import toy.mywordle.repository.DailyAnswerRepository;
 import toy.mywordle.repository.DailyRecordRepository;
 import toy.mywordle.repository.NonValidAnswerWordRepository;
@@ -15,11 +16,8 @@ import toy.mywordle.service.AnswerToColorService;
 import toy.mywordle.service.AnswerWordService;
 import toy.mywordle.service.CheckWordService;
 
-import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 @Controller
 public class MywordleController {
@@ -29,17 +27,19 @@ public class MywordleController {
     private final DailyRecordRepository dailyRecordRepository;
     private final DailyAnswerRepository dailyAnswerRepository;
     private final NonValidAnswerWordRepository nonValidAnswerWordRepository;
+    private final AddCheckWordRepository addCheckWordRepository;
     private String correctAnswer;
     private dailyrecord record = new dailyrecord();
 
     @Autowired
-    public MywordleController(AnswerToColorService answerToColorService, AnswerWordService answerWordService, CheckWordService checkWordService, DailyRecordRepository dailyRecordRepository, DailyAnswerRepository dailyAnswerRepository, NonValidAnswerWordRepository nonValidAnswerWordRepository) {
+    public MywordleController(AnswerToColorService answerToColorService, AnswerWordService answerWordService, CheckWordService checkWordService, DailyRecordRepository dailyRecordRepository, DailyAnswerRepository dailyAnswerRepository, NonValidAnswerWordRepository nonValidAnswerWordRepository, AddCheckWordRepository addCheckWordRepository) {
         this.answerToColorService = answerToColorService;
         this.answerWordService = answerWordService;
         this.checkWordService = checkWordService;
         this.dailyRecordRepository = dailyRecordRepository;
         this.dailyAnswerRepository = dailyAnswerRepository;
         this.nonValidAnswerWordRepository = nonValidAnswerWordRepository;
+        this.addCheckWordRepository = addCheckWordRepository;
         // 그 날짜 DB에서 뽑아오면 됨
         LocalDateTime now = LocalDateTime.now();
         correctAnswer = dailyAnswerRepository.FindAnswer(now.toLocalDate().toString());
@@ -78,7 +78,7 @@ public class MywordleController {
 
     @GetMapping("/admin/add")
     public String ShowAddList(Model model){
-        List<non_valid_answer_word> wordlist = nonValidAnswerWordRepository.findAll();
+        List<addcheckword> wordlist = addCheckWordRepository.findAll();
         model.addAttribute("addlist",wordlist);
 
         return "add";
@@ -88,14 +88,16 @@ public class MywordleController {
 
         for (String c : word){
             checkWordService.InsertWord(c);
-            nonValidAnswerWordRepository.DeleteWord(c);
+
+            addCheckWordRepository.DeleteWord(c);
         }
        return "redirect:/admin/add";
     }
     @PostMapping("/admin/delete")
     public String DelAction(@RequestParam List<String> word){
         for(String c: word){
-            nonValidAnswerWordRepository.DeleteWord(c);
+
+            addCheckWordRepository.DeleteWord(c);
         }
         return "redirect:/admin/add";
     }
@@ -113,6 +115,7 @@ public class MywordleController {
         if(!checkWordService.InCheckWord(inputAnswer)) {
             result.setValidWord(false);
             nonValidAnswerWordRepository.SaveWord(inputAnswer);
+            addCheckWordRepository.SaveWord(inputAnswer);
             return result;
         }
 

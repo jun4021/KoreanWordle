@@ -34,14 +34,17 @@
         <table>
             <thead>
             <tr>
-
+                <th>순번</th>
                 <th>단어</th>
+                <th>추가 날짜</th>
+
             </tr>
             </thead>
             <tbody>
-            <tr th:each="non_valid_answer_word : ${addlist}">
-
-                <td><input type="checkbox" th:text="${non_valid_answer_word.word}" name="word" th:value="${non_valid_answer_word.word}"></td>
+            <tr th:each="addcheckword : ${addlist}">
+                <td><p th:text="${addcheckwordStat.count}"</td>
+                <td><input type="checkbox" th:text="${addcheckword.word}" name="word" th:value="${addcheckword.word}"></td>
+                <td><p th:text = "${addcheckword.date}"></p></td>
             </tr>
             </tbody>
         </table>

@@ -113,7 +113,7 @@ function EnterLetter() {
         return;
       }
 
-      toast.toast("정답 확인")
+      toast.toast("정답 확인");
       local.writeLocal(data, lettersAssemble);
       painting.PaintDisplay(row);
       row += 2;

@@ -53,4 +53,8 @@ public class SpringConfig {
     public NonValidAnswerWordRepository nonValidAnswerWordRepository(){
         return new NonValidAnswerWordRepository(em);
     }
+    @Bean
+    public AddCheckWordRepository addCheckWordRepository(){
+        return new AddCheckWordRepository(em);
+    }
 }
