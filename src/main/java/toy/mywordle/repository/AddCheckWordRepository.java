@@ -25,7 +25,6 @@ public class AddCheckWordRepository {
             newWord.setDate(format.format(now));
             newWord.setWord(word);
             em.persist(newWord);
-
         }
     }
 
