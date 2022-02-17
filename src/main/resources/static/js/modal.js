@@ -52,10 +52,10 @@ closebutton.on("click",function(){closeModal()});
 $(".header_button").on("click",function(){openModal($(this).attr("id"))});
 $(".modal-overlay").on("click",function(){closeModal()});
 
-$("#ClearTest").on("click",function(){
-    localStorage.removeItem("colorData");
-    localStorage.setItem("colorData",JSON.stringify(local.NewLocal()));
-});
+// $("#ClearTest").on("click",function(){
+//     localStorage.removeItem("colorData");
+//     localStorage.setItem("colorData",JSON.stringify(local.NewLocal()));
+// });
 
 $("#score").on("click", function(){score()});
 
