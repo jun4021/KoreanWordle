@@ -5,9 +5,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import toy.mywordle.domain.addcheckword;
-import toy.mywordle.domain.dailyanswer;
-import toy.mywordle.domain.dailyrecord;
+import toy.mywordle.repository.domain.addcheckword;
+import toy.mywordle.repository.domain.dailyanswer;
+import toy.mywordle.repository.domain.dailyrecord;
 import toy.mywordle.repository.AddCheckWordRepository;
 import toy.mywordle.repository.DailyAnswerRepository;
 import toy.mywordle.repository.DailyRecordRepository;
@@ -16,6 +16,7 @@ import toy.mywordle.service.AnswerToColorService;
 import toy.mywordle.service.AnswerWordService;
 import toy.mywordle.service.CheckWordService;
 
+import javax.annotation.PreDestroy;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -43,6 +44,19 @@ public class MywordleController {
         // 그 날짜 DB에서 뽑아오면 됨
         LocalDateTime now = LocalDateTime.now();
         correctAnswer = dailyAnswerRepository.FindAnswer(now.toLocalDate().toString());
+        // 그 날 Record load
+        if(dailyRecordRepository.findByDate(now.toLocalDate().toString())!=null){
+            record = dailyRecordRepository.findByDate(now.toLocalDate().toString());
+            dailyRecordRepository.DelRecord(now.toLocalDate().toString());
+        }
+    }
+    @PreDestroy
+    public void close() throws Exception{
+        System.out.println("서버 종료");
+        LocalDateTime now = LocalDateTime.now();
+        record.setDate(now.toLocalDate().toString());
+        dailyRecordRepository.SaveRecord(record);
+
     }
 
     @Scheduled(cron="0 0 0 * * ?")
@@ -57,7 +71,7 @@ public class MywordleController {
         answerRecord.setAnswer(correctAnswer);
         dailyAnswerRepository.SaveRecord(answerRecord);
 
-        record.setDate(now.toString());
+        record.setDate(now.minusDays(1).toLocalDate().toString());
         dailyRecordRepository.SaveRecord(record);
         record = new dailyrecord();
     }

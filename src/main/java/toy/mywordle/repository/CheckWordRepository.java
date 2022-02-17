@@ -1,7 +1,6 @@
 package toy.mywordle.repository;
 
-import toy.mywordle.domain.Checkword;
-import toy.mywordle.domain.non_valid_answer_word;
+import toy.mywordle.repository.domain.Checkword;
 
 import javax.persistence.EntityManager;
 import java.util.List;

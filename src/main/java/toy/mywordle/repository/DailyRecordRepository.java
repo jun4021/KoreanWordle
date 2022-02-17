@@ -1,8 +1,8 @@
 package toy.mywordle.repository;
 
 
-import toy.mywordle.domain.dailyrecord;
-import toy.mywordle.domain.non_valid_answer_word;
+import toy.mywordle.repository.domain.addcheckword;
+import toy.mywordle.repository.domain.dailyrecord;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -20,9 +20,19 @@ public class DailyRecordRepository {
         em.persist(record);
     }
 
+    public void DelRecord(String date) {
+        dailyrecord a = em.find(dailyrecord.class, date);
+        if (a != null) {
+            em.remove(a);
+        }
+    }
+
     public List<dailyrecord> findAll() {
         return em.createQuery("select m from dailyrecord m", dailyrecord.class)
                 .getResultList();
+    }
+    public dailyrecord findByDate(String date){
+        return em.find(dailyrecord.class, date);
     }
 
 }

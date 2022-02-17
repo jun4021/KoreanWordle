@@ -1,5 +1,5 @@
 package toy.mywordle.repository;
-import toy.mywordle.domain.dailyanswer;
+import toy.mywordle.repository.domain.dailyanswer;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;

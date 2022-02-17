@@ -1,13 +1,24 @@
-package toy.mywordle.domain;
+package toy.mywordle.repository.domain;
 
 import javax.persistence.Entity;
+
 import javax.persistence.Id;
 
 @Entity
-public class Checkword {
+public class addcheckword {
     @Id
     private String word;
-    private Integer count;
+    private String date;
+
+
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public String getWord() {
         return word;
@@ -17,11 +28,5 @@ public class Checkword {
         this.word = word;
     }
 
-    public Integer getCount() {
-        return count;
-    }
 
-    public void setCount(Integer count) {
-        this.count = count;
-    }
 }

@@ -1,7 +1,7 @@
 package toy.mywordle.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import toy.mywordle.domain.Answerword;
+import toy.mywordle.repository.domain.Answerword;
 import toy.mywordle.repository.AnswerWordRepository;
 
 import javax.transaction.Transactional;

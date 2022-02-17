@@ -1,6 +1,6 @@
 package toy.mywordle.repository;
 
-import toy.mywordle.domain.*;
+import toy.mywordle.repository.domain.addcheckword;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;

@@ -1,4 +1,4 @@
-package toy.mywordle.domain;
+package toy.mywordle.repository.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
