@@ -1,4 +1,4 @@
-package toy.mywordle.repository.domain;
+package toy.mywordle.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

@@ -1,6 +1,6 @@
 package toy.mywordle.repository;
 
-import toy.mywordle.repository.domain.Answerword;
+import toy.mywordle.domain.Answerword;
 
 import javax.persistence.EntityManager;
 import java.util.List;

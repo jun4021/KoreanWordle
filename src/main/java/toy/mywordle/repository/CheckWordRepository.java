@@ -1,8 +1,10 @@
 package toy.mywordle.repository;
 
-import toy.mywordle.repository.domain.Checkword;
+import toy.mywordle.domain.Checkword;
 
 import javax.persistence.EntityManager;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,12 +19,20 @@ public class CheckWordRepository {
         Checkword a = em.find(Checkword.class,word);
         if(a==null) {
             Checkword newWord = new Checkword();
+            Date now = new Date();
+            SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
             newWord.setWord(word);
             newWord.setCount(0);
+            newWord.setAdddate(format.format(now));
             em.persist(newWord);
             return true;
         }
         return false;
+    }
+
+    public void PlusCount(String word){
+        Checkword a = em.find(Checkword.class,word);
+        a.setCount(a.getCount()+1);
     }
 
 

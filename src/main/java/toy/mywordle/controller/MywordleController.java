@@ -5,13 +5,12 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import toy.mywordle.repository.domain.addcheckword;
-import toy.mywordle.repository.domain.dailyanswer;
-import toy.mywordle.repository.domain.dailyrecord;
+import toy.mywordle.domain.addcheckword;
+import toy.mywordle.domain.dailyanswer;
+import toy.mywordle.domain.dailyrecord;
 import toy.mywordle.repository.AddCheckWordRepository;
 import toy.mywordle.repository.DailyAnswerRepository;
 import toy.mywordle.repository.DailyRecordRepository;
-import toy.mywordle.repository.NonValidAnswerWordRepository;
 import toy.mywordle.service.AnswerToColorService;
 import toy.mywordle.service.AnswerWordService;
 import toy.mywordle.service.CheckWordService;
@@ -27,21 +26,20 @@ public class MywordleController {
     private final CheckWordService checkWordService;
     private final DailyRecordRepository dailyRecordRepository;
     private final DailyAnswerRepository dailyAnswerRepository;
-    private final NonValidAnswerWordRepository nonValidAnswerWordRepository;
+
     private final AddCheckWordRepository addCheckWordRepository;
     private String correctAnswer;
     private dailyrecord record = new dailyrecord();
 
     @Autowired
-    public MywordleController(AnswerToColorService answerToColorService, AnswerWordService answerWordService, CheckWordService checkWordService, DailyRecordRepository dailyRecordRepository, DailyAnswerRepository dailyAnswerRepository, NonValidAnswerWordRepository nonValidAnswerWordRepository, AddCheckWordRepository addCheckWordRepository) {
+    public MywordleController(AnswerToColorService answerToColorService, AnswerWordService answerWordService, CheckWordService checkWordService, DailyRecordRepository dailyRecordRepository, DailyAnswerRepository dailyAnswerRepository, AddCheckWordRepository addCheckWordRepository) {
         this.answerToColorService = answerToColorService;
         this.answerWordService = answerWordService;
         this.checkWordService = checkWordService;
         this.dailyRecordRepository = dailyRecordRepository;
         this.dailyAnswerRepository = dailyAnswerRepository;
-        this.nonValidAnswerWordRepository = nonValidAnswerWordRepository;
         this.addCheckWordRepository = addCheckWordRepository;
-        // 그 날짜 DB에서 뽑아오면 됨
+        // 그 날 정답
         LocalDateTime now = LocalDateTime.now();
         correctAnswer = dailyAnswerRepository.FindAnswer(now.toLocalDate().toString());
         // 그 날 Record load
@@ -58,7 +56,7 @@ public class MywordleController {
         dailyRecordRepository.SaveRecord(record);
 
     }
-
+    // 단어 초기화
     @Scheduled(cron="0 0 0 * * ?")
     public void ChooseAnswer(){
         Integer code = answerWordService.ChooseRandomId();
@@ -128,13 +126,14 @@ public class MywordleController {
         // DB에 단어 list 확인
         if(!checkWordService.InCheckWord(inputAnswer)) {
             result.setValidWord(false);
-            nonValidAnswerWordRepository.SaveWord(inputAnswer);
+
             addCheckWordRepository.SaveWord(inputAnswer);
             return result;
         }
 
         // 있을 시 정답이랑 비교
         result = answerToColorService.RecordColorInfo(correctAnswer,inputAnswer);
+        checkWordService.PlusCount1(inputAnswer);
         if(trynum==0){
             record.settrystart(record.gettrystart()+1);
         }

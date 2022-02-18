@@ -1,7 +1,7 @@
 package toy.mywordle.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import toy.mywordle.repository.domain.Checkword;
+import toy.mywordle.domain.Checkword;
 import toy.mywordle.repository.CheckWordRepository;
 
 import javax.transaction.Transactional;
@@ -21,6 +21,9 @@ public class CheckWordService {
         return checkWordRepository.SaveWord(newWord);
     }
 
+    public void PlusCount1(String word){
+        checkWordRepository.PlusCount(word);
+    }
     public Optional<Checkword> SelectWordByWord(String findWord){
         return checkWordRepository.FindByword(findWord);
     }

@@ -1,8 +1,7 @@
 package toy.mywordle.repository;
 
 
-import toy.mywordle.repository.domain.addcheckword;
-import toy.mywordle.repository.domain.dailyrecord;
+import toy.mywordle.domain.dailyrecord;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;

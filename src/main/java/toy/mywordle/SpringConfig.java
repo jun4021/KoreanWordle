@@ -50,10 +50,6 @@ public class SpringConfig {
         return new DailyAnswerRepository(em);
     }
     @Bean
-    public NonValidAnswerWordRepository nonValidAnswerWordRepository(){
-        return new NonValidAnswerWordRepository(em);
-    }
-    @Bean
     public AddCheckWordRepository addCheckWordRepository(){
         return new AddCheckWordRepository(em);
     }
