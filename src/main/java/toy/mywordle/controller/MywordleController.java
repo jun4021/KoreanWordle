@@ -11,9 +11,7 @@ import toy.mywordle.domain.dailyrecord;
 import toy.mywordle.repository.AddCheckWordRepository;
 import toy.mywordle.repository.DailyAnswerRepository;
 import toy.mywordle.repository.DailyRecordRepository;
-import toy.mywordle.service.AnswerToColorService;
-import toy.mywordle.service.AnswerWordService;
-import toy.mywordle.service.CheckWordService;
+import toy.mywordle.service.*;
 
 import javax.annotation.PreDestroy;
 import java.time.LocalDateTime;
@@ -24,53 +22,52 @@ public class MywordleController {
     private final AnswerToColorService answerToColorService;
     private final AnswerWordService answerWordService;
     private final CheckWordService checkWordService;
-    private final DailyRecordRepository dailyRecordRepository;
-    private final DailyAnswerRepository dailyAnswerRepository;
+    private final DailyRecordService dailyRecordService;
+    private final DailyAnswerService dailyAnswerService;
+    private final AddCheckWordService addCheckWordService;
 
-    private final AddCheckWordRepository addCheckWordRepository;
     private String correctAnswer;
-    private dailyrecord record = new dailyrecord();
+    private dailyrecord record;
 
     @Autowired
-    public MywordleController(AnswerToColorService answerToColorService, AnswerWordService answerWordService, CheckWordService checkWordService, DailyRecordRepository dailyRecordRepository, DailyAnswerRepository dailyAnswerRepository, AddCheckWordRepository addCheckWordRepository) {
+    public MywordleController(AnswerToColorService answerToColorService, AnswerWordService answerWordService, CheckWordService checkWordService, DailyRecordService dailyRecordService, DailyAnswerService dailyAnswerService, AddCheckWordService addCheckWordService) {
         this.answerToColorService = answerToColorService;
         this.answerWordService = answerWordService;
         this.checkWordService = checkWordService;
-        this.dailyRecordRepository = dailyRecordRepository;
-        this.dailyAnswerRepository = dailyAnswerRepository;
-        this.addCheckWordRepository = addCheckWordRepository;
+        this.dailyRecordService = dailyRecordService;
+        this.dailyAnswerService = dailyAnswerService;
+        this.addCheckWordService = addCheckWordService;
+
         // 그 날 정답
         LocalDateTime now = LocalDateTime.now();
-        correctAnswer = dailyAnswerRepository.FindAnswer(now.toLocalDate().toString());
+        correctAnswer = dailyAnswerService.FindAnswer(now);
         // 그 날 Record load
-        if(dailyRecordRepository.findByDate(now.toLocalDate().toString())!=null){
-            record = dailyRecordRepository.findByDate(now.toLocalDate().toString());
-            dailyRecordRepository.DelRecord(now.toLocalDate().toString());
-        }
+        record = dailyRecordService.RecordLoading(now);
     }
+
+
     @PreDestroy
     public void close() throws Exception{
         System.out.println("서버 종료");
         LocalDateTime now = LocalDateTime.now();
         record.setDate(now.toLocalDate().toString());
-        dailyRecordRepository.SaveRecord(record);
+        dailyRecordService.SaveRecord(record);
 
     }
-    // 단어 초기화
+
     @Scheduled(cron="0 0 0 * * ?")
     public void ChooseAnswer(){
+        LocalDateTime now = LocalDateTime.now();
+        // 단어 초기화
         Integer code = answerWordService.ChooseRandomId();
         correctAnswer = answerWordService.SelectWordByCode(code).getWord();
-        LocalDateTime now = LocalDateTime.now();
 
-        // 정답 단어 DB에 넣기
-        dailyanswer answerRecord = new dailyanswer();
-        answerRecord.setDate(now.toLocalDate().toString());
-        answerRecord.setAnswer(correctAnswer);
-        dailyAnswerRepository.SaveRecord(answerRecord);
+        // 정답 단어 DB insert
+        dailyAnswerService.SaveWord(now,correctAnswer);
 
+        // 전 날 Record DB insert
         record.setDate(now.minusDays(1).toLocalDate().toString());
-        dailyRecordRepository.SaveRecord(record);
+        dailyRecordService.SaveRecord(record);
         record = new dailyrecord();
     }
 
@@ -83,14 +80,14 @@ public class MywordleController {
     }
     @GetMapping("/admin/record")
     public String CheckRecord(Model model){
-        List<dailyrecord> records = dailyRecordRepository.findAll();
+        List<dailyrecord> records = dailyRecordService.findAll();
         model.addAttribute("records",records);
         return "record";
     }
 
     @GetMapping("/admin/add")
     public String ShowAddList(Model model){
-        List<addcheckword> wordlist = addCheckWordRepository.findAll();
+        List<addcheckword> wordlist = addCheckWordService.FindAll();
         model.addAttribute("addlist",wordlist);
 
         return "add";
@@ -101,7 +98,7 @@ public class MywordleController {
         for (String c : word){
             checkWordService.InsertWord(c);
 
-            addCheckWordRepository.DeleteWord(c);
+            addCheckWordService.DeleteWord(c);
         }
        return "redirect:/admin/add";
     }
@@ -109,7 +106,7 @@ public class MywordleController {
     public String DelAction(@RequestParam List<String> word){
         for(String c: word){
 
-            addCheckWordRepository.DeleteWord(c);
+            addCheckWordService.DeleteWord(c);
         }
         return "redirect:/admin/add";
     }
@@ -127,7 +124,7 @@ public class MywordleController {
         if(!checkWordService.InCheckWord(inputAnswer)) {
             result.setValidWord(false);
 
-            addCheckWordRepository.SaveWord(inputAnswer);
+            addCheckWordService.SaveWord(inputAnswer);
             return result;
         }
 
