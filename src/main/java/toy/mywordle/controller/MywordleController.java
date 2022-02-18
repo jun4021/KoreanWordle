@@ -159,7 +159,7 @@ public class MywordleController {
 
         // 있을 시 정답이랑 비교
         result = answerToColorService.RecordColorInfo(correctAnswer,inputAnswer);
-        checkWordService.PlusCount1(inputAnswer);
+
         if(trynum==0){
             record.settrystart(record.gettrystart()+1);
         }
@@ -195,6 +195,7 @@ public class MywordleController {
             record.setFourtryrun(record.getFourtryrun()-1);
             result.setAnswer(correctAnswer);
         }
+        checkWordService.PlusCount1(inputAnswer);
         result.setCorrect(false);
 
         return result;
