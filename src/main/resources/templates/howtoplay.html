@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>한글 워들</title>
+    <link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico" />
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"/>
+
+    <style>
+        ul {padding:0px;}
+        body{margin:0px; width:100%;height: 100%}
+        label{position:relative;
+        z-index:2}
+        .section{position:relative;}
+        .section input[id*="slide"] {display:none;}
+        .section .slidewrap {max-width:450px;max-height:750px;margin:0 auto;}
+        .section .slidelist {white-space:nowrap;font-size:0;overflow:hidden;position:relative;}
+        .section .slidelist > li {display:inline-block;vertical-align:middle;width:100%;transition:all .5s;}
+        .section .slidelist > li > a {display:block;position:relative;}
+        .section .slidelist > li > a img {width:100%;}
+        .section .slidelist label {position:fixed;z-index:2;top:20%;padding: 50% 20%;cursor:pointer;}
+
+        /* input에 체크되면 슬라이드 효과 */
+        .section input[id="slide1-1"]:checked ~ .slidewrap .slidelist > li {transform:translateX(0%);}
+        .section input[id="slide1-2"]:checked ~ .slidewrap .slidelist > li {transform:translateX(-100%);transition:0ms;}
+        .section input[id="slide2-1"]:checked ~ .slidewrap .slidelist > li {transform:translateX(-200%);}
+        .section input[id="slide3-1"]:checked ~ .slidewrap .slidelist > li {transform:translateX(-300%);}
+        .section input[id="slide3-2"]:checked ~ .slidewrap .slidelist > li {transform:translateX(-400%);transition:0ms;}
+        .section input[id="slide3-3"]:checked ~ .slidewrap .slidelist > li {transform:translateX(-500%);transition:0ms;}
+        .section input[id="slide4-1"]:checked ~ .slidewrap .slidelist > li {transform:translateX(-600%);}
+        /*transition:0ms;*/
+
+        /* 좌,우 슬라이드 버튼 */
+        .slide-control > div {display:none;}
+        .section .left {left:0px}
+        .section .right {right:0px}
+        .section input[id="slide1-1"]:checked ~ .slidewrap .slide-control > div:nth-child(1) {display:block;}
+        .section input[id="slide1-2"]:checked ~ .slidewrap .slide-control > div:nth-child(2) {display:block;}
+        .section input[id="slide2-1"]:checked ~ .slidewrap .slide-control > div:nth-child(3) {display:block;}
+        .section input[id="slide3-1"]:checked ~ .slidewrap .slide-control > div:nth-child(4) {display:block;}
+        .section input[id="slide3-2"]:checked ~ .slidewrap .slide-control > div:nth-child(5) {display:block;}
+        .section input[id="slide3-3"]:checked ~ .slidewrap .slide-control > div:nth-child(6) {display:block;}
+        .section input[id="slide4-1"]:checked ~ .slidewrap .slide-control > div:nth-child(7) {display:block;}
+        /* 페이징 */
+        .slide-pagelist {z-index:3;position:absolute; margin: 0 auto;left:0;right:0;bottom: 10px;text-align:center;padding:0px;}
+        .slide-pagelist > li {display:inline-block;vertical-align:middle;}
+        .slide-pagelist > li > label {display:block;padding:4px;border-radius:50%;border:solid 1px black;margin:0px 4px;cursor:pointer;}
+        .section input[id="slide1-1"]:checked ~ .slidewrap .slide-pagelist > li:nth-child(1) > label {background:black;}
+        .section input[id="slide1-2"]:checked ~ .slidewrap .slide-pagelist > li:nth-child(1) > label {background:black;}
+        .section input[id="slide2-1"]:checked ~ .slidewrap .slide-pagelist > li:nth-child(2) > label {background:black;}
+        .section input[id="slide3-1"]:checked ~ .slidewrap .slide-pagelist > li:nth-child(3) > label {background:black;}
+        .section input[id="slide3-2"]:checked ~ .slidewrap .slide-pagelist > li:nth-child(3) > label {background:black;}
+        .section input[id="slide3-3"]:checked ~ .slidewrap .slide-pagelist > li:nth-child(3) > label {background:black;}
+        .section input[id="slide4-1"]:checked ~ .slidewrap .slide-pagelist > li:nth-child(4) > label {background:black;}
+
+
+        #howtocheck{
+            cursor:pointer;
+            -webkit-appearance: none;
+            -webkit-border-radius: 0;
+            top:30%;
+            position: fixed;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            z-index:4;
+            width: 176px;
+            height: 51px;
+            font-weight: 500;
+            font-size: 24px;
+            line-height: 24px;
+            background: #05944F;
+            color: white;
+            border-radius: 5px;
+            border: none;
+            padding : 0;
+        }
+        img{max-width:450px;width:100%; max-height: 750px; height: 100%;margin-top:-25px}
+        .skip{
+            border:none;
+            background: none;
+            z-index: 5;
+            position:absolute;
+            width:44px;
+            height: 44px;
+            top:14px;
+            right:15%;
+
+            font-family: Pretendard Variable;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 17px;
+            line-height: 22px;
+            color: #BDBDBD;
+            cursor:pointer;
+        }
+        .start{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 25px;
+
+            position: absolute;
+            width: 149px;
+            height: 52px;
+            background: #000000;
+            border-radius: 100px;
+            font-family: Pretendard Variable;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 15px;
+            line-height: 22px;
+            /* identical to box height, or 147% */
+
+            text-align: center;
+            letter-spacing: -0.408px;
+
+            color: #FFFFFF;
+            border:none;
+            position:absolute;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            bottom:7%;
+            z-index: 5;
+            cursor:pointer;
+
+        }
+    </style>
+
+</head>
+<body ondragstart="return false">
+<div class="section">
+    <input type="radio" name="slide" id="slide1-1" checked>
+    <input type="radio" name="slide" id="slide1-2">
+    <input type="radio" name="slide" id="slide2-1">
+    <input type="radio" name="slide" id="slide3-1">
+    <input type="radio" name="slide" id="slide3-2">
+    <input type="radio" name="slide" id="slide3-3">
+    <input type="radio" name="slide" id="slide4-1">
+
+    <div class="slidewrap">
+
+        <ul class="slidelist">
+
+            <!-- 슬라이드 영역 -->
+            <li class="slideitem">
+                <a href="/">
+                    <button class="skip">Skip</button></a>
+                <a>
+                    <img src="image/1-1.svg">
+                </a>
+            </li>
+            <li class="slideitem">
+
+                <a>
+                    <img src="image/1-2.svg">
+                </a>
+            </li>
+            <li class="slideitem">
+                <a href="/">
+                    <button class="skip">Skip</button></a>
+                <a>
+                    <img src="image/2-1.svg">
+                </a>
+            </li>
+            <li class="slideitem">
+                <a href="/">
+                    <button class="skip">Skip</button></a>
+                <a>
+                    <button id="howtocheck">확인하기</button>
+                    <img src="image/3-1.svg">
+
+                </a>
+            </li>
+            <li class="slideitem">
+
+                <a>
+                    <img src="image/3-2.svg">
+                </a>
+            </li>
+
+            <li class="slideitem">
+
+                <a>
+                    <img style="background: rgba(8, 11, 20, 0.5);mix-blend-mode: luminosity;" src="image/3-3.svg">
+                </a>
+            </li>
+
+            <li class="slideitem">
+
+                <button class="start" onclick="location.href='/'">
+                    단어 맞추기 시작!</button>
+                <a>
+                    <img src="image/4-1.svg">
+                </a>
+            </li>
+
+
+            <!-- 좌,우 슬라이드 버튼 -->
+            <div class="slide-control">
+                <div>
+
+                    <label for="slide1-2" class="right"></label>
+                </div>
+                <div>
+                    <label for="slide1-1" class="left"></label>
+                    <label for="slide2-1" class="right"></label>
+                </div>
+                <div>
+                    <label for="slide1-1" class="left"></label>
+                    <label for="slide3-1" class="right"></label>
+                </div>
+                <div>
+                    <label for="slide2-1" class="left"></label>
+                    <label for="slide3-2" class="right"></label>
+                </div>
+                <div>
+                    <label for="slide3-1" class="left"></label>
+                    <label for="slide3-3" class="right"></label>
+                </div>
+                <div>
+                    <label for="slide3-1" class="left"></label>
+                    <label for="slide4-1" class="right"></label>
+                </div>
+                <div>
+                    <label for="slide3-1" class="left"></label>
+                </div>
+            </div>
+
+        </ul>
+        <!-- 페이징 -->
+        <ul class="slide-pagelist">
+            <li><label for="slide1-1"></label></li>
+            <li><label for="slide2-1"></label></li>
+            <li><label for="slide3-1"></label></li>
+            <li><label for="slide4-1"></label></li>
+
+        </ul>
+    </div>
+
+    <script>
+        $("#howtocheck").on("click",function(){
+            $('input[id=slide3-2]').prop('checked',true);
+            setTimeout(function(){
+                $('input[id=slide3-3]').prop('checked',true);
+            },1000)
+        });
+        $('input[id=slide3-2]').on("change",function(){
+            if($('input[id=slide3-2]').is(':checked')){
+                setTimeout(function(){
+                    $('input[id=slide3-3]').prop('checked',true);
+                },1000)
+            }
+        })
+
+    </script>
+</div>
+
+
+</body>
+</html>

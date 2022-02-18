@@ -79,6 +79,12 @@ public class MywordleController {
         return "home";
     }
 
+    @GetMapping("/guide")
+    public String quide(){
+        // DB에서 정답 불러오기
+
+        return "howtoplay";
+    }
     @GetMapping("/request")
     public String request(){
         return "wordadd";

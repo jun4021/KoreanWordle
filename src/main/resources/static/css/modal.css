@@ -314,12 +314,20 @@ meter::-webkit-meter-bar {background: #e6e6e9;}
     margin:0px;
     position: relative;
     top:2px;
+
 }
 .list_left{
     margin-left:0px;
+
+}
+.list_left img{
+    margin-right :11px;
 }
 .list_right{
     margin-right: 0px;
+}
+.list_right img{
+    margin-right: 6px;
 }
 #setting_list img{
     display:inline;

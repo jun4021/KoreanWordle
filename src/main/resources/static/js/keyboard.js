@@ -151,7 +151,7 @@ $(document).ready(function(){
   // 처음 접속했을 때
   if(localStorage.getItem("entered") == null){
     // 초기 방법 창 띄우기
-    document.getElementsByClassName("howtoplay")[0].style.display = "flex";
+    window.location.href = "/guide"
     // 초기 local Storage 정보
     localStorage.setItem("statistics",JSON.stringify(local.NewStatisticsLocal()));
     localStorage.setItem("entered","true");

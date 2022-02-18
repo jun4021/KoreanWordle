@@ -104,9 +104,16 @@ $(".share").on("click",function() {
     else{
         copyInfo = "한글 워들 " + "koreanwordle.com";
     }
-    navigator.clipboard.writeText(copyInfo);
+    try {
+        navigator.clipboard.writeText(copyInfo);
+        toast.toast("복사 완료!");
+    }
+    catch{
 
-    toast.toast("Copied");
+        toast.toast("현재 브라우저는 지원하지 않습니다.");
+        document.execCommand('copy')
+    }
+
 });
 
 $("#opinion").on("click",function() {
