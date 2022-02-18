@@ -163,6 +163,9 @@ public class MywordleController {
         if(trynum==0){
             record.settrystart(record.gettrystart()+1);
         }
+        if(trynum==3){
+            record.setFourtryrun(record.getFourtryrun()+1);
+        }
         if(correctAnswer.equals(inputAnswer)){
             // try 횟수에 따른 data 추가
             switch (trynum+1){
@@ -183,11 +186,13 @@ public class MywordleController {
                     break;
             }
             record.setCorrectanswer(record.getCorrectanswer()+1);
+            record.setFourtryrun(record.getFourtryrun()-1);
             result.setCorrect(true);
             return result;
         }
         if(trynum == 4){
             record.setFail(record.getFail()+1);
+            record.setFourtryrun(record.getFourtryrun()-1);
             result.setAnswer(correctAnswer);
         }
         result.setCorrect(false);

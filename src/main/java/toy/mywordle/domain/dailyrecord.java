@@ -17,6 +17,23 @@ public class dailyrecord {
     public Integer fourtrycorrect=0;
     public Integer fivetrycorrect=0;
     public Integer trystart =0;
+    public Integer fourtryrun = 0;
+
+    public Integer getTrystart() {
+        return trystart;
+    }
+
+    public void setTrystart(Integer trystart) {
+        this.trystart = trystart;
+    }
+
+    public Integer getFourtryrun() {
+        return fourtryrun;
+    }
+
+    public void setFourtryrun(Integer fourtryrun) {
+        this.fourtryrun = fourtryrun;
+    }
 
     public Integer gettrystart() {
         return trystart;
