@@ -152,6 +152,15 @@ img{
   background: #05944F;
   color: white;
 }
+#wordadd_enter{
+  width: 176px;
+  height: 51px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 24px;
+  background: #05944F;
+  color: white;
+}
 
 /*modal*/
 .page{
@@ -246,7 +255,6 @@ img{
     height: 40px;
   }
 
-  #beta
 
 
 

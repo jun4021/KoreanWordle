@@ -61,4 +61,12 @@ public class SpringConfig {
     public AddCheckWordRepository addCheckWordRepository(){
         return new AddCheckWordRepository(em);
     }
+    @Bean
+    public RequestWordRepository requestWordRepository(){
+        return new RequestWordRepository(em);
+    }
+    @Bean
+    public RequestWordService requestWordService(){
+        return new RequestWordService(requestWordRepository());
+    }
 }

@@ -12,6 +12,12 @@ export function NewLocal(row, colorData){
 
     return local;
 }
+export function request(){
+    let local = new Object();
+    local.requestWord = [];
+    return local;
+
+}
 
 export function writeLocal(data,Answer) {
     const nowData = JSON.parse(localStorage.getItem("colorData"));

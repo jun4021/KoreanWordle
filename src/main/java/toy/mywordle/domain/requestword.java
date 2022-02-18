@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class addcheckword {
+public class requestword {
     @Id
     private String word;
     private String date;

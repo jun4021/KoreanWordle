@@ -41,12 +41,14 @@ const closebutton = $(".close");
 function openModal(a){
 
     document.getElementsByClassName(a)[0].style.display = "flex";
+    history.pushState({page:"modal"},document.title);
 
 }
 const closeModal = () => {
     $(".modal").hide();
+};
 
-}
+window.addEventListener("popstate",closeModal);
 
 closebutton.on("click",function(){closeModal()});
 $(".header_button").on("click",function(){openModal($(this).attr("id"))});

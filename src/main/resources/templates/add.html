@@ -31,24 +31,47 @@
             <input type="submit" value="추가">
             <input type="button" value="삭제" onclick="return action2(this.form)">
             <p>---------------</p>
-        <table>
-            <thead>
-            <tr>
-                <th>순번</th>
-                <th>단어</th>
-                <th>추가 날짜</th>
+            <div style="display: flex;justify-content: space-between">
+                <div>
+                    <h3>자동 단어</h3>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>순번</th>
+                            <th>단어</th>
+                            <th>추가 날짜</th>
 
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="addcheckword : ${addlist}">
-                <td><p th:text="${addcheckwordStat.count}"</td>
-                <td><input type="checkbox" th:text="${addcheckword.word}" name="word" th:value="${addcheckword.word}"></td>
-                <td><p th:text = "${addcheckword.date}"></p></td>
-            </tr>
-            </tbody>
-        </table>
-
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="addcheckword : ${addlist}">
+                            <td><p th:text="${addcheckwordStat.count}"></p></td>
+                            <td><input type="checkbox" th:text="${addcheckword.word}" name="word" th:value="${addcheckword.word}"></td>
+                            <td><p th:text = "${addcheckword.date}"></p></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <h3>요청 단어</h3>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>순번</th>
+                            <th>단어</th>
+                            <th>추가 날짜</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="requestword : ${requestlist}">
+                            <td><p th:text="${requestwordStat.count}"></p></p></td>
+                            <td><input type="checkbox" th:text="${requestword.word}" name="word" th:value="${requestword.word}"></td>
+                            <td><p th:text = "${requestword.date}"></p></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </form>
     </div>
 </div> <!-- /container -->

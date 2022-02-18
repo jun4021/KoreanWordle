@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import toy.mywordle.domain.addcheckword;
 import toy.mywordle.domain.dailyanswer;
 import toy.mywordle.domain.dailyrecord;
+import toy.mywordle.domain.requestword;
 import toy.mywordle.repository.AddCheckWordRepository;
 import toy.mywordle.repository.DailyAnswerRepository;
 import toy.mywordle.repository.DailyRecordRepository;
@@ -25,26 +26,25 @@ public class MywordleController {
     private final DailyRecordService dailyRecordService;
     private final DailyAnswerService dailyAnswerService;
     private final AddCheckWordService addCheckWordService;
-
+    private final RequestWordService requestWordService;
     private String correctAnswer;
     private dailyrecord record;
 
     @Autowired
-    public MywordleController(AnswerToColorService answerToColorService, AnswerWordService answerWordService, CheckWordService checkWordService, DailyRecordService dailyRecordService, DailyAnswerService dailyAnswerService, AddCheckWordService addCheckWordService) {
+    public MywordleController(AnswerToColorService answerToColorService, AnswerWordService answerWordService, CheckWordService checkWordService, DailyRecordService dailyRecordService, DailyAnswerService dailyAnswerService, AddCheckWordService addCheckWordService, RequestWordService requestWordService) {
         this.answerToColorService = answerToColorService;
         this.answerWordService = answerWordService;
         this.checkWordService = checkWordService;
         this.dailyRecordService = dailyRecordService;
         this.dailyAnswerService = dailyAnswerService;
         this.addCheckWordService = addCheckWordService;
-
+        this.requestWordService = requestWordService;
         // 그 날 정답
         LocalDateTime now = LocalDateTime.now();
         correctAnswer = dailyAnswerService.FindAnswer(now);
         // 그 날 Record load
         record = dailyRecordService.RecordLoading(now);
     }
-
 
     @PreDestroy
     public void close() throws Exception{
@@ -78,6 +78,27 @@ public class MywordleController {
 
         return "home";
     }
+
+    @GetMapping("/request")
+    public String request(){
+        return "wordadd";
+    }
+
+    @GetMapping("/requestWord")
+    @ResponseBody
+    public boolean request(RequestWord ob){
+        String word = ob.getRequest();
+        // 단어가 이미 DB에 있을 시
+        if(checkWordService.InCheckWord(word)){
+            return false;
+        }
+        else{
+            requestWordService.SaveWord(word);
+            return true;
+        }
+
+    }
+
     @GetMapping("/admin/record")
     public String CheckRecord(Model model){
         List<dailyrecord> records = dailyRecordService.findAll();
@@ -88,7 +109,9 @@ public class MywordleController {
     @GetMapping("/admin/add")
     public String ShowAddList(Model model){
         List<addcheckword> wordlist = addCheckWordService.FindAll();
+        List<requestword> requestwordlist = requestWordService.FindAll();
         model.addAttribute("addlist",wordlist);
+        model.addAttribute("requestlist", requestwordlist);
 
         return "add";
     }
@@ -97,7 +120,7 @@ public class MywordleController {
 
         for (String c : word){
             checkWordService.InsertWord(c);
-
+            requestWordService.DeleteWord(c);
             addCheckWordService.DeleteWord(c);
         }
        return "redirect:/admin/add";
@@ -105,7 +128,7 @@ public class MywordleController {
     @PostMapping("/admin/delete")
     public String DelAction(@RequestParam List<String> word){
         for(String c: word){
-
+            requestWordService.DeleteWord(c);
             addCheckWordService.DeleteWord(c);
         }
         return "redirect:/admin/add";
