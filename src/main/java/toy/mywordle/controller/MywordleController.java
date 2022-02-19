@@ -183,10 +183,11 @@ public class MywordleController {
                     break;
                 case 5:
                     record.setFivetrycorrect(record.getFivetrycorrect()+1);
+                    record.setFourtryrun(record.getFourtryrun()-1);
                     break;
             }
             record.setCorrectanswer(record.getCorrectanswer()+1);
-            record.setFourtryrun(record.getFourtryrun()-1);
+
             result.setCorrect(true);
             return result;
         }
