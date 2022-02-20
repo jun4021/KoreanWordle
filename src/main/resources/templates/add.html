@@ -48,6 +48,11 @@
                             <td><p th:text="${addcheckwordStat.count}"></p></td>
                             <td><input type="checkbox" th:text="${addcheckword.word}" name="word" th:value="${addcheckword.word}"></td>
                             <td><p th:text = "${addcheckword.date}"></p></td>
+                            <td>추가<input type="checkbox" th:text="${addcheckword.word}" name="word" th:value="${addcheckword.word}"
+                            onchange="this.form.submit()"></td>
+                            <td>삭제<input type="checkbox" th:text="${addcheckword.word}" name="word" th:value="${addcheckword.word}"
+                                       onchange="return action2(this.form)"></td>
+
                         </tr>
                         </tbody>
                     </table>

@@ -24,6 +24,7 @@ public class CheckWordRepository {
             newWord.setWord(word);
             newWord.setCount(0);
             newWord.setAdddate(format.format(now));
+            newWord.setFirstcount(0);
             em.persist(newWord);
             return true;
         }
