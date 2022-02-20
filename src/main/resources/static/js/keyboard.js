@@ -226,8 +226,6 @@ $(document).ready(function(){
       EnterLetter()
     });
 
-
-
     // shift 키
     $(".shiftkey").click(function ShiftLetter() {
       $(".shift").toggle();
