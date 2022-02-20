@@ -83,6 +83,14 @@ function EnterLetter() {
     {
       // 시간 기록
       let now = new Date();
+      let recentDate = localStorage.getItem("recentDate");
+      // 최근 접속 날짜와 다를 때
+      if(recentDate != now.toLocaleDateString()){
+        toast.toast("날짜가 변경되었습니다!\n" +
+            "새로운 단어로 시작합니다");
+        setTimeout(function(){location.reload();},3000);
+        return;
+      }
 
       localStorage.setItem("recentDate", now.toLocaleDateString());
 
@@ -109,7 +117,7 @@ function EnterLetter() {
         setTimeout(function () {
           modal.score();
           document.getElementsByClassName("score")[0].style.display = "flex";
-        }, 2800);
+        }, 2400);
         return;
       }
 
@@ -131,7 +139,7 @@ function EnterLetter() {
         setTimeout(function () {
           modal.score();
           document.getElementsByClassName("score")[0].style.display = "flex";
-        }, 2800);
+        }, 2400);
 
 
       }
@@ -166,6 +174,7 @@ $(document).ready(function(){
     if(recentDate != now.toLocaleDateString()){
       localStorage.removeItem("colorData");
       localStorage.setItem("colorData",JSON.stringify(local.NewLocal()));
+      localStorage.setItem("recentDate", now.toLocaleDateString());
     }
     // localStorage에 있는 data 적용
     let tryNumber = JSON.parse(localStorage.getItem("colorData")).try;
