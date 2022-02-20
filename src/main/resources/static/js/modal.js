@@ -67,6 +67,15 @@ function dateFormat(date){
     let day = date.getDate();
     return year+". "+month+". "+day+" ";
 }
+function copyToClipboard(val) {
+    let t = document.createElement("textarea");
+    document.body.appendChild(t);
+    t.value = val;
+    t.select();
+    document.execCommand('copy');
+    document.body.removeChild(t);
+}
+
 $(".share").on("click",function() {
     let solved = JSON.parse(localStorage.getItem("colorData")).solved;
     let copyInfo;
@@ -104,17 +113,14 @@ $(".share").on("click",function() {
     else{
         copyInfo = "한글 워들 " + "koreanwordle.com";
     }
-    try {
-        navigator.clipboard.writeText(copyInfo);
-        toast.toast("복사 완료!");
-    }
-    catch{
+    //navigator.clipboard.writeText(copyInfo);
+    copyToClipboard(copyInfo);
+    toast.toast("복사 완료!");
 
-        toast.toast("현재 브라우저는 지원하지 않습니다.");
-        document.execCommand('copy')
-    }
+
 
 });
+
 
 $("#opinion").on("click",function() {
     $(location).attr("href","https://forms.gle/K54r4dB5xxLY7a7S9");
