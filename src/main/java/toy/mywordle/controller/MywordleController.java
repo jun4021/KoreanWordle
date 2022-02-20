@@ -184,6 +184,7 @@ public class MywordleController {
             // try 횟수에 따른 data 추가
             switch (trynum+1){
                 case 1:
+                    checkWordService.PlusFirstCount(inputAnswer);
                     record.setOnetrycorrect(record.getOnetrycorrect()+1);
                     break;
                 case 2:

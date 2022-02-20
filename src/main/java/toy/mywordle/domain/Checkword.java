@@ -9,6 +9,15 @@ public class Checkword {
     private String word;
     private String adddate;
     private Integer count;
+    private Integer firstcount;
+
+    public Integer getFirstcount() {
+        return firstcount;
+    }
+
+    public void setFirstcount(Integer firstcount) {
+        this.firstcount = firstcount;
+    }
 
     public Integer getCount() {
         return count;

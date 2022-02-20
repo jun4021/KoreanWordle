@@ -34,6 +34,10 @@ public class CheckWordRepository {
         Checkword a = em.find(Checkword.class,word);
         a.setCount(a.getCount()+1);
     }
+    public void PlusFirstCount(String word){
+        Checkword a = em.find(Checkword.class,word);
+        a.setFirstcount(a.getFirstcount()+1);
+    }
 
 
     public Optional<Checkword> FindByword(String findword){

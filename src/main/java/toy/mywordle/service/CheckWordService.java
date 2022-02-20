@@ -24,6 +24,7 @@ public class CheckWordService {
     public void PlusCount1(String word){
         checkWordRepository.PlusCount(word);
     }
+    public void PlusFirstCount(String word){checkWordRepository.PlusFirstCount(word);}
     public Optional<Checkword> SelectWordByWord(String findWord){
         return checkWordRepository.FindByword(findWord);
     }
