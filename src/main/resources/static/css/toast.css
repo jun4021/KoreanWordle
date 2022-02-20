@@ -12,13 +12,13 @@
     transition: opacity .5s, visibility .5s, transform .5s;
     background: rgba(0, 0, 0, 0.8);
     color: #fff;
-    z-index: 0;
+    z-index: 1;
 }
 #toast.reveal {
     opacity: 1;
     visibility: visible;
     transform: translate(-50%, 0);
-    z-index: 0;
+    z-index: 1;
 }
 .toast_add{
     top:372px;
