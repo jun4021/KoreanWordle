@@ -27,11 +27,13 @@ public class MywordleController {
     private final DailyAnswerService dailyAnswerService;
     private final AddCheckWordService addCheckWordService;
     private final RequestWordService requestWordService;
+    private final DeleteWordService deleteWordService;
+
     private String correctAnswer;
     private dailyrecord record;
 
     @Autowired
-    public MywordleController(AnswerToColorService answerToColorService, AnswerWordService answerWordService, CheckWordService checkWordService, DailyRecordService dailyRecordService, DailyAnswerService dailyAnswerService, AddCheckWordService addCheckWordService, RequestWordService requestWordService) {
+    public MywordleController(DeleteWordService deleteWordService,AnswerToColorService answerToColorService, AnswerWordService answerWordService, CheckWordService checkWordService, DailyRecordService dailyRecordService, DailyAnswerService dailyAnswerService, AddCheckWordService addCheckWordService, RequestWordService requestWordService) {
         this.answerToColorService = answerToColorService;
         this.answerWordService = answerWordService;
         this.checkWordService = checkWordService;
@@ -39,6 +41,7 @@ public class MywordleController {
         this.dailyAnswerService = dailyAnswerService;
         this.addCheckWordService = addCheckWordService;
         this.requestWordService = requestWordService;
+        this.deleteWordService = deleteWordService;
         // 그 날 정답
         LocalDateTime now = LocalDateTime.now();
         correctAnswer = dailyAnswerService.FindAnswer(now);
@@ -98,8 +101,14 @@ public class MywordleController {
         if(checkWordService.InCheckWord(word)){
             return false;
         }
+        // 단어가 이미 삭제 단어에 있을 시
+        else if(deleteWordService.FindByword(word)){
+            return true;
+        }
         else{
-            requestWordService.SaveWord(word);
+            if(requestWordService.SaveWord(word)){
+                record.setRequestword(record.getRequestword()+1);
+            }
             return true;
         }
 
@@ -125,6 +134,7 @@ public class MywordleController {
     public String AddAction(@RequestParam List<String> word){
 
         for (String c : word){
+
             checkWordService.InsertWord(c);
             requestWordService.DeleteWord(c);
             addCheckWordService.DeleteWord(c);
@@ -136,6 +146,7 @@ public class MywordleController {
         for(String c: word){
             requestWordService.DeleteWord(c);
             addCheckWordService.DeleteWord(c);
+            deleteWordService.SaveWord(c);
         }
         return "redirect:/admin/add";
     }
@@ -153,7 +164,10 @@ public class MywordleController {
         if(!checkWordService.InCheckWord(inputAnswer)) {
             result.setValidWord(false);
 
-            addCheckWordService.SaveWord(inputAnswer);
+            //CheckWord 에 없는 경우 DeleteWord에 있는지 확인하고 없을 때 AddCheckWord에 추가
+            if(addCheckWordService.SaveWord(inputAnswer)) {
+                record.setDetectaddword(record.getDetectaddword() + 1);
+            }
             return result;
         }
 

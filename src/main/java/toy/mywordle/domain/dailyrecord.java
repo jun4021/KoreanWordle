@@ -18,6 +18,24 @@ public class dailyrecord {
     public Integer fivetrycorrect=0;
     public Integer trystart =0;
     public Integer fourtryrun = 0;
+    public Integer detectaddword = 0;
+    public Integer requestword = 0;
+
+    public Integer getDetectaddword() {
+        return detectaddword;
+    }
+
+    public void setDetectaddword(Integer detectaddword) {
+        this.detectaddword = detectaddword;
+    }
+
+    public Integer getRequestword() {
+        return requestword;
+    }
+
+    public void setRequestword(Integer requestword) {
+        this.requestword = requestword;
+    }
 
     public Integer getTrystart() {
         return trystart;

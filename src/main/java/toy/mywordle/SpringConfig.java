@@ -43,7 +43,7 @@ public class SpringConfig {
     public DailyAnswerService dailyAnswerService(){ return new DailyAnswerService(dailyAnswerRepository());}
     @Bean
     public AddCheckWordService addCheckWordService(){
-        return new AddCheckWordService(addCheckWordRepository());
+        return new AddCheckWordService(addCheckWordRepository(),deleteWordRepository());
     }
     @Bean
     public CheckWordRepository checkWordRepository(){
@@ -68,5 +68,13 @@ public class SpringConfig {
     @Bean
     public RequestWordService requestWordService(){
         return new RequestWordService(requestWordRepository());
+    }
+    @Bean
+    public DeleteWordRepository deleteWordRepository(){
+        return new DeleteWordRepository(em);
+    }
+    @Bean
+    public DeleteWordService deleteWordService(){
+        return new DeleteWordService(deleteWordRepository());
     }
 }

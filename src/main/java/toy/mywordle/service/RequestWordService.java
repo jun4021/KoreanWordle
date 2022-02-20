@@ -18,8 +18,8 @@ public class RequestWordService {
         this.requestWordRepository = requestWordRepository;
     }
 
-    public void SaveWord(String word){
-        requestWordRepository.SaveWord(word);
+    public boolean SaveWord(String word){
+        return requestWordRepository.SaveWord(word);
     }
     public void DeleteWord(String word){
         requestWordRepository.DeleteWord(word);

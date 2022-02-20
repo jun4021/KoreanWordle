@@ -23,12 +23,14 @@
         <th>첫 시도</th>
         <th>성공</th>
         <th>실패</th>
+        <th>탈주</th>
+        <th>4회 후 탈주</th>
         <th>1트성공</th>
         <th>2트성공</th>
         <th>3트성공</th>
         <th>4트성공</th>
         <th>5트성공</th>
-        <th>4회 후 탈주</th>
+
 
       </tr>
       </thead>
@@ -38,12 +40,14 @@
         <td th:text="${dailyrecord.trystart}"></td>
         <td th:text="${dailyrecord.correctanswer}"></td>
         <td th:text="${dailyrecord.fail}"></td>
+        <td th:text="${dailyrecord.trystart}-${dailyrecord.correctanswer}-${dailyrecord.fail}"></td>
+        <td th:text="${dailyrecord.fourtryrun}"></td>
         <td th:text="${dailyrecord.onetrycorrect}"></td>
         <td th:text="${dailyrecord.twotrycorrect}"></td>
         <td th:text="${dailyrecord.threetrycorrect}"></td>
         <td th:text="${dailyrecord.fourtrycorrect}"></td>
         <td th:text="${dailyrecord.fivetrycorrect}"></td>
-        <td th:text="${dailyrecord.fourtryrun}"></td>
+
 
 
       </tr>

@@ -17,7 +17,7 @@ public class RequestWordRepository {
         this.em = em;
     }
 
-    public void SaveWord(String word){
+    public boolean SaveWord(String word){
         requestword a = em.find(requestword.class,word);
         if(a==null) {
             requestword newWord = new requestword();
@@ -26,7 +26,9 @@ public class RequestWordRepository {
             newWord.setDate(format.format(now));
             newWord.setWord(word);
             em.persist(newWord);
+            return true;
         }
+        return false;
     }
 
 
