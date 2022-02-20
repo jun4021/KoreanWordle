@@ -161,7 +161,9 @@ img{
   background: #05944F;
   color: white;
 }
-
+#hide{
+  opacity: 0;
+}
 /*modal*/
 .page{
   width: 450px;

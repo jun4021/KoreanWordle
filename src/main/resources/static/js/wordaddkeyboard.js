@@ -111,6 +111,9 @@ function EnterLetter() {
             data.requestWord.push(lettersAssemble);
             localStorage.setItem("request", JSON.stringify(data));
 
+            if(data.requestWord.length!=0){
+                document.getElementById("hide").style.display="none";
+            }
             for (let i = 0; i < 4; i++) {
                 if (data.requestWord[i] == null) {
                     document.getElementById("word_list_p").childNodes[2 * i + 1].style.display = "none";
@@ -143,6 +146,9 @@ $(document).ready(function(){
     }
 
     const data = JSON.parse(localStorage.getItem("request"));
+    if(data.requestWord.length!=0){
+        document.getElementById("hide").style.display="none";
+    }
     for(let i=0;i<4;i++) {
         if (data.requestWord[i] == null) {
             document.getElementById("word_list_p").childNodes[2 * i + 1].style.display = "none";
