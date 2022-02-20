@@ -176,6 +176,7 @@ public class MywordleController {
 
         if(trynum==0){
             record.settrystart(record.gettrystart()+1);
+            checkWordService.PlusFirstCount(inputAnswer);
         }
         if(trynum==3){
             record.setFourtryrun(record.getFourtryrun()+1);
@@ -184,7 +185,7 @@ public class MywordleController {
             // try 횟수에 따른 data 추가
             switch (trynum+1){
                 case 1:
-                    checkWordService.PlusFirstCount(inputAnswer);
+
                     record.setOnetrycorrect(record.getOnetrycorrect()+1);
                     break;
                 case 2:
