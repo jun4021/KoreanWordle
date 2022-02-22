@@ -8,6 +8,15 @@ public class deleteword {
     @Id
     private String word;
     private String date;
+    private boolean wait;
+
+    public boolean isWait() {
+        return wait;
+    }
+
+    public void setWait(boolean wait) {
+        this.wait = wait;
+    }
 
     public String getDate() {
         return date;

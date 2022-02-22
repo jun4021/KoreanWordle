@@ -19,8 +19,8 @@ public class DeleteWordService {
     public boolean FindByword(String word){
         return deleteWordRepository.FindByWord(word);
     }
-    public void SaveWord(String word){
-        deleteWordRepository.SaveWord(word);
+    public void SaveWord(boolean wait, String word){
+        deleteWordRepository.SaveWord(wait, word);
     }
     public void DeleteWord(String word){
         deleteWordRepository.DeleteWord(word);

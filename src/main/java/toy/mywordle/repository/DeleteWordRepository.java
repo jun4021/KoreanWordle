@@ -18,7 +18,7 @@ public class DeleteWordRepository {
         this.em = em;
     }
 
-    public void SaveWord(String word){
+    public void SaveWord(boolean wait,String word){
         deleteword a = em.find(deleteword.class,word);
         if(a==null) {
             deleteword newWord = new deleteword();
@@ -26,6 +26,7 @@ public class DeleteWordRepository {
             SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd(EEE) HH:mm:ss");
             newWord.setDate(format.format(now));
             newWord.setWord(word);
+            newWord.setWait(wait);
             em.persist(newWord);
         }
     }

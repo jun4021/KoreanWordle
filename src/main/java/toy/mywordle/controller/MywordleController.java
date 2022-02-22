@@ -177,7 +177,16 @@ public class MywordleController {
         for(String c: word){
             requestWordService.DeleteWord(c);
             addCheckWordService.DeleteWord(c);
-            deleteWordService.SaveWord(c);
+            deleteWordService.SaveWord(false,c);
+        }
+        return "redirect:/admin/add";
+    }
+    @PostMapping("/admin/deletewait")
+    public String DelWaitAction(@RequestParam List<String> word){
+        for(String c: word){
+            requestWordService.DeleteWord(c);
+            addCheckWordService.DeleteWord(c);
+            deleteWordService.SaveWord(true,c);
         }
         return "redirect:/admin/add";
     }

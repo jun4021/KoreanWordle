@@ -25,6 +25,11 @@
                 form.submit();
                 return true;
             }
+            function action3(form){
+                form.action ='/admin/deletewait'
+                form.submit();
+                return true;
+            }
 
         </script>
         <form th:action="@{/admin/addaction}" th:object="${checkedWord}" method="post" onsubmit ='return action()'>
@@ -52,7 +57,8 @@
                             onchange="this.form.submit()"></td>
                             <td>삭제<input type="checkbox" th:text="${addcheckword.word}" name="word" th:value="${addcheckword.word}"
                                        onchange="return action2(this.form)"></td>
-
+                            <td>보류<input type="checkbox" th:text="${addcheckword.word}" name="word" th:value="${addcheckword.word}"
+                                         onchange="return action3(this.form)"></td>
                         </tr>
                         </tbody>
                     </table>
