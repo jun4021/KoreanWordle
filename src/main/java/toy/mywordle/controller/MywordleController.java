@@ -73,6 +73,13 @@ public class MywordleController {
         dailyRecordService.SaveRecord(record);
         record = new dailyrecord();
     }
+    @RequestMapping(value={"/robots.txt", "/robot.txt"})
+    @ResponseBody
+    public String getRobotsTxt() {
+        return "User-agent: *\n" +
+                "Disallow: /admin\n";
+    }
+
 
     @GetMapping("/")
     public String home(){
