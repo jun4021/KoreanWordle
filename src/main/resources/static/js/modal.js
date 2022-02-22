@@ -82,7 +82,7 @@ $(".share").on("click",function() {
     if(solved) {
         const data = JSON.parse(localStorage.getItem("colorData"));
         const date = dateFormat(new Date());
-        copyInfo = "#한글 워들 " + date + data.try + "/5" + "\n" + "https://koreanwordle.com" + "\n";
+        copyInfo = "#한글워들 " + date + data.try + "/5" + "\n" + "https://koreanwordle.com" + "\n";
         for (let i = 0; i < data.try; i++) {
             let colorRow = "⬜⬜⬜⬜⬜⬜⬜⬜⬜";
             colorRow = Array.from(colorRow);
@@ -111,7 +111,7 @@ $(".share").on("click",function() {
 
     }
     else{
-        copyInfo = "#한글 워들 " + "https://koreanwordle.com";
+        copyInfo = "#한글워들 " + "\n" + "https://koreanwordle.com";
     }
     //navigator.clipboard.writeText(copyInfo);
     copyToClipboard(copyInfo);
