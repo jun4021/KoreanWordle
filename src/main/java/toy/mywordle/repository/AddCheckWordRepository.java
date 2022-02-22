@@ -24,8 +24,12 @@ public class AddCheckWordRepository {
             SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd(EEE) HH:mm:ss");
             newWord.setDate(format.format(now));
             newWord.setWord(word);
+            newWord.setCount(1);
             em.persist(newWord);
             return true;
+        }
+        else{
+            a.setCount(a.getCount()+1);
         }
         return false;
     }

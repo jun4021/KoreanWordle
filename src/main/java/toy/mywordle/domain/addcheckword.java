@@ -9,6 +9,15 @@ public class addcheckword {
     @Id
     private String word;
     private String date;
+    private Integer count;
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
 
     public String getDate() {
         return date;

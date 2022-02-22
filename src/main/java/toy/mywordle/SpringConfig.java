@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import toy.mywordle.repository.*;
 import toy.mywordle.service.*;
+import toy.mywordle.service.VerifyWord.VerifyCheckWordService;
 
 import javax.persistence.EntityManager;
 
