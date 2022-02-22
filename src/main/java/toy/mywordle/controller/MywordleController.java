@@ -80,6 +80,30 @@ public class MywordleController {
                 "Disallow: /admin\n";
     }
 
+    @RequestMapping(value={"/sitemap.xml"})
+    @ResponseBody
+    public String getSiteMap() {
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+                "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n" +
+                "<url>\n" +
+                "  <loc>https://koreanwordle.com:443/</loc>\n" +
+                "  <lastmod>2022-02-21T23:58:25+00:00</lastmod>\n" +
+                "  <priority>1.00</priority>\n" +
+                "</url>\n" +
+                "<url>\n" +
+                "  <loc>https://koreanwordle.com:443/guide</loc>\n" +
+                "  <lastmod>2022-02-21T23:58:25+00:00</lastmod>\n" +
+                "  <priority>0.80</priority>\n" +
+                "</url>\n" +
+                "<url>\n" +
+                "  <loc>https://koreanwordle.com:443/request</loc>\n" +
+                "  <lastmod>2022-02-21T23:58:25+00:00</lastmod>\n" +
+                "  <priority>0.80</priority>\n" +
+                "</url>\n" +
+                "\n" +
+                "\n" +
+                "</urlset>";
+    }
 
     @GetMapping("/")
     public String home(){
