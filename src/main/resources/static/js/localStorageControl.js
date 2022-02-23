@@ -19,6 +19,22 @@ export function request(){
 
 }
 
+export function WriteSolvedRecord(date,answer,trynum){
+    let nowRecord = JSON.parse(localStorage.getItem("WordRecord"));
+    if (nowRecord == null) {
+        let local = new Object();
+        local.date = [];
+        local.answer = [];
+        local.try = [];
+        nowRecord = local;
+    }
+
+    nowRecord.date.push(date);
+    nowRecord.answer.push(answer);
+    nowRecord.try.push(trynum+1);
+    localStorage.setItem("WordRecord",JSON.stringify(nowRecord));
+}
+
 export function writeLocal(data,Answer) {
     const nowData = JSON.parse(localStorage.getItem("colorData"));
     let colorData = new Object();

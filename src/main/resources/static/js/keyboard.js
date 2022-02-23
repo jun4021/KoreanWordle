@@ -10,7 +10,7 @@ import * as painting from "./paintColor.js";
 import * as local from "./localStorageControl.js";
 import * as toast from "./toast.js";
 import * as modal from "./modal.js";
-import {writeSolveLocal} from "./localStorageControl.js";
+import {WriteSolvedRecord, writeSolveLocal} from "./localStorageControl.js";
 
 
 // 칸에 현재 입력 받은 문자열 출력
@@ -104,10 +104,12 @@ function EnterLetter() {
       }
       // 정답 확인
       else if (data.correct) {
-
         toast.toast("정답입니다.");
         local.writeLocal(data, lettersAssemble);
         painting.PaintDisplay(row);
+
+        local.WriteSolvedRecord(new Date().toLocaleDateString(),lettersAssemble,trynum);
+
         local.StatisticsEdit(true);
         $(".add").attr("disabled", true);
         $(".del").attr("disabled", true);
