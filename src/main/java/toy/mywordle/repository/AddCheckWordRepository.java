@@ -43,7 +43,7 @@ public class AddCheckWordRepository {
     }
 
     public List<addcheckword> findAll() {
-        return em.createQuery("select m from addcheckword m order by m.date", addcheckword.class)
+        return em.createQuery("select m from addcheckword m order by m.count DESC", addcheckword.class)
                 .getResultList();
     }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <style type="text/css">
         table{
@@ -44,6 +44,7 @@
                         <tr>
                             <th>순번</th>
                             <th>단어</th>
+                            <th>카운트</th>
                             <th>추가 날짜</th>
 
                         </tr>
@@ -52,6 +53,7 @@
                         <tr th:each="addcheckword : ${addlist}">
                             <td><p th:text="${addcheckwordStat.count}"></p></td>
                             <td><input type="checkbox" th:text="${addcheckword.word}" name="word" th:value="${addcheckword.word}"></td>
+                            <td><p th:text="${addcheckword.count}"></p></td>
                             <td><p th:text = "${addcheckword.date}"></p></td>
                             <td>추가<input type="checkbox" th:text="${addcheckword.word}" name="word" th:value="${addcheckword.word}"
                             onchange="this.form.submit()"></td>
@@ -60,6 +62,8 @@
                             <td>보류<input type="checkbox" th:text="${addcheckword.word}" name="word" th:value="${addcheckword.word}"
                                          onchange="return action3(this.form)"></td>
                         </tr>
+
+
                         </tbody>
                     </table>
                 </div>
