@@ -1,5 +1,8 @@
-html{
+body{
   touch-action: none;
+}
+#keyboard{
+  touch-action:none;
 }
 /*전체 글씨체*/
 
