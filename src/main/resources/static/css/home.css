@@ -1,3 +1,6 @@
+html{
+  touch-action: none;
+}
 /*전체 글씨체*/
 
 p{
