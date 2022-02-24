@@ -1,4 +1,11 @@
 import {CheckAnswerCorrect} from "./correct.js";
+
+document.documentElement.addEventListener('touchstart',function (event) {
+  if (event.touches.length > 1) {
+    event.preventDefault();
+  }
+},false);
+
 let MAX_ROW = 5;
 
 let row;
