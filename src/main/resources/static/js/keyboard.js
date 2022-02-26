@@ -180,7 +180,12 @@ $(document).ready(function(){
   // 접속 기록이 있을 때
   else{
     let recentDate = localStorage.getItem("recentDate");
+    let record = localStorage.getItem("WordRecord");
     let now = new Date();
+    if(record.rate==null){
+      record.rate = [];
+      localStorage.setItem("WordRecord",JSON.stringify(record));
+    }
     // 최근 접속 날짜와 다를 때
     if(recentDate != now.toLocaleDateString()){
       localStorage.removeItem("colorData");
