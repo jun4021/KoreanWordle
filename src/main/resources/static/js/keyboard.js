@@ -182,9 +182,11 @@ $(document).ready(function(){
     let recentDate = localStorage.getItem("recentDate");
     let record = localStorage.getItem("WordRecord");
     let now = new Date();
-    if(record.rate==null){
-      record.rate = [];
-      localStorage.setItem("WordRecord",JSON.stringify(record));
+    if(record == null){
+      localStorage.setItem("WordRecord",JSON.stringify(local.NewWordRecord()));
+    }
+    else if(record.rate == null){
+      localStorage.setItem("WordRecord",JSON.stringify(local.NewRate()));
     }
     // 최근 접속 날짜와 다를 때
     if(recentDate != now.toLocaleDateString()){

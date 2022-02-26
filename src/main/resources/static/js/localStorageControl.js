@@ -26,6 +26,15 @@ export function NewWordRecord(){
     local.rate =[];
     return local;
 }
+export function NewRate(){
+    let nowRecord = JSON.parse(localStorage.getItem("WordRecord"));
+    let local = new Object();
+    local.date = nowRecord.date;
+    local.answer = nowRecord.answer;
+    local.try = nowRecord.try;
+    local.rate = [];
+    return local;
+}
 export function WriteSolvedRecord(date,answer,trynum){
     let nowRecord = JSON.parse(localStorage.getItem("WordRecord"));
     if (nowRecord == null) {
