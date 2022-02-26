@@ -126,7 +126,7 @@ $("#opinion").on("click",function() {
     $(location).attr("href","https://forms.gle/K54r4dB5xxLY7a7S9");
 });
 
-$("#setting").on("click",function CollectWord(){
+export function CollectWord(){
     CheckRateList();
     const data = JSON.parse(localStorage.getItem("WordRecord"));
 
@@ -148,7 +148,7 @@ $("#setting").on("click",function CollectWord(){
     $("#correct_number").text(stat.success);
     $("#challenge_number").text(stat.play);
 
-});
+}
 
 function CheckRateList(){
     const data = JSON.parse(localStorage.getItem("WordRecord"));

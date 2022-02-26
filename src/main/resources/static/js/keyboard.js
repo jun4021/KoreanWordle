@@ -18,6 +18,7 @@ import * as local from "./localStorageControl.js";
 import * as toast from "./toast.js";
 import * as modal from "./modal.js";
 import {NewWordRecord, WriteSolvedRecord, writeSolveLocal} from "./localStorageControl.js";
+import {CollectWord} from "./modal.js";
 
 
 // 칸에 현재 입력 받은 문자열 출력
@@ -196,6 +197,7 @@ $(document).ready(function(){
       PrintLetter(2*i +1,words[i]);
     }
   }
+  modal.CollectWord();
 
   let solved = JSON.parse(localStorage.getItem("colorData")).solved;
   if(solved) {
