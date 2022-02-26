@@ -17,7 +17,7 @@ import * as painting from "./paintColor.js";
 import * as local from "./localStorageControl.js";
 import * as toast from "./toast.js";
 import * as modal from "./modal.js";
-import {WriteSolvedRecord, writeSolveLocal} from "./localStorageControl.js";
+import {NewWordRecord, WriteSolvedRecord, writeSolveLocal} from "./localStorageControl.js";
 
 
 // 칸에 현재 입력 받은 문자열 출력
@@ -148,7 +148,7 @@ function EnterLetter() {
         setTimeout(function () {
           modal.score();
           document.getElementsByClassName("score")[0].style.display = "flex";
-        }, 2400);
+        }, 2800);
 
 
       }
@@ -172,6 +172,7 @@ $(document).ready(function(){
     // 초기 local Storage 정보
     localStorage.setItem("statistics",JSON.stringify(local.NewStatisticsLocal()));
     localStorage.setItem("entered","true");
+    localStorage.setItem("WordRecord",JSON.stringify(local.NewWordRecord()));
     localStorage.setItem("colorData",JSON.stringify(local.NewLocal()));
     row = 1;
   }

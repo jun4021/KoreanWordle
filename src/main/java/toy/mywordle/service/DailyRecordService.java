@@ -26,6 +26,9 @@ public class DailyRecordService {
         }
         return record;
     }
+    public Integer CalSuccessRate(String date){
+        return dailyRecordRepository.CalSuccessRate(date);
+    }
 
     public void SaveRecord(dailyrecord record){
         dailyRecordRepository.SaveRecord(record);

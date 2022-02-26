@@ -18,7 +18,14 @@ export function request(){
     return local;
 
 }
-
+export function NewWordRecord(){
+    let local = new Object();
+    local.date = [];
+    local.answer = [];
+    local.try = [];
+    local.rate =[];
+    return local;
+}
 export function WriteSolvedRecord(date,answer,trynum){
     let nowRecord = JSON.parse(localStorage.getItem("WordRecord"));
     if (nowRecord == null) {
@@ -26,6 +33,7 @@ export function WriteSolvedRecord(date,answer,trynum){
         local.date = [];
         local.answer = [];
         local.try = [];
+        local.rate =[];
         nowRecord = local;
     }
 

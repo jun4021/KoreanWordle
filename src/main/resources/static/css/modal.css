@@ -251,6 +251,15 @@ meter::-webkit-meter-bar {background: #e6e6e9;}
 }
 .setting_container{
     margin:12px 8px 0px 8px;
+    height: 90vh;
+    overflow-y: scroll;
+
+    -ms-overflow-style: none;
+    scrollbar-width:none;
+}
+
+.setting_container::-webkit-scrollbar{
+    display: none;
 }
 #setting_notice{
     display: flex;
@@ -262,7 +271,6 @@ meter::-webkit-meter-bar {background: #e6e6e9;}
     height: 56px;
     line-height: 56px;
     padding :0 16px 0 16px;
-    margin-bottom: 9px;
 
     font-family: Pretendard Variable;
     font-style: normal;
@@ -271,6 +279,51 @@ meter::-webkit-meter-bar {background: #e6e6e9;}
     text-align: left;
 
     color: #263238;
+}
+.word_collect{
+    display: flex;
+    justify-content: space-between;
+
+    border: 1px solid #D3D6DA;
+    box-sizing: border-box;
+    border-radius: 5px;
+    height: 66px;
+    line-height: 66px;
+    padding :0 16px;
+    margin: 4px 0;
+
+    font-family: Pretendard Variable;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    text-align: left;
+
+}
+
+.collect_word{
+    font-size: 22px;
+    color:#263238;
+}
+.collect_try{
+    font-size: 16px;
+    color: #818384;
+}
+.collect_try img{
+    width:13px; height:13px;display:inline; margin-right:6px;
+}
+.collect_try span{
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.collect_date{
+    font-size: 12px;
+    color: #818384;
+    line-height: 30px;
+    align-self: flex-end;
+}
+.setting_list{
+    margin-bottom: 8px;
 
 
 }
@@ -284,15 +337,14 @@ meter::-webkit-meter-bar {background: #e6e6e9;}
 }
 #setting_menu{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     margin:4px 0px;
 
 }
 .setting_menulist{
-    background: #D3D6DA;
-    border-radius: 5px;
-    height: 54px;
+
+    height: 104px;
     margin:4px;
 
     font-family: Pretendard Variable;
@@ -301,6 +353,7 @@ meter::-webkit-meter-bar {background: #e6e6e9;}
     font-size: 16px;
 
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     letter-spacing: 0.01em;
@@ -308,26 +361,17 @@ meter::-webkit-meter-bar {background: #e6e6e9;}
     color: #263238;
 }
 .setting_menulist img{
-    width: 16px;
-    height: 16px;
+    width: 44px;
+    height: 44px;
     margin:0px;
-    position: relative;
-    top:2px;
+    margin-bottom:13px;
 
 }
-.list_left{
-    margin-left:0px;
+.setting_menulist .bottom{
+    width: 33px;
+    height: 33px;
+}
 
-}
-.list_left img{
-    margin-right :11px;
-}
-.list_right{
-    margin-right: 0px;
-}
-.list_right img{
-    margin-right: 6px;
-}
 #setting_list img{
     display:inline;
     width: 16px;

@@ -4,6 +4,7 @@ package toy.mywordle.repository;
 import toy.mywordle.domain.dailyrecord;
 
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -23,6 +24,16 @@ public class DailyRecordRepository {
         dailyrecord a = em.find(dailyrecord.class, date);
         if (a != null) {
             em.remove(a);
+        }
+    }
+    public Integer CalSuccessRate(String date){
+        dailyrecord a = em.find(dailyrecord.class, date);
+        if(a==null){
+            return 0;
+        }
+        else{
+            Integer sol = 100*a.getCorrectanswer()/a.gettrystart();
+            return sol;
         }
     }
 

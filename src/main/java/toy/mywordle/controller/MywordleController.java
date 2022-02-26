@@ -15,7 +15,12 @@ import toy.mywordle.repository.DailyRecordRepository;
 import toy.mywordle.service.*;
 
 import javax.annotation.PreDestroy;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -191,6 +196,19 @@ public class MywordleController {
         return "redirect:/admin/add";
     }
 
+    @PostMapping("/rate")
+    @ResponseBody
+    public ArrayList CheckRate(HttpSession session, HttpServletRequest req) {
+        String[] dateString = req.getParameterValues("dateList");
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy. M. dd.");
+        ArrayList<Integer> abc = new ArrayList<>();
+
+        for(int i=0;i<dateString.length;i++) {
+            LocalDate date = LocalDate.parse(dateString[i], format);
+            abc.add(dailyRecordService.CalSuccessRate(date.toString()));
+        }
+        return abc;
+    }
     @PostMapping("/correct")
     @ResponseBody
     public ColorInfo CheckCorrect(InputAnswer ob){

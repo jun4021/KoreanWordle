@@ -126,5 +126,72 @@ $("#opinion").on("click",function() {
     $(location).attr("href","https://forms.gle/K54r4dB5xxLY7a7S9");
 });
 
+$("#setting").on("click",function CollectWord(){
+    CheckRateList();
+    const data = JSON.parse(localStorage.getItem("WordRecord"));
 
+    let dateList = data.date;
+    let wordList = data.answer;
+    let tryList = data.try;
+    let rateList = data.rate;
 
+    for(let i = 0; i<dateList?.length;i++) {
+        $(".setting_list").prepend("<div class =\"word_collect\">\n" +
+            "              <span class=\"collect_word\">" + wordList[i] + "</span>\n" +
+            "              <div class=\"collect_try\"><img src=\"image/트라이.svg\"><span>" + tryList[i] + "/5</span></div>\n" +
+            "              <div class=\"collect_try\"><img src=\"image/정답률.svg\"><span>" + rateList[i] + "%</span></div>\n" +
+            "              <span class=\"collect_date\">" + dateList[i] + "</span>\n" +
+            "            </div>");
+
+    }
+    const stat =JSON.parse(localStorage.getItem("statistics"));
+    $("#correct_number").text(stat.success);
+    $("#challenge_number").text(stat.play);
+
+});
+
+function CheckRateList(){
+    const data = JSON.parse(localStorage.getItem("WordRecord"));
+    let rateList = [];
+    if(data.rate==null){
+        let dateList = data.date;
+        rateList = correctRate(dateList);
+    }
+    else if(data.date.length != data.rate.length){
+        let slice = data.rate.length;
+        if(data.rate[data.rate.length-1]==0){
+            data.rate.pop();
+            slice -=1;
+        }
+        rateList = data.rate;
+        rateList.push(...correctRate(data.date.slice(slice)));
+    }
+    else{
+        return;
+    }
+    data.rate = rateList;
+    localStorage.setItem("WordRecord",JSON.stringify(data));
+
+}
+
+function correctRate(dateList){
+    let dataResult;
+    $.ajax({
+        url:"/rate",
+        type:"POST",
+        traditional:true,
+        data:{
+            dateList:dateList
+
+        },
+        async:false,
+        success:function(data){
+
+            dataResult = data;
+        },
+        error: function(){
+            alert("error");
+        }
+    });
+    return dataResult;
+}

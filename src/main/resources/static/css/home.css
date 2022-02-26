@@ -1,9 +1,4 @@
-body{
-  touch-action: none;
-}
-#keyboard{
-  touch-action:none;
-}
+
 /*전체 글씨체*/
 
 p{
@@ -180,6 +175,31 @@ img{
   align-items: center;
   justify-content: center;
 
+}
+.collect_title{
+  margin-left:10px;
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  height:54px;
+}
+.collect_title h1{
+  font-size: 24px;
+  font-weight: 900;
+  color: #080B14;
+}
+.collect_title span{
+  font-family: Pretendard Variable;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: #263238;
+  align-self: flex-end;
+  margin-bottom:6px;
+}
+.collect_title span .number{
+  font-weight: bold;
 }
 .page_title h1{
   font-size: 24px;
