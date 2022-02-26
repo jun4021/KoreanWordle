@@ -136,13 +136,15 @@ export function CollectWord(){
     let rateList = data.rate;
 
     for(let i = 0; i<dateList?.length;i++) {
-        $(".setting_list").prepend("<div class =\"word_collect\">\n" +
-            "              <span class=\"collect_word\">" + wordList[i] + "</span>\n" +
-            "              <div class=\"collect_try\"><img src=\"image/트라이.svg\"><span>" + tryList[i] + "/5</span></div>\n" +
-            "              <div class=\"collect_try\"><img src=\"image/정답률.svg\"><span>" + rateList[i] + "%</span></div>\n" +
-            "              <span class=\"collect_date\">" + dateList[i] + "</span>\n" +
-            "            </div>");
+        if(rateList[i]!=0) {
+            $(".setting_list").prepend("<div class =\"word_collect\">\n" +
+                "              <span class=\"collect_word\">" + wordList[i] + "</span>\n" +
+                "              <div class=\"collect_try\"><img src=\"image/트라이.svg\"><span>" + tryList[i] + "/5</span></div>\n" +
+                "              <div class=\"collect_try\"><img src=\"image/정답률.svg\"><span>" + rateList[i] + "%</span></div>\n" +
+                "              <span class=\"collect_date\">" + dateList[i] + "</span>\n" +
+                "            </div>");
 
+        }
     }
     const stat =JSON.parse(localStorage.getItem("statistics"));
     $("#correct_number").text(stat.success);
