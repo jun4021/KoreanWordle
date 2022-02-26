@@ -17,8 +17,6 @@ import * as painting from "./paintColor.js";
 import * as local from "./localStorageControl.js?ver=1.0.2";
 import * as toast from "./toast.js";
 import * as modal from "./modal.js?ver=1.0.2";
-import {NewWordRecord, WriteSolvedRecord, writeSolveLocal} from "./localStorageControl.js";
-import {CollectWord} from "./modal.js";
 
 
 // 칸에 현재 입력 받은 문자열 출력
