@@ -14,7 +14,7 @@ let letters = [];
 
 import * as correct from "./correct.js";
 import * as painting from "./paintColor.js";
-import * as local from "./localStorageControl.js";
+import * as local from "./localStorageControl.js?ver=1.0.2";
 import * as toast from "./toast.js";
 import * as modal from "./modal.js";
 import {NewWordRecord, WriteSolvedRecord, writeSolveLocal} from "./localStorageControl.js";
