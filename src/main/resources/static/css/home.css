@@ -176,7 +176,7 @@ img{
 
 }
 .collect_title{
-  margin-left:10px;
+  margin:0 10px;
   display:flex;
   align-items: center;
   justify-content: space-between;
