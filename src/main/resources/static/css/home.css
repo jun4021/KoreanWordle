@@ -1,5 +1,5 @@
 /*전체 글씨체*/
-body { -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none }
+body { -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; touch-action: pan-y }
 
 p{
   font-family: pretendard;
