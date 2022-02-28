@@ -199,13 +199,19 @@ public class MywordleController {
     @PostMapping("/rate")
     @ResponseBody
     public ArrayList CheckRate(HttpSession session, HttpServletRequest req) {
+        ArrayList<Integer> abc = new ArrayList<>();
         String[] dateString = req.getParameterValues("dateList");
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy. M. dd.");
-        ArrayList<Integer> abc = new ArrayList<>();
+
 
         for(int i=0;i<dateString.length;i++) {
-            LocalDate date = LocalDate.parse(dateString[i], format);
-            abc.add(dailyRecordService.CalSuccessRate(date.toString()));
+            try {
+                LocalDate date = LocalDate.parse(dateString[i], format);
+                abc.add(dailyRecordService.CalSuccessRate(date.toString()));
+            }
+            catch (Exception e){
+                abc.add(0);
+            }
         }
         return abc;
     }

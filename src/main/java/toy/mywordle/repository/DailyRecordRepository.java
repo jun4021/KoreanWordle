@@ -32,8 +32,14 @@ public class DailyRecordRepository {
             return 0;
         }
         else{
-            Integer sol = 100*a.getCorrectanswer()/a.gettrystart();
-            return sol;
+            try {
+                Integer sol = 100 * a.getCorrectanswer() / a.gettrystart();
+                return sol;
+            }
+            catch (Exception e){
+                return 0;
+            }
+
         }
     }
 
