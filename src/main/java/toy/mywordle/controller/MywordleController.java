@@ -201,12 +201,11 @@ public class MywordleController {
     public ArrayList CheckRate(HttpSession session, HttpServletRequest req) {
         ArrayList<Integer> abc = new ArrayList<>();
         String[] dateString = req.getParameterValues("dateList");
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy. M. dd.");
-
 
         for(int i=0;i<dateString.length;i++) {
             try {
-                LocalDate date = LocalDate.parse(dateString[i], format);
+                String[] sp = dateString[i].split("\\.");
+                LocalDate date = LocalDate.of(Integer.parseInt(sp[0]),Integer.parseInt((sp[1]).trim()),Integer.parseInt(sp[2].trim()));
                 abc.add(dailyRecordService.CalSuccessRate(date.toString()));
             }
             catch (Exception e){
