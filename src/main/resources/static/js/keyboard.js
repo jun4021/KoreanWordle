@@ -80,6 +80,27 @@ function DelLetter(){
   }
 }
 
+function CorrectToast(trynum){
+  let text;
+  switch(trynum){
+    case 0:
+      text ="놀라워요!";
+      break;
+    case 1:
+      text ="최고에요!";
+      break;
+    case 2:
+      text ="대단해요!";
+      break;
+    case 3:
+      text ="훌륭해요!";
+      break;
+    case 4:
+      text ="휴~";
+      break;
+  }
+  toast.toast(text);
+}
 function EnterLetter() {
   let solved = JSON.parse(localStorage.getItem("colorData")).solved;
   if(!solved) {
@@ -110,7 +131,8 @@ function EnterLetter() {
       }
       // 정답 확인
       else if (data.correct) {
-        toast.toast("정답입니다.");
+        CorrectToast(trynum);
+
         local.writeLocal(data, lettersAssemble);
         painting.PaintDisplay(row);
 
