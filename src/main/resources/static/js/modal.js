@@ -135,7 +135,7 @@ export function CollectWord(){
     let tryList = data.try;
     let rateList = data.rate;
 
-    for(let i = 0; i<dateList?.length;i++) {
+    for(let i = 0; i<rateList?.length;i++) {
         if(rateList[i]!=0) {
             $(".setting_list").prepend("<div class =\"word_collect\">\n" +
                 "              <span class=\"collect_word\">" + wordList[i] + "</span>\n" +
@@ -193,6 +193,7 @@ function correctRate(dateList){
         },
         error: function(){
             alert("error");
+            return [0];
         }
     });
     return dataResult;

@@ -16,7 +16,7 @@ import * as correct from "./correct.js";
 import * as painting from "./paintColor.js";
 import * as local from "./localStorageControl.js?ver=1.0.2";
 import * as toast from "./toast.js";
-import * as modal from "./modal.js?ver=1.0.2";
+import * as modal from "./modal.js?ver=1.0.2.2";
 
 
 // 칸에 현재 입력 받은 문자열 출력
