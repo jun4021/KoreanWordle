@@ -183,9 +183,20 @@ function EnterLetter() {
 let EnglishToKorean = {"Q":"ㅂ","W":"ㅈ","E":"ㄷ","R":"ㄱ","T":"ㅅ","Y":"ㅛ","U":"ㅕ","I":"ㅑ","O":"ㅐ","P":"ㅔ","A":"ㅁ","S":"ㄴ","D":"ㅇ","F":"ㄹ","G":"ㅎ","H":"ㅗ","J":"ㅓ","K":"ㅏ","L":"ㅣ","Z":"ㅋ","X":"ㅌ","C":"ㅊ","V":"ㅍ","B":"ㅠ","N":"ㅜ","M":"ㅡ"};
 let shiftTo = {81:"ㅃ",87:"ㅉ",69:"ㄸ",82:"ㄲ",84:"ㅆ",79:"ㅒ",80:"ㅖ"};
 
+function CheckDarkMode(){
+  if(localStorage.getItem("dark")== null){
+    localStorage.setItem("dark", "false");
+  }
+  else if(localStorage.getItem("dark")=="true"){
+    document.body.classList.add("dark-mode");
+  }
+  else{
+    document.body.classList.remove("dark-mode");
+  }
+}
 $(document).ready(function(){
   $(".modal").hide();
-
+  CheckDarkMode();
   // 처음 접속했을 때
   if(localStorage.getItem("entered") == null){
     // 초기 방법 창 띄우기

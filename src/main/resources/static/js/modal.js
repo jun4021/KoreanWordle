@@ -122,8 +122,14 @@ $(".share").on("click",function() {
 });
 
 
-$("#opinion").on("click",function() {
-    $(location).attr("href","https://forms.gle/K54r4dB5xxLY7a7S9");
+$("#dark").on("click",function() {
+    if(document.querySelector('body').classList.contains('dark-mode')){
+        document.body.classList.remove("dark-mode");
+        localStorage.setItem("dark","false");
+    }else{
+        document.body.classList.add("dark-mode");
+        localStorage.setItem("dark","true");
+    }
 });
 
 export function CollectWord(){
