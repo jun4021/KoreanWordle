@@ -1,4 +1,58 @@
+/*전체 색상*/
+:root{
+  --Correct: #05944F;
+  --Elsewhere: #BC8B2C;
+  --NotExist:#787C7E;
+  --Frame:#D3D6DA;
+
+  --Border:#D3D6DA;
+
+  --PrimaryText:#080B14;
+  --SecondaryText:#818384;
+
+  --KeyDefault:#D3D6DA;
+  --KeyShiftDelete:#666666;
+  --KeyOff:#787C7E;
+
+  --More:#263238;
+  --MoreText:#818384;
+  --Notice:#F6F7F8;
+
+  --ModalBack : #FFFFFF;
+  --Background:#FFFFFF;
+  --Overlay:#080B14;
+  --Toast:#080B14;
+
+  --UIPrimary:#828688;
+}
+.dark-mode{
+  --Correct: #058649;
+  --Elsewhere: #AA7E2A;
+  --NotExist:#3A3A3C;
+  --Frame:#3A3A3C;
+
+  --PrimaryText:#E4E5E7;
+  --SecondaryText:#D3D6DA;
+
+  --KeyDefault:#D3D6DA;
+  --KeyShiftDelete:#666666;
+  --KeyOff:#3A3A3C;
+
+  --More:#D3D6DA;
+  --MoreText:#818384;
+  --Notice:#2B2C31;
+
+  --ModalBack : #2B2C31;
+  --Background:#080B14;
+  --Overlay:#080B14;
+  --Toast:#E4E5E7;
+
+  --UIPrimary:#D3D6DA;
+}
+
+
 /*전체 글씨체*/
+body{background: var(--Background)}
 body { -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; touch-action: pan-y }
 
 p{
@@ -7,7 +61,7 @@ p{
 div{
   font-family:pretendard;
   font-weight: 700;
-  color:#080B13;
+
 }
 
 
@@ -16,8 +70,9 @@ header {
   margin: 0 auto;
   display:flex;
   justify-content: space-between;
-  border-bottom:1px solid #D3D6DA;
-  width: 450px;
+  border-bottom:1px solid #E5E5E5;
+  color: var(--PrimaryText);
+  width: 440px;
   height: 32px;
   text-align: center;
 
@@ -34,7 +89,8 @@ header p{
   display:inline-block;
   width: 32px;
   height: 32px;
-  background: white;
+  background: var(--Background);
+  color: var(--More);
   padding:0px;
 
 }
@@ -46,7 +102,7 @@ header p{
   display: grid;
   text-align: center;
   justify-content: center;
-
+  color:var(--PrimaryText);
 
   padding: 12px;
 
@@ -75,16 +131,16 @@ header p{
   font-size: 60px;
   width:70px;
   height:70px;
-  border:solid 1px #D3D6DA;
+  border:solid 1px var(--Border);
   margin-right: 8px;
-  background:white;
+  background:var(--Background);
 }
 
 .color-tile{
   width:22px;
   height:22px;
-  border:solid #D3D6DA 1px;
-  background:white;
+  border:solid var(--Border) 1px;
+  background:var(--Background);
 }
 .third{
   margin-right: 8px;
@@ -107,14 +163,14 @@ header p{
 }
 
 button{
-  color:#080B14;
+  color:var(--PrimaryText);
   cursor:pointer;
   -webkit-appearance: none;
   -webkit-border-radius: 0;
 
   width: 32px;
   height: 48px;
-  background: #D3D6DA;
+  background: var(--Frame);
   border-radius: 5px;
   margin: 0px 2px;
   border: none;
@@ -139,10 +195,14 @@ img{
   height: 48px;
   background: #666666;
 }
+.del img{
+
+}
 .del{
   width: 48px;
   height: 48px;
   background: #666666;
+  color:var(--PrimaryText);
 }
 .enter{
   width: 176px;
@@ -150,8 +210,8 @@ img{
   font-weight: 500;
   font-size: 24px;
   line-height: 24px;
-  background: #05944F;
-  color: white;
+  background: var(--Correct);
+  color: var(--PrimaryText);
 }
 #wordadd_enter{
   width: 176px;
@@ -159,8 +219,8 @@ img{
   font-weight: 500;
   font-size: 24px;
   line-height: 24px;
-  background: #05944F;
-  color: white;
+  background: var(--Correct);
+  color: var(--PrimaryText);
 }
 #hide{
   opacity: 0;
@@ -186,7 +246,7 @@ img{
 .collect_title h1{
   font-size: 24px;
   font-weight: 900;
-  color: #080B14;
+  color: var(--PrimaryText);
 }
 .collect_title span{
   font-family: Pretendard Variable;
@@ -194,7 +254,7 @@ img{
   font-weight: normal;
   font-size: 16px;
   line-height: 24px;
-  color: #263238;
+  color: var(--More);
   align-self: flex-end;
   margin-bottom:6px;
 }
@@ -204,10 +264,10 @@ img{
 .page_title h1{
   font-size: 24px;
   font-weight: 900;
-  color: #080B14;
+  color: var(--PrimaryText);
 }
 .close{
-  background: white;
+  background: var(--Background);
   position: absolute;
   top:16px;
   right:16px;
@@ -216,13 +276,13 @@ img{
 .page p{
   font-weight: 500;
   font-size: 16px;
-  color: #080B14;
+  color: var(--PrimaryText);
   text-align:left;
 }
-.page .example{
-  border-top : 1px solid #E5E5E5;
-  border-bottom : 1px solid #E5E5E5;
-}
+/*.page .example{*/
+/*  border-top : 1px solid #E5E5E5;*/
+/*  border-bottom : 1px solid #E5E5E5;*/
+/*}*/
 
 @media only screen and (max-width:450px){
   html{

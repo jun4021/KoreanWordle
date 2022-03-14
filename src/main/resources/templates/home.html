@@ -22,13 +22,13 @@
     <link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico" />
     <title>모아워들</title>
     <script src="https://unpkg.com/hangul-js" type="text/javascript"></script>
-    <link rel="stylesheet" type="text/css" href="css/home.css?ver=1.0.2.1">
-    <link rel="stylesheet" type="text/css" href="css/modal.css?ver=1.0.2">
-    <link rel="stylesheet" type="text/css" href="css/toast.css">
+    <link rel="stylesheet" type="text/css" href="css/home.css?ver=1.0.3">
+    <link rel="stylesheet" type="text/css" href="css/modal.css?ver=1.0.3">
+    <link rel="stylesheet" type="text/css" href="css/toast.css?ver=1.0.3">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script type="module" src="js/keyboard.js?ver=1.0.2"></script>
-    <script type="module" src="js/modal.js?ver=1.0.2.2"></script>
-    <script type="module" src="js/toast.js"></script>
+    <script type="module" src="js/keyboard.js?ver=1.0.3"></script>
+    <script type="module" src="js/modal.js?ver=1.0.3"></script>
+    <script type="module" src="js/toast.js?ver=1.0.3"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"/>
@@ -47,15 +47,15 @@
 
       <div>
         <a href="/guide">
-        <button class="header_button" id=""><img src="image/HowToPlay.svg"></button>
+        <button class="header_button" id=""><img id="HowToPlay_image" src="image/HowToPlay.svg"></button>
         </a>
           <button id ="ClearTest"></button>
       </div>
       <p>모아워들</p>
 
       <div>
-        <button class="header_button" id="score"><img src="image/Score.svg"></button>
-        <button class="header_button" id="setting"><img src="image/more.svg"></button>
+        <button class="header_button" id="score"><img id="score_image" src="image/Score.svg"></button>
+        <button class="header_button" id="setting"><img id="more_image" src="image/more.svg"></button>
       </div>
 
 
@@ -139,27 +139,27 @@
       <div class="page">
         <div class="page_title">
           <h1>더보기</h1>
-          <button class="close"><img src="image/Close_MD.svg"></button>
+          <button class="close"><img id="close_image" src="image/Close_MD.svg"></button>
         </div>
         <div class="setting_container">
           <a href="https://cottony-perch-6eb.notion.site/580f7f25c7e24d15906c224d754105ac?v=0138fdc2d35d4b0c883a6685f0b2da09" target="_blank">
-            <div id ="setting_notice"><span>공지사항을 전달해 드립니다. :)</span><img src="image/Notice%20icon.svg"></div></a>
+            <div id ="setting_notice"><span>공지사항을 전달해 드립니다. :)</span><img id="notice_image"src="image/notice.svg"></div></a>
           <div id="setting_menu">
-            <a href="/request"><div class="setting_menulist "><img src="image/Add_square_light.svg">단어추가</div></a>
+            <a href="/request"><div class="setting_menulist "><img id="WordRequest_image" src="image/WordRequest.svg">단어추가</div></a>
             <a href="https://cottony-perch-6eb.notion.site/b037ae179f0c447aa042bda01408c2ba?v=7e6081ebf9bf497abc9fe37e46650d54" target="_blank">
-              <div class="setting_menulist "><img src="image/Calendar_Day.svg">지난정답</div></a>
+              <div class="setting_menulist "><img id="Calendar_Day_image" src="image/Calendar_Day.svg">지난정답</div></a>
             <a href="https://cottony-perch-6eb.notion.site/d721cdafcad94f91bf7491893261d28c" target="_blank">
-              <div class="setting_menulist "><img src="image/업데이트.svg">업데이트</div></a>
+              <div class="setting_menulist "><img id="update_image"src="image/update.svg">업데이트</div></a>
             <a href="https://forms.gle/xDfLd3frsQbtdcPb6" target="_blank">
-              <div class="setting_menulist "><img src="image/Chat_alt_light.svg">의견전달</div></a>
+              <div class="setting_menulist "><img id="opinion_image" src="image/Opinion.svg">의견전달</div></a>
             <a href="https://cottony-perch-6eb.notion.site/08dce7a261234e49af1ce1dafd90d1bf" target="_blank">
-              <div class="setting_menulist "><img class="bottom" src="image/notion.svg">블로그</div></a>
+              <div class="setting_menulist "><img id="notion" class="bottom" src="image/notion.svg">블로그</div></a>
             <a href="https://twitter.com/KoreanWordle" target="_blank">
-              <div class="setting_menulist "><img class="bottom" src="image/twitter.svg">트위터</div></a>
+              <div class="setting_menulist "><img id="twitter" class="bottom" src="image/twitter.svg">트위터</div></a>
             <a href="https://litt.ly/koreanwordle" target="_blank">
-              <div class="setting_menulist "><img class="bottom" src="image/littly.svg">리틀리</div></a>
+              <div class="setting_menulist "><img id="littly" class="bottom" src="image/littly.svg">리틀리</div></a>
 
-              <div class="setting_menulist" style="opacity: 0.3"><img class="bottom" src="image/light.svg">준비중</div>
+              <div class="setting_menulist"style="cursor:pointer;" id="dark"><img id="darkmode_image" class="bottom" src="image/light.svg">테마색</div>
           </div>
           <div class="line"></div>
           <div class ="collect_title">
@@ -304,7 +304,7 @@
 
       </div>
       <div class="keyboard-row">
-        <button class="shiftkey"><img src="image/shift_icon_159877 1.svg"></button>
+        <button class="shiftkey"><img id="shift_image"src="image/shift.svg"></button>
         <button id = "ㅋ" class="add">ㅋ</button>
         <button id = "ㅌ" class="add">ㅌ</button>
         <button id = "ㅊ" class="add">ㅊ</button>
@@ -312,7 +312,7 @@
         <button id = "ㅠ" class="add">ㅠ</button>
         <button id = "ㅜ" class="add">ㅜ</button>
         <button id = "ㅡ" class="add">ㅡ</button>
-        <button class="del"><img src="image/Erase%20icon.svg"></button>
+        <button class="del"><img id="erase_image" src="image/Erase.svg"></button>
 
       </div>
       <div class="keyboard-row">

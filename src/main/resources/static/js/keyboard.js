@@ -12,11 +12,11 @@ let row;
 let letters = [];
 
 
-import * as correct from "./correct.js";
-import * as painting from "./paintColor.js";
-import * as local from "./localStorageControl.js?ver=1.0.2";
-import * as toast from "./toast.js";
-import * as modal from "./modal.js?ver=1.0.2.2";
+import * as correct from "./correct.js?ver=1.0.3";
+import * as painting from "./paintColor.js?ver=1.0.3";
+import * as local from "./localStorageControl.js?ver=1.0.3";
+import * as toast from "./toast.js?ver=1.0.3";
+import * as modal from "./modal.js?ver=1.0.3";
 
 
 // 칸에 현재 입력 받은 문자열 출력
@@ -189,9 +189,45 @@ function CheckDarkMode(){
   }
   else if(localStorage.getItem("dark")=="true"){
     document.body.classList.add("dark-mode");
+    document.getElementById("HowToPlay_image").src = "image/dark/dark_HowToPlay.svg";
+    document.getElementById("score_image").src = "image/dark/dark_Score.svg";
+    document.getElementById("more_image").src = "image/dark/dark_more.svg";
+
+    document.getElementById("shift_image").src = "image/dark/dark_shift.svg";
+    document.getElementById("erase_image").src = "image/dark/dark_Erase.svg";
+    document.getElementById("close_image").src = "image/dark/dark_Close_MD.svg";
+    document.getElementById("notice_image").src = "image/dark/dark_notice.svg";
+
+    document.getElementById("WordRequest_image").src = "image/dark/dark_WordRequest.svg";
+    document.getElementById("Calendar_Day_image").src = "image/dark/dark_Calendar_Day.svg";
+    document.getElementById("update_image").src = "image/dark/dark_update.svg";
+    document.getElementById("opinion_image").src = "image/dark/dark_Opinion.svg";
+    document.getElementById("notion").src = "image/dark/dark_notion.svg";
+    document.getElementById("twitter").src = "image/dark/dark_twitter.svg";
+    document.getElementById("littly").src = "image/dark/dark_littly.svg";
+    document.getElementById("darkmode_image").src = "image/dark/dark_light.svg";
+
   }
   else{
     document.body.classList.remove("dark-mode");
+    document.getElementById("HowToPlay_image").src = "image/HowToPlay.svg";
+    document.getElementById("score_image").src = "image/Score.svg";
+    document.getElementById("more_image").src = "image/more.svg";
+
+    document.getElementById("shift_image").src = "image/shift.svg";
+    document.getElementById("erase_image").src = "image/Erase.svg";
+    document.getElementById("close_image").src = "image/Close_MD.svg";
+    document.getElementById("notice_image").src = "image/notice.svg";
+
+    document.getElementById("WordRequest_image").src = "image/WordRequest.svg";
+    document.getElementById("Calendar_Day_image").src = "image/Calendar_Day.svg";
+    document.getElementById("update_image").src = "image/update.svg";
+    document.getElementById("opinion_image").src = "image/Opinion.svg";
+    document.getElementById("notion").src = "image/notion.svg";
+    document.getElementById("twitter").src = "image/twitter.svg";
+    document.getElementById("littly").src = "image/littly.svg";
+    document.getElementById("darkmode_image").src = "image/light.svg";
+
   }
 }
 $(document).ready(function(){

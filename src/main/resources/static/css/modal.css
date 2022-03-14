@@ -1,39 +1,9 @@
 a{
     text-decoration: none;
 }
-#setting_notice h1{
-    font-family: Pretendard Variable;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 24px;
-    /* or 150% */
-    margin-bottom : 0;
-    letter-spacing: 0.01em;
 
-    /* ◇ Light / Dark */
-
-    color: #263238;
-}
-#setting_notice h2{
-    font-family: Pretendard Variable;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 20px;
-    margin-top : 0;
-    /* or 143% */
-
-    letter-spacing: 0.005em;
-
-    /* ◇ Light / Dark */
-
-    color: #263238;
-
-    opacity: 0.54;
-}
 .wordadd {
-    background: white;
+    background: var(--Background);
     width: 450px;
     height: 100%;
     text-align: center;
@@ -69,7 +39,7 @@ a{
     font-weight: 500;
     font-size: 16px;
     line-height: 20px;
-    color: #818384;
+    color: var(--MoreText);
 }
 
 
@@ -86,7 +56,7 @@ a{
     height: 100%;
 }
 .page{
-    background: white;
+    background: var(--Background);
     position:relative;
     width: 450px;
     height: 100%;
@@ -96,14 +66,47 @@ a{
 
 .modal-overlay{
     z-index:6;
-    background: rgba(0,0,0,0.6);
+    background: var(--Overlay);
+    opacity:50%;
     width: 100%;
     height: 100%;
     position:absolute;
 }
+#setting_notice h1{
+    font-family: Pretendard Variable;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* or 150% */
+    margin-bottom : 0;
+    letter-spacing: 0.01em;
+
+    /* ◇ Light / Dark */
+
+    color: var(--More);
+}
+#setting_notice h2{
+    font-family: Pretendard Variable;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    margin-top : 0;
+    /* or 143% */
+
+    letter-spacing: 0.005em;
+
+    /* ◇ Light / Dark */
+
+    color: var(--More);
+
+    opacity: 0.54;
+}
 .modal-content{
+    color:var(--PrimaryText);
     z-index:7;
-    background: white;
+    background: var(--ModalBack);
     position:absolute;
     width: 336px;
     height: 380px;
@@ -114,6 +117,7 @@ a{
     top: calc(50% - 344px/2 - 72px);
 }
 #score_close{
+    background: var(--ModalBack);
     display: block;
     width: 24px;
     height: 24px;
@@ -160,7 +164,7 @@ a{
     font-weight: 500;
     font-size: 16px;
     padding-top:8px;
-    color: #818384;
+    color: var(--More);
     height: 23px;
 }
 .graph_container{
@@ -197,8 +201,8 @@ meter::-webkit-meter-bar {background: #e6e6e9;}
     height: 40px;
     font-weight: bold;
     font-size: 16px;
-    background: #05944F;
-    color:white;
+    background: var(--Correct);
+    color:var(--Background);
 }
 
 .share img{
@@ -212,15 +216,15 @@ meter::-webkit-meter-bar {background: #e6e6e9;}
     display: inline-block;
     width: 32px;
     height: 32px;
-    background: white;
+    background: var(--Background);
 }
 #opinion{
     width:128px;
     height: 40px;
     font-weight: bold;
     font-size: 16px;
-    background: #05944F;
-    color:white;
+    background: var(--Correct);
+    color:var(--Background);
 }
 .page img {
     width: 100%;
@@ -233,7 +237,7 @@ meter::-webkit-meter-bar {background: #e6e6e9;}
 #next_word{
     font-weight: bold;
     font-size: 14px;
-    color: #080B14;
+    color: var(--PrimaryText);
 
 }
 #next_word p{
@@ -265,7 +269,7 @@ meter::-webkit-meter-bar {background: #e6e6e9;}
     display: flex;
     justify-content: space-between;
     background: #F6F7F8;
-    border: 1px solid #D3D6DA;
+    border: 1px solid var(--Border);
     box-sizing: border-box;
     border-radius: 5px;
     height: 56px;
@@ -277,14 +281,14 @@ meter::-webkit-meter-bar {background: #e6e6e9;}
     font-weight: normal;
     font-size: 16px;
     text-align: left;
-
-    color: #263238;
+    background: var(--Notice);
+    color: var(--More);
 }
 .word_collect{
     display: flex;
     justify-content: space-between;
 
-    border: 1px solid #D3D6DA;
+    border: 1px solid var(--Border);
     box-sizing: border-box;
     border-radius: 5px;
     height: 66px;
@@ -302,11 +306,11 @@ meter::-webkit-meter-bar {background: #e6e6e9;}
 
 .collect_word{
     font-size: 22px;
-    color:#263238;
+    color:var(--PrimaryText);
 }
 .collect_try{
     font-size: 16px;
-    color: #818384;
+    color: var(--MoreText);
 }
 .collect_try img{
     width:13px; height:13px;display:inline; margin-right:6px;
@@ -318,7 +322,7 @@ meter::-webkit-meter-bar {background: #e6e6e9;}
 
 .collect_date{
     font-size: 12px;
-    color: #818384;
+    color: var(--MoreText);
     line-height: 30px;
     align-self: flex-end;
 }
@@ -358,7 +362,7 @@ meter::-webkit-meter-bar {background: #e6e6e9;}
     justify-content: center;
     letter-spacing: 0.01em;
 
-    color: #263238;
+    color: var(--More);
 }
 .setting_menulist img{
     width: 44px;

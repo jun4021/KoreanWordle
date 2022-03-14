@@ -10,8 +10,8 @@
     opacity: 0;
     visibility: hidden;
     transition: opacity .5s, visibility .5s, transform .5s;
-    background: rgba(0, 0, 0, 0.8);
-    color: #fff;
+    background: var(--Toast);
+    color: var(--Background);
     z-index: 100;
 }
 #toast.reveal {
