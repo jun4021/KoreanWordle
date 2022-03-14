@@ -12,7 +12,7 @@
 
   --KeyDefault:#D3D6DA;
   --KeyShiftDelete:#666666;
-  --KeyOff:#787C7E;
+  --KeyOff:#D3D6DA;
 
   --More:#263238;
   --MoreText:#818384;
@@ -36,7 +36,7 @@
 
   --KeyDefault:#D3D6DA;
   --KeyShiftDelete:#666666;
-  --KeyOff:#3A3A3C;
+  --KeyOff:#818384;
 
   --More:#D3D6DA;
   --MoreText:#818384;
@@ -170,7 +170,7 @@ button{
 
   width: 32px;
   height: 48px;
-  background: var(--Frame);
+  background: var(--KeyOff);
   border-radius: 5px;
   margin: 0px 2px;
   border: none;
@@ -267,6 +267,13 @@ img{
   color: var(--PrimaryText);
 }
 .close{
+  background: var(--Background);
+  position: absolute;
+  top:16px;
+  right:16px;
+  cursor:pointer;
+}
+#requestExit{
   background: var(--Background);
   position: absolute;
   top:16px;

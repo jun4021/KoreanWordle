@@ -1,8 +1,17 @@
 export function PaintDisplay(row){
-    let green = getComputedStyle(document.documentElement).getPropertyValue("--Correct");
-    let yellow = getComputedStyle(document.documentElement).getPropertyValue("--Elsewhere");
-    let grey = getComputedStyle(document.documentElement).getPropertyValue("--NotExist");
-    let defaultColor = getComputedStyle(document.documentElement).getPropertyValue("--PrimaryText");
+    let green;let yellow;let grey;let defaultColor;
+    if(localStorage.getItem("dark") == "true"){
+        green = "#058649";
+        yellow = "#AA7E2A";
+        grey = "#3A3A3C";
+        defaultColor = "#E4E5E7";
+    }
+    else{
+        green = "#05944F";
+        yellow = "#BC8B2C";
+        grey = "#787C7E";
+        defaultColor = "#080B14";
+    }
 
     let rowColorTile = document.getElementById('game-board')
         .childNodes[row].childNodes[3];

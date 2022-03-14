@@ -1,5 +1,6 @@
 
 import * as toast from "./toast.js";
+import * as painting from "./paintColor.js";
 
 export function score() {
     const stat = JSON.parse(localStorage.getItem("statistics"));
@@ -165,6 +166,10 @@ $("#dark").on("click",function() {
         document.getElementById("littly").src = "image/dark/dark_littly.svg";
         document.getElementById("darkmode_image").src = "image/dark/dark_light.svg";
 
+    }
+    let tryNumber = JSON.parse(localStorage.getItem("colorData")).try;
+    for(let i=0; i<tryNumber;i++){
+        painting.PaintDisplay(2*i +1);
     }
 });
 

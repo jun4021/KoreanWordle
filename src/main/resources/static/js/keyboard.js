@@ -229,6 +229,10 @@ function CheckDarkMode(){
     document.getElementById("darkmode_image").src = "image/light.svg";
 
   }
+  let tryNumber = JSON.parse(localStorage.getItem("colorData")).try;
+  for(let i=0; i<tryNumber;i++){
+    painting.PaintDisplay(2*i +1);
+  }
 }
 $(document).ready(function(){
   $(".modal").hide();
