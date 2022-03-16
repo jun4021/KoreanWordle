@@ -161,7 +161,7 @@ a{
     font-weight: 500;
     font-size: 16px;
     padding-top:8px;
-    color: var(--More);
+    color: var(--label);
     height: 23px;
 }
 .graph_container{
@@ -199,7 +199,7 @@ meter::-webkit-meter-bar {background: #e6e6e9;}
     font-weight: bold;
     font-size: 16px;
     background: var(--Correct);
-    color:var(--Background);
+    color:#E4E5E7;
 }
 
 .share img{

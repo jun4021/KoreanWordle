@@ -22,7 +22,7 @@
   --Background:#FFFFFF;
   --Overlay:#080B14;
   --Toast:#080B14;
-
+  --label:#263238;
   --UIPrimary:#828688;
 }
 .dark-mode{
@@ -46,7 +46,7 @@
   --Background:#080B14;
   --Overlay:#080B14;
   --Toast:#E4E5E7;
-
+  --label:#818384;
   --UIPrimary:#D3D6DA;
 }
 
