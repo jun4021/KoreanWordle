@@ -236,7 +236,7 @@ function CheckDarkMode(){
 }
 $(document).ready(function(){
   $(".modal").hide();
-  CheckDarkMode();
+
   // 처음 접속했을 때
   if(localStorage.getItem("entered") == null){
     // 초기 방법 창 띄우기
@@ -250,6 +250,7 @@ $(document).ready(function(){
   }
   // 접속 기록이 있을 때
   else{
+    CheckDarkMode();
     let recentDate = localStorage.getItem("recentDate");
     let record = localStorage.getItem("WordRecord");
     let now = new Date();
