@@ -41,7 +41,17 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5HPPGFC"
                     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-
+  <script>
+    if(localStorage.getItem("dark")== null){
+      localStorage.setItem("dark", "false");
+    }
+    else if(localStorage.getItem("dark")=="true"){
+      document.body.classList.add("dark-mode");
+    }
+    else{
+      document.body.classList.remove("dark-mode");
+    }
+  </script>
 
     <header>
 
