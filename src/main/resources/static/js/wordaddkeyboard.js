@@ -1,17 +1,8 @@
-import {CheckAnswerCorrect} from "./correct.js";
-let MAX_ROW = 5;
-
 let row = 1;
 let letters = [];
 
-
-import * as correct from "./correct.js";
-import * as painting from "./paintColor.js";
 import * as local from "./localStorageControl.js";
 import * as toast from "./toast.js";
-import * as modal from "./modal.js";
-import {writeSolveLocal} from "./localStorageControl.js";
-
 
 // 칸에 현재 입력 받은 문자열 출력
 function PrintLetters(Row, lettersAssemble){
@@ -35,18 +26,13 @@ function PrintLetters(Row, lettersAssemble){
 
 function PrintLetter(Row, lettersAssemble){
     let rowTile = document.getElementById('game-board')
-        .childNodes[Row].childNodes[1]
-
+        .childNodes[Row].childNodes[1];
     rowTile.childNodes[1].innerText = lettersAssemble[0];
     rowTile.childNodes[3].innerText = lettersAssemble[1];
     rowTile.childNodes[5].innerText = lettersAssemble[2];
-
-
-
 }
 
 function AddLetter(letter) {
-
 
     letters.push(letter);
     let lettersAssemble = Hangul.assemble(letters);
@@ -139,8 +125,19 @@ function EnterLetter() {
 }
 let EnglishToKorean = {"Q":"ㅂ","W":"ㅈ","E":"ㄷ","R":"ㄱ","T":"ㅅ","Y":"ㅛ","U":"ㅕ","I":"ㅑ","O":"ㅐ","P":"ㅔ","A":"ㅁ","S":"ㄴ","D":"ㅇ","F":"ㄹ","G":"ㅎ","H":"ㅗ","J":"ㅓ","K":"ㅏ","L":"ㅣ","Z":"ㅋ","X":"ㅌ","C":"ㅊ","V":"ㅍ","B":"ㅠ","N":"ㅜ","M":"ㅡ"};
 let shiftTo = {81:"ㅃ",87:"ㅉ",69:"ㄸ",82:"ㄲ",84:"ㅆ",79:"ㅒ",80:"ㅖ"};
-
+function CheckDarkMode(){
+    if(localStorage.getItem("dark")== null){
+        localStorage.setItem("dark", "false");
+    }
+    else if(localStorage.getItem("dark")=="true"){
+        document.body.classList.add("dark-mode");
+    }
+    else{
+        document.body.classList.remove("dark-mode");
+    }
+}
 $(document).ready(function(){
+    CheckDarkMode();
     if(localStorage.getItem("request")==null){
         localStorage.setItem("request",JSON.stringify(local.request()));
     }

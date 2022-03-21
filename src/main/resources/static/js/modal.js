@@ -1,5 +1,6 @@
-import * as local from "./localStorageControl.js";
+
 import * as toast from "./toast.js";
+import * as painting from "./paintColor.js";
 
 export function score() {
     const stat = JSON.parse(localStorage.getItem("statistics"));
@@ -122,8 +123,54 @@ $(".share").on("click",function() {
 });
 
 
-$("#opinion").on("click",function() {
-    $(location).attr("href","https://forms.gle/K54r4dB5xxLY7a7S9");
+$("#dark").on("click",function() {
+    if(document.querySelector('body').classList.contains('dark-mode')){
+        document.body.classList.remove("dark-mode");
+        localStorage.setItem("dark","false");
+        document.getElementById("HowToPlay_image").src = "image/HowToPlay.svg";
+        document.getElementById("score_image").src = "image/Score.svg";
+        document.getElementById("more_image").src = "image/more.svg";
+
+        document.getElementById("shift_image").src = "image/shift.svg";
+        document.getElementById("erase_image").src = "image/Erase.svg";
+        document.getElementById("close_image").src = "image/Close_MD.svg";
+        document.getElementById("notice_image").src = "image/notice.svg";
+
+        document.getElementById("WordRequest_image").src = "image/WordRequest.svg";
+        document.getElementById("Calendar_Day_image").src = "image/Calendar_Day.svg";
+        document.getElementById("update_image").src = "image/update.svg";
+        document.getElementById("opinion_image").src = "image/Opinion.svg";
+        document.getElementById("notion").src = "image/notion.svg";
+        document.getElementById("twitter").src = "image/twitter.svg";
+        document.getElementById("littly").src = "image/littly.svg";
+        document.getElementById("darkmode_image").src = "image/light.svg";
+
+    }else{
+        document.body.classList.add("dark-mode");
+        localStorage.setItem("dark","true");
+        document.getElementById("HowToPlay_image").src = "image/dark/dark_HowToPlay.svg";
+        document.getElementById("score_image").src = "image/dark/dark_Score.svg";
+        document.getElementById("more_image").src = "image/dark/dark_more.svg";
+
+        document.getElementById("shift_image").src = "image/dark/dark_shift.svg";
+        document.getElementById("erase_image").src = "image/dark/dark_Erase.svg";
+        document.getElementById("close_image").src = "image/dark/dark_Close_MD.svg";
+        document.getElementById("notice_image").src = "image/dark/dark_notice.svg";
+
+        document.getElementById("WordRequest_image").src = "image/dark/dark_WordRequest.svg";
+        document.getElementById("Calendar_Day_image").src = "image/dark/dark_Calendar_Day.svg";
+        document.getElementById("update_image").src = "image/dark/dark_update.svg";
+        document.getElementById("opinion_image").src = "image/dark/dark_Opinion.svg";
+        document.getElementById("notion").src = "image/dark/dark_notion.svg";
+        document.getElementById("twitter").src = "image/dark/dark_twitter.svg";
+        document.getElementById("littly").src = "image/dark/dark_littly.svg";
+        document.getElementById("darkmode_image").src = "image/dark/dark_light.svg";
+
+    }
+    let tryNumber = JSON.parse(localStorage.getItem("colorData")).try;
+    for(let i=0; i<tryNumber;i++){
+        painting.PaintDisplay(2*i +1);
+    }
 });
 
 export function CollectWord(){

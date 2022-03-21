@@ -12,11 +12,11 @@ let row;
 let letters = [];
 
 
-import * as correct from "./correct.js";
-import * as painting from "./paintColor.js";
-import * as local from "./localStorageControl.js?ver=1.0.2";
-import * as toast from "./toast.js";
-import * as modal from "./modal.js?ver=1.0.2.2";
+import * as correct from "./correct.js?ver=1.0.3";
+import * as painting from "./paintColor.js?ver=1.0.3";
+import * as local from "./localStorageControl.js?ver=1.0.3";
+import * as toast from "./toast.js?ver=1.0.3";
+import * as modal from "./modal.js?ver=1.0.3";
 
 
 // 칸에 현재 입력 받은 문자열 출력
@@ -80,6 +80,27 @@ function DelLetter(){
   }
 }
 
+function CorrectToast(trynum){
+  let text;
+  switch(trynum){
+    case 0:
+      text ="놀라워요!";
+      break;
+    case 1:
+      text ="최고에요!";
+      break;
+    case 2:
+      text ="대단해요!";
+      break;
+    case 3:
+      text ="훌륭해요!";
+      break;
+    case 4:
+      text ="휴~";
+      break;
+  }
+  toast.toast(text);
+}
 function EnterLetter() {
   let solved = JSON.parse(localStorage.getItem("colorData")).solved;
   if(!solved) {
@@ -110,7 +131,8 @@ function EnterLetter() {
       }
       // 정답 확인
       else if (data.correct) {
-        toast.toast("정답입니다.");
+        CorrectToast(trynum);
+
         local.writeLocal(data, lettersAssemble);
         painting.PaintDisplay(row);
 
@@ -161,9 +183,57 @@ function EnterLetter() {
 let EnglishToKorean = {"Q":"ㅂ","W":"ㅈ","E":"ㄷ","R":"ㄱ","T":"ㅅ","Y":"ㅛ","U":"ㅕ","I":"ㅑ","O":"ㅐ","P":"ㅔ","A":"ㅁ","S":"ㄴ","D":"ㅇ","F":"ㄹ","G":"ㅎ","H":"ㅗ","J":"ㅓ","K":"ㅏ","L":"ㅣ","Z":"ㅋ","X":"ㅌ","C":"ㅊ","V":"ㅍ","B":"ㅠ","N":"ㅜ","M":"ㅡ"};
 let shiftTo = {81:"ㅃ",87:"ㅉ",69:"ㄸ",82:"ㄲ",84:"ㅆ",79:"ㅒ",80:"ㅖ"};
 
+function CheckDarkMode(){
+  if(localStorage.getItem("dark")== null){
+    localStorage.setItem("dark", "false");
+  }
+  else if(localStorage.getItem("dark")=="true"){
+    document.body.classList.add("dark-mode");
+    document.getElementById("HowToPlay_image").src = "image/dark/dark_HowToPlay.svg";
+    document.getElementById("score_image").src = "image/dark/dark_Score.svg";
+    document.getElementById("more_image").src = "image/dark/dark_more.svg";
+
+    document.getElementById("shift_image").src = "image/dark/dark_shift.svg";
+    document.getElementById("erase_image").src = "image/dark/dark_Erase.svg";
+    document.getElementById("close_image").src = "image/dark/dark_Close_MD.svg";
+    document.getElementById("notice_image").src = "image/dark/dark_notice.svg";
+
+    document.getElementById("WordRequest_image").src = "image/dark/dark_WordRequest.svg";
+    document.getElementById("Calendar_Day_image").src = "image/dark/dark_Calendar_Day.svg";
+    document.getElementById("update_image").src = "image/dark/dark_update.svg";
+    document.getElementById("opinion_image").src = "image/dark/dark_Opinion.svg";
+    document.getElementById("notion").src = "image/dark/dark_notion.svg";
+    document.getElementById("twitter").src = "image/dark/dark_twitter.svg";
+    document.getElementById("littly").src = "image/dark/dark_littly.svg";
+    document.getElementById("darkmode_image").src = "image/dark/dark_light.svg";
+
+  }
+  else{
+    document.body.classList.remove("dark-mode");
+    document.getElementById("HowToPlay_image").src = "image/HowToPlay.svg";
+    document.getElementById("score_image").src = "image/Score.svg";
+    document.getElementById("more_image").src = "image/more.svg";
+
+    document.getElementById("shift_image").src = "image/shift.svg";
+    document.getElementById("erase_image").src = "image/Erase.svg";
+    document.getElementById("close_image").src = "image/Close_MD.svg";
+    document.getElementById("notice_image").src = "image/notice.svg";
+
+    document.getElementById("WordRequest_image").src = "image/WordRequest.svg";
+    document.getElementById("Calendar_Day_image").src = "image/Calendar_Day.svg";
+    document.getElementById("update_image").src = "image/update.svg";
+    document.getElementById("opinion_image").src = "image/Opinion.svg";
+    document.getElementById("notion").src = "image/notion.svg";
+    document.getElementById("twitter").src = "image/twitter.svg";
+    document.getElementById("littly").src = "image/littly.svg";
+    document.getElementById("darkmode_image").src = "image/light.svg";
+
+  }
+
+}
 $(document).ready(function(){
   $(".modal").hide();
-
+  CheckDarkMode();
   // 처음 접속했을 때
   if(localStorage.getItem("entered") == null){
     // 초기 방법 창 띄우기
@@ -177,6 +247,7 @@ $(document).ready(function(){
   }
   // 접속 기록이 있을 때
   else{
+
     let recentDate = localStorage.getItem("recentDate");
     let record = localStorage.getItem("WordRecord");
     let now = new Date();
