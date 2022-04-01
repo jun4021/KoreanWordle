@@ -68,8 +68,7 @@ public class MywordleController {
         LocalDateTime now = LocalDateTime.now();
         // 단어 초기화
         Integer code = answerWordService.ChooseRandomId();
-        correctAnswer = "만우절";
-//                answerWordService.SelectWordByCode(code).getWord();
+        correctAnswer = answerWordService.SelectWordByCode(code).getWord();
 
         // 정답 단어 DB insert
         dailyAnswerService.SaveWord(now,correctAnswer);
