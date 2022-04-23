@@ -229,3 +229,8 @@ public void close() throws Exception{
 * HTTPS 적용
 * Google Analytics, Google Search Console, Naver search Advisor 연동
 * JPA를 이용한 간단한 DB 조작 방법
+
+## 이후 추가요소
+* 현재 배포 시 서버를 내리고 배포를 하기 때문에 그 시간 사용자의 경험에 부정적인 영향을 미침
+중단 없이 배포하는 방안 탐색. 
+* 테스트 코드의 중요성을 절실하게 느낌. 테스트 코드 작성 필요. 
