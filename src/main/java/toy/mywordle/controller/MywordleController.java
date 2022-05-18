@@ -157,44 +157,7 @@ public class MywordleController {
         return "record";
     }
 
-    @GetMapping("/admin/add")
-    public String ShowAddList(Model model){
-        List<addcheckword> wordlist = addCheckWordService.FindAll();
-        List<requestword> requestwordlist = requestWordService.FindAll();
-        model.addAttribute("addlist",wordlist);
-        model.addAttribute("requestlist", requestwordlist);
-
-        return "add";
-    }
-    @PostMapping("/admin/addaction")
-    public String AddAction(@RequestParam List<String> word){
-
-        for (String c : word){
-
-            checkWordService.InsertWord(c);
-            requestWordService.DeleteWord(c);
-            addCheckWordService.DeleteWord(c);
-        }
-       return "redirect:/admin/add";
-    }
-    @PostMapping("/admin/delete")
-    public String DelAction(@RequestParam List<String> word){
-        for(String c: word){
-            requestWordService.DeleteWord(c);
-            addCheckWordService.DeleteWord(c);
-            deleteWordService.SaveWord(false,c);
-        }
-        return "redirect:/admin/add";
-    }
-    @PostMapping("/admin/deletewait")
-    public String DelWaitAction(@RequestParam List<String> word){
-        for(String c: word){
-            requestWordService.DeleteWord(c);
-            addCheckWordService.DeleteWord(c);
-            deleteWordService.SaveWord(true,c);
-        }
-        return "redirect:/admin/add";
-    }
+    
 
     @PostMapping("/rate")
     @ResponseBody
