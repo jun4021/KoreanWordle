@@ -84,7 +84,8 @@ public class MywordleController {
         return "User-agent: *\n" +
                 "Disallow: /admin\n";
     }
-
+    
+    
     @RequestMapping(value={"/sitemap.xml"})
     @ResponseBody
     public String getSiteMap() {
@@ -109,7 +110,8 @@ public class MywordleController {
                 "\n" +
                 "</urlset>";
     }
-
+    
+    
     @GetMapping("/")
     public String home(){
         // DB에서 정답 불러오기
