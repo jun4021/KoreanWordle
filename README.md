@@ -1,4 +1,4 @@
-# 모아워들
+# 모아워들 https://cottony-perch-6eb.notion.site/08dce7a261234e49af1ce1dafd90d1bf
 
 ## 목표
 1. 전반적인 Spring을 이용한 웹 서버 구축하기
