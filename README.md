@@ -50,9 +50,11 @@ $.ajax({
   }
   ```
 * 클라이언트는 response 받은 Data를 이용해 각각의 요소에 알맞은 반응을 취한다.
+
   ![image](https://user-images.githubusercontent.com/86395683/157032195-53a0b33f-6a17-4839-bbc4-fabd322c0987.png)
   ![image](https://user-images.githubusercontent.com/86395683/157032299-8e86d5eb-e34e-48ee-9104-d8213ac900c4.png)
 * 정답을 맞추었거나 5회 시도 종료시 안내 toast 창을 띄운 후 통계창을 띄워준다.
+
   ![image](https://user-images.githubusercontent.com/86395683/157032475-4bda0d61-1f6c-49c9-b581-7a2eb550073a.png)
 
 ### 2. 확인 단어 색깔 정보 부여 (ColorInfo)
