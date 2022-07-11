@@ -1,4 +1,7 @@
-#모아워들
+# 모아워들 
+Notion : https://cottony-perch-6eb.notion.site/08dce7a261234e49af1ce1dafd90d1bf
+
+Play : https://koreanwordle.com
 
 ## 목표
 1. 전반적인 Spring을 이용한 웹 서버 구축하기
@@ -31,6 +34,7 @@ $.ajax({
     });
 ```
 * 서버에서는 이 단어를 받아서 다음 순서도에 따라 처리한다.
+
   ![단어검사시알고리즘](https://user-images.githubusercontent.com/86395683/157030374-1e34c8d3-0c58-4a26-9458-b8732b45a4da.PNG)
   * 이때 response 되는 output의 형태는 다음과 같다.
   ```java
@@ -48,9 +52,11 @@ $.ajax({
   }
   ```
 * 클라이언트는 response 받은 Data를 이용해 각각의 요소에 알맞은 반응을 취한다.
+
   ![image](https://user-images.githubusercontent.com/86395683/157032195-53a0b33f-6a17-4839-bbc4-fabd322c0987.png)
   ![image](https://user-images.githubusercontent.com/86395683/157032299-8e86d5eb-e34e-48ee-9104-d8213ac900c4.png)
 * 정답을 맞추었거나 5회 시도 종료시 안내 toast 창을 띄운 후 통계창을 띄워준다.
+
   ![image](https://user-images.githubusercontent.com/86395683/157032475-4bda0d61-1f6c-49c9-b581-7a2eb550073a.png)
 
 ### 2. 확인 단어 색깔 정보 부여 (ColorInfo)
@@ -63,6 +69,7 @@ $.ajax({
   * 초록색 : 해당 자소가 정답 단어와 자리까지 일치할 때. ex) 첫 번째 글자 초성은 'ㅌ'이다.
   * 노란색 : 해당 자소가 정답 단어와 자리는 일치하지 않지만 존재할 때. ex) 두 번째 글자의 중성은 'ㅕ'는 아니지만 다른 글자에 'ㅕ'가 존재한다.
   * 검정색 : 해당 자소가 정답 단어에 존재하지 않을 때. ex) 'ㅍ'는 정답에 존재하지 않는다.
+  
   ![image](https://user-images.githubusercontent.com/86395683/164882577-9ade712d-b1e2-46ac-bb5f-cb774207d116.png)
 
 * 이를 표현하기 위해 필연적으로 자소를 분리해야 한다. 
@@ -151,6 +158,7 @@ private ArrayList CheckDoubleLetters(String[] strlist){
   2. 유저들의 단어 검사 기록을 수집
 -------
 * 단어 요청하기
+
   ![image](https://user-images.githubusercontent.com/86395683/164888095-d250fab8-f0a8-48a0-af75-ba8063382670.png)
   * 단어를 입력 후 ```추가하기```를 누르면 단어를 요청 가능하다. 이후 소개할 ```requestword``` 에 저장되고 확인 가능하다.
   이때 이미 있는 단어거나 완성되지 않았을 경우 요청이 불가능하다.
@@ -160,6 +168,7 @@ private ArrayList CheckDoubleLetters(String[] strlist){
   * 만약 이 검사 과정에서 문제가 있는 단어(욕설, 비속어 등) 또는 단순 오타의 경우 삭제하여 다시 기록이 되지 않도록 한다.
 -------
 * 두 방법을 통해 검수가 필요한 단어 리스트를 쉽게 보기 위한 admin 페이지를 작성하였다. 
+
 ![image](https://user-images.githubusercontent.com/86395683/164888679-b5a4e6d2-50e8-487c-ac25-9bf53e261826.png)
 
 ### 4. DB Table
