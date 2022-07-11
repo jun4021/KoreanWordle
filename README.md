@@ -197,6 +197,12 @@ private ArrayList CheckDoubleLetters(String[] strlist){
 * deleteword
   * ```addcheckword```에서 확인 후 삭제한 단어, 이후 사용자의 입력을 받아도 addcheckword에 추가되지 않음
 
+### 5. 사용자의 Data
+* 날짜 별 사용자의 시도 횟수,성공,실패,탈주,트라이 횟수 등의 DATA를 다음과 같이 확인 가능하다.
+![image](https://user-images.githubusercontent.com/86395683/178233082-1e08a760-83e0-4cb1-8458-1d97ed53ac42.png)
+
+* 사용자들이 검색한 단어 빈도수 및 첫 시도로 사용한 단어를 확인 가능하다.
+  ![image](https://user-images.githubusercontent.com/86395683/178233468-54002e51-1545-4430-814b-b3de4adbf720.png) 
 
 ## 이슈
 ### 02/17
