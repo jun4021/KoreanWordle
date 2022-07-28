@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>Admin</title>
 </head>
 <body>
-<a href ="https://koreanwordle.com/admin/record">record</a>
+<a href ="https://koreanwordle.com/admin/record">record</a></br>
 <a href ="https://koreanwordle.com/admin/add">add</a>
+<h3></h3>
+<p th:text="'어제 답 (' +${yesterday.date} +') : ' + ${yesterday.answer}"></p>
+<h3></h3>
+<p th:text="'오늘 답 (' +${today.date} +') : '+ ${today.answer}"></p>
+
 
 </body>
 </html>

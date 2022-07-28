@@ -21,4 +21,8 @@ public class DailyAnswerRepository {
         return word.getAnswer();
     }
 
+    public dailyanswer FindWordObject(String date) {
+        dailyanswer word = em.find(dailyanswer.class, date);
+        return word;
+    }
 }

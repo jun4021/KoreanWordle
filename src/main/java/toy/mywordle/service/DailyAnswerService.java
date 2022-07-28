@@ -27,4 +27,8 @@ public class DailyAnswerService {
         String date = now.toLocalDate().toString();
         return dailyAnswerRepository.FindAnswer(date);
     }
+    public dailyanswer FindWordObject(LocalDateTime now){
+        String date = now.toLocalDate().toString();
+        return dailyAnswerRepository.FindWordObject(date);
+    }
 }
