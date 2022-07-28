@@ -4,7 +4,7 @@ Notion : https://cottony-perch-6eb.notion.site/08dce7a261234e49af1ce1dafd90d1bf
 Play : https://koreanwordle.com
 
 ## 목표
-1. 전반적인 Spring을 이용한 웹 서버 구축하기
+1. Spring Boot를 이용한 웹 서버 구축하기
 2. AWS를 이용해 직접적인 서비스 구현하기
 
 ## 프로젝트 환경 및 사용 기술 스택
