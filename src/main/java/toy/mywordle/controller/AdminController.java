@@ -18,18 +18,16 @@ import java.util.List;
 
 
 @Controller
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class AdminController {
 
-//    private final UserRepository userRepository;
-
-//    private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final DailyAnswerService dailyAnswerService;
-    private final DailyRecordService dailyRecordService;
-    private final AddCheckWordService addCheckWordService;
-    private final RequestWordService requestWordService;
-    private final CheckWordService checkWordService;
-    private final DeleteWordService deleteWordService;
+    @Autowired
+    private DailyAnswerService dailyAnswerService;
+//    private final DailyRecordService dailyRecordService;
+//    private final AddCheckWordService addCheckWordService;
+//    private final RequestWordService requestWordService;
+//    private final CheckWordService checkWordService;
+//    private final DeleteWordService deleteWordService;
 
     @GetMapping("/admin")
     public String admin(Model model){
@@ -56,49 +54,49 @@ public class AdminController {
         return "loginForm";
     }
 
-    @GetMapping("/admin/record")
-    public String CheckRecord(Model model){
-        List<dailyrecord> records = dailyRecordService.findAll();
-        model.addAttribute("records",records);
-        return "record";
-    }
-
-    @GetMapping("/admin/add")
-    public String ShowAddList(Model model){
-        List<addcheckword> wordlist = addCheckWordService.FindAll();
-        List<requestword> requestwordlist = requestWordService.FindAll();
-        model.addAttribute("addlist",wordlist);
-        model.addAttribute("requestlist", requestwordlist);
-
-        return "add";
-    }
-    @PostMapping("/admin/addaction")
-    public String AddAction(@RequestParam List<String> word){
-
-        for (String c : word){
-
-            checkWordService.InsertWord(c);
-            requestWordService.DeleteWord(c);
-            addCheckWordService.DeleteWord(c);
-        }
-        return "redirect:/admin/add";
-    }
-    @PostMapping("/admin/delete")
-    public String DelAction(@RequestParam List<String> word){
-        for(String c: word){
-            requestWordService.DeleteWord(c);
-            addCheckWordService.DeleteWord(c);
-            deleteWordService.SaveWord(false,c);
-        }
-        return "redirect:/admin/add";
-    }
-    @PostMapping("/admin/deletewait")
-    public String DelWaitAction(@RequestParam List<String> word){
-        for(String c: word){
-            requestWordService.DeleteWord(c);
-            addCheckWordService.DeleteWord(c);
-            deleteWordService.SaveWord(true,c);
-        }
-        return "redirect:/admin/add";
-    }
+//    @GetMapping("/admin/record")
+//    public String CheckRecord(Model model){
+//        List<dailyrecord> records = dailyRecordService.findAll();
+//        model.addAttribute("records",records);
+//        return "record";
+//    }
+//
+//    @GetMapping("/admin/add")
+//    public String ShowAddList(Model model){
+//        List<addcheckword> wordlist = addCheckWordService.FindAll();
+//        List<requestword> requestwordlist = requestWordService.FindAll();
+//        model.addAttribute("addlist",wordlist);
+//        model.addAttribute("requestlist", requestwordlist);
+//
+//        return "add";
+//    }
+//    @PostMapping("/admin/addaction")
+//    public String AddAction(@RequestParam List<String> word){
+//
+//        for (String c : word){
+//
+//            checkWordService.InsertWord(c);
+//            requestWordService.DeleteWord(c);
+//            addCheckWordService.DeleteWord(c);
+//        }
+//        return "redirect:/admin/add";
+//    }
+//    @PostMapping("/admin/delete")
+//    public String DelAction(@RequestParam List<String> word){
+//        for(String c: word){
+//            requestWordService.DeleteWord(c);
+//            addCheckWordService.DeleteWord(c);
+//            deleteWordService.SaveWord(false,c);
+//        }
+//        return "redirect:/admin/add";
+//    }
+//    @PostMapping("/admin/deletewait")
+//    public String DelWaitAction(@RequestParam List<String> word){
+//        for(String c: word){
+//            requestWordService.DeleteWord(c);
+//            addCheckWordService.DeleteWord(c);
+//            deleteWordService.SaveWord(true,c);
+//        }
+//        return "redirect:/admin/add";
+//    }
 }
