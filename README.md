@@ -251,4 +251,4 @@ public void close() throws Exception{
 * 테스트 코드의 중요성을 절실하게 느낌. 테스트 코드 작성 필요. 
 
 ### 07/28
-- Admin 페이지 작성
+- Admin 페이지 추가 / Spring Sequrity 사용
