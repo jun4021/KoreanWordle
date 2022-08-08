@@ -3,6 +3,12 @@ Notion : https://cottony-perch-6eb.notion.site/08dce7a261234e49af1ce1dafd90d1bf
 
 Play : https://koreanwordle.com
 
+## 작업 중
+1. Twitter API
+- https://github.com/twitterdev/Twitter-API-v2-sample-code
+- https://github.com/twitterdev/twitter-api-java-sdk/blob/main/docs/TweetsApi.md#createTweet
+2. Admin Page with Spring Security
+
 ## 목표
 1. Spring Boot를 이용한 웹 서버 구축하기
 2. AWS를 이용해 직접적인 서비스 구현하기

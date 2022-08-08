@@ -6,6 +6,7 @@ import toy.mywordle.domain.dailyrecord;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.transaction.Transactional;
+import java.util.Collections;
 import java.util.List;
 
 @Transactional
@@ -44,8 +45,9 @@ public class DailyRecordRepository {
     }
 
     public List<dailyrecord> findAll() {
-        return em.createQuery("select m from dailyrecord m", dailyrecord.class)
+        List<dailyrecord> dr = em.createQuery("select m from dailyrecord m order by m.date DESC", dailyrecord.class)
                 .getResultList();
+        return dr;
     }
     public dailyrecord findByDate(String date){
         return em.find(dailyrecord.class, date);
