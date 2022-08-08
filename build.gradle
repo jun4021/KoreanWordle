@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'toy'
-version = '1.0.3'
+version = '1.0.4'
 sourceCompatibility = '11'
 
 //lombok
@@ -17,6 +17,7 @@ configurations {
 
 repositories {
 	mavenCentral()
+	mavenLocal()
 }
 
 dependencies {
@@ -25,6 +26,9 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testCompileOnly 'org.projectlombok:lombok'
 	testAnnotationProcessor 'org.projectlombok:lombok'
+
+	//tweet
+	implementation "com.twitter:twitter-api-java-sdk:2.0.2"
 
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
