@@ -29,6 +29,7 @@ dependencies {
 
 	//tweet
 	implementation "com.twitter:twitter-api-java-sdk:2.0.2"
+	implementation files('libs/twitter4j-core-4.0.7.jar')
 
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
