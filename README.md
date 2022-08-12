@@ -17,23 +17,23 @@ Play : https://koreanwordle.com
 
 
 
-##작업 중
+## 작업 중
 1. Twitter API -> 사진, 트윗 내용 불러오기로 변경
 - https://github.com/twitterdev/Twitter-API-v2-sample-code
 - https://github.com/twitterdev/twitter-api-java-sdk/blob/main/docs/TweetsApi.md#createTweet
 2. Admin Page with Spring Security
 
-##목표
+## 목표
 1. Spring Boot를 이용한 웹 서버 구축하기
 2. AWS를 이용해 직접적인 서비스 구현하기
 
-##프로젝트 환경 및 사용 기술 스택
+## 프로젝트 환경 및 사용 기술 스택
 * Spring boot, MYSQL 사용.
 * AWS를 이용해 서버 구축, 이때 데이터베이스 역시 Amazon RDS를 이용해 구축.
 * Front-End는 간략하게 html,css,js를 사용해 구현.
 
-##구조
-###1.단어 검사
+## 구조
+### 1.단어 검사
 * 클라이언트(플레이어)가 세 글자로 이루어진 단어를 쳐 확인하기 버튼을 눌러 서버에게 단어와 현재 트라이 횟수를 보낸다.
 ```javascript
 $.ajax({
@@ -79,7 +79,7 @@ $.ajax({
 
   ![image](https://user-images.githubusercontent.com/86395683/157032475-4bda0d61-1f6c-49c9-b581-7a2eb550073a.png)
 
-###2. 확인 단어 색깔 정보 부여 (ColorInfo)
+### 2. 확인 단어 색깔 정보 부여 (ColorInfo)
 * ```AnswerToColorService``` 의 ```ReadColorInfo``` method 호출
 * ```correctAnswer(정답단어)```와 ```InputAnswer(확인단어)```를 비교해 필요한 ```ColorInfo```를 부여하는 것이 목적
 
@@ -171,7 +171,7 @@ private ArrayList CheckDoubleLetters(String[] strlist){
 * 예를 들어 ```과```가 정답이고 확인을 ```라```라고 하였을 때, display는 아까랑 마찬가지로 회색이 뜨나 키보드에서의 ```ㅏ```는 초록색이 된다.
 * 자세한 내용은 ```CheckColorOfDouble``` 참조
 
-###3. 단어 리스트 보완 시스템
+### 3. 단어 리스트 보완 시스템
 * 며칠의 테스트 결과 사용자가 확인 가능한 단어 리스트 목록이 보완이 필요하고 느낌
 * 크게 두 가지 방안을 모색
   1. 유저가 직접 참여하여 단어 요청
@@ -191,7 +191,7 @@ private ArrayList CheckDoubleLetters(String[] strlist){
 
 ![image](https://user-images.githubusercontent.com/86395683/164888679-b5a4e6d2-50e8-487c-ac25-9bf53e261826.png)
 
-###4. DB Table
+### 4. DB Table
 
 * answerword
   * 매일 0시에 초기화 되는 정답 단어를 모아둔 table
@@ -226,14 +226,14 @@ private ArrayList CheckDoubleLetters(String[] strlist){
 * deleteword
   * ```addcheckword```에서 확인 후 삭제한 단어, 이후 사용자의 입력을 받아도 addcheckword에 추가되지 않음
 
-###5. Admin 페이지
+### 5. Admin 페이지
 * 날짜 별 사용자의 시도 횟수,성공,실패,탈주,트라이 횟수 등의 DATA를 다음과 같이 확인 가능하다.
 ![image](https://user-images.githubusercontent.com/86395683/178233082-1e08a760-83e0-4cb1-8458-1d97ed53ac42.png)
 
 * 사용자들이 검색한 단어 빈도수 및 첫 시도로 사용한 단어를 확인 가능하다.
   ![image](https://user-images.githubusercontent.com/86395683/178233468-54002e51-1545-4430-814b-b3de4adbf720.png) 
 
-##이슈
+## 이슈
 ### 02/17
 - 서버 종료시 그 날 Record가 저장이 안되는 문제 발생 (매일 0시에 Record가 저장되기 때문)
 - 스프링 컨테이너가 빈을 제거하기 전(서버 종료 전) 그 날 Record를 저장하는 코드 작성.
@@ -259,7 +259,7 @@ public void close() throws Exception{
   - 문제 원인 : 그 날 Record를 남기기 위해 서버 종료 시 DB에 insert 함. 이때 PK가 date기 때문에 중복된 PK(날짜)가 있으면 insert가 되지 않고 오류가 발생. 따라서 기존에 있던 Local에서 테스트 중에 생긴 Record가 남아버림.
   - 해결 방안 : 그 날짜의 Record가 이미 있을 때 덮어쓰기 or 병합 or (체크)하는 코드 필요.
 
-##결과물
+## 결과물
 * AWS를 이용한 웹 서비스 구현
 * HTTPS 적용
 * Google Analytics, Google Search Console, Naver search Advisor 연동
