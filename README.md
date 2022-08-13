@@ -227,6 +227,7 @@ private ArrayList CheckDoubleLetters(String[] strlist){
   * ```addcheckword```에서 확인 후 삭제한 단어, 이후 사용자의 입력을 받아도 addcheckword에 추가되지 않음
 
 ### 5. Admin 페이지
+* 정해진 ID/PW를 통해 접근 가능하다.
 * 날짜 별 사용자의 시도 횟수,성공,실패,탈주,트라이 횟수 등의 DATA를 다음과 같이 확인 가능하다.
 ![image](https://user-images.githubusercontent.com/86395683/178233082-1e08a760-83e0-4cb1-8458-1d97ed53ac42.png)
 
