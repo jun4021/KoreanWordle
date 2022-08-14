@@ -1,7 +1,7 @@
 # 모아워들 
-Notion : https://cottony-perch-6eb.notion.site/08dce7a261234e49af1ce1dafd90d1bf
+Notion - https://cottony-perch-6eb.notion.site/08dce7a261234e49af1ce1dafd90d1bf
 
-Play : https://koreanwordle.com
+Play - https://koreanwordle.com
 
 ## 목차
 1. [목표](#작업-중)
