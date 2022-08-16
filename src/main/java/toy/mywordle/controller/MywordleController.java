@@ -122,7 +122,7 @@ public class MywordleController {
 
     @GetMapping("/guide")
     public String quide(){
-        // DB에서 정답 불러오기
+        // DB에서 정답 불러오기a
 
         return "howtoplay";
     }
