@@ -114,8 +114,6 @@ public class MywordleController {
     
     @GetMapping("/")
     public String home(){
-        // DB에서 정답 불러오기
-        record.setVisit(record.getVisit()+1);
 
         return "home";
     }

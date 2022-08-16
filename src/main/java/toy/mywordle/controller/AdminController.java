@@ -31,7 +31,6 @@ public class AdminController {
     private final CheckWordService checkWordService;
     private final DeleteWordService deleteWordService;
 
-
     @GetMapping("/admin")
     public String admin(Model model){
         LocalDateTime now = LocalDateTime.now();
