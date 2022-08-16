@@ -28,6 +28,6 @@ public class TranslateWordService {
         requestHeaders.put("X-Naver-Client-Secret",clientSecret);
 
 
-
+        return word;
     }
 }
