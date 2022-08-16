@@ -38,6 +38,14 @@ public class AdminController {
         dailyanswer today = dailyAnswerService.FindWordObject(now);
         dailyanswer yesterday = dailyAnswerService.FindWordObject(now.minusDays(1));
 
+        String twit = "정답이 갱신되었습니다!\n" +
+                "오늘은 정답은 무엇일까요?\n" +
+                "\n" +
+                "*"+now.minusDays(1).getMonthValue()+"월 "+now.minusDays(1).getDayOfMonth()+"일, 어제 정답은 ["+yesterday.getAnswer()+"]이었습니다.\n" +
+                "'더보기' 페이지에서 정답률을 확인하세요!\n" +
+                "\n" +
+                "https://koreanwordle.com";
+        model.addAttribute("twit",twit);
         model.addAttribute("today",today);
         model.addAttribute("yesterday",yesterday);
         return "admin";

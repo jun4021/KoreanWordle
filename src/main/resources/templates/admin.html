@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin</title>
+    <script>
+        function copy(){
+            let obj = document.getElementById("twit");
+            obj.select();
+            document.execCommand("copy");
+            window.open("https://twitter.com/KoreanWordle")
+    }
+    </script>
 </head>
 <body>
 <a href ="https://koreanwordle.com/admin/record">record</a></br>
@@ -13,5 +21,9 @@
 <p th:text="'오늘 답 (' +${today.date} +') : '+ ${today.answer}"></p>
 
 
+<textarea rows="10" cols="60" id="twit" style="white-space: pre-line" th:text="${twit}"></textarea>
+
+<input type="button" value="Copy" onclick="copy()" />
+<a href="https://unsplash.com/s/photos/penguin">Unsplash</a>
 </body>
 </html>
