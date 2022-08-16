@@ -21,7 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AdminController {
 
-//    private final UserRepository userRepository;a
+//    private final UserRepository userRepository;
 
 //    private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final DailyAnswerService dailyAnswerService;
