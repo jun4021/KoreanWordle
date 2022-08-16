@@ -273,3 +273,8 @@ public void close() throws Exception{
 
 ### 07/28
 - Admin 페이지 추가 / Spring Security 사용
+
+### 08/16
+- 서버 재시작 시 라우팅 까먹지 말기.
+```sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
+```
