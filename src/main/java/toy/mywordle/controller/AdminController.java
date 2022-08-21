@@ -22,7 +22,7 @@ import java.util.List;
 public class AdminController {
 
 
-    private DailyAnswerService dailyAnswerService;
+    private final DailyAnswerService dailyAnswerService;
     private final DailyRecordService dailyRecordService;
     private final AddCheckWordService addCheckWordService;
     private final RequestWordService requestWordService;
