@@ -15,14 +15,6 @@ Play - https://koreanwordle.com
 4. [이슈](#이슈)
 5. [결과물](#결과물)
 
-
-
-## 작업 중
-1. Twitter API -> 사진, 트윗 내용 불러오기로 변경
-- https://github.com/twitterdev/Twitter-API-v2-sample-code
-- https://github.com/twitterdev/twitter-api-java-sdk/blob/main/docs/TweetsApi.md#createTweet
-2. Admin Page with Spring Security
-
 ## 목표
 1. Spring Boot를 이용한 웹 서버 구축하기
 2. AWS를 이용해 직접적인 서비스 구현하기
@@ -266,15 +258,11 @@ public void close() throws Exception{
 * Google Analytics, Google Search Console, Naver search Advisor 연동
 * JPA를 이용한 간단한 DB 조작 방법
 
-## 이후 추가요소
-* 현재 배포 시 서버를 내리고 배포를 하기 때문에 그 시간 사용자의 경험에 부정적인 영향을 미침
-중단 없이 배포하는 방안 탐색. 
-* 테스트 코드의 중요성을 절실하게 느낌. 테스트 코드 작성 필요. 
-
 ### 07/28
-- Admin 페이지 추가 / Spring Security 사용
+- Admin 페이지 추가 / Spring Security 사용 
 
 ### 08/16
-- 서버 재시작 시 라우팅 까먹지 말기.
-```sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
+- 서버 재시작 시 iptables 설정
+```
+sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
 ```
