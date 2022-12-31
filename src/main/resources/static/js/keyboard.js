@@ -109,17 +109,21 @@ function EnterLetter() {
     if (lettersAssemble.length == 3 && Hangul.isCompleteAll(lettersAssemble)) // 정상 종료 조건
     {
       // 시간 기록
-      let now = new Date();
+      let now =new moment().tz("Asia/Seoul");
+      now = now.format('YYYY. MM. DD.');
+
+
+      // let now = new Date();
       let recentDate = localStorage.getItem("recentDate");
       // 최근 접속 날짜와 다를 때
-      if(recentDate != now.toLocaleDateString()){
+      if(recentDate != now){
         toast.toast("날짜가 변경되었습니다!\n" +
             "새로운 단어로 시작합니다");
         setTimeout(function(){location.reload();},3000);
         return;
       }
 
-      localStorage.setItem("recentDate", now.toLocaleDateString());
+      localStorage.setItem("recentDate", now);
 
       let trynum = JSON.parse(localStorage.getItem("colorData")).try
       let data = correct.CheckAnswerCorrect(trynum, lettersAssemble);
@@ -235,6 +239,10 @@ $(document).ready(function(){
   $(".modal").hide();
   CheckDarkMode();
   // 처음 접속했을 때
+
+
+
+
   if(localStorage.getItem("entered") == null){
     // 초기 방법 창 띄우기
     window.location.href = "/guide"
@@ -250,7 +258,8 @@ $(document).ready(function(){
 
     let recentDate = localStorage.getItem("recentDate");
     let record = localStorage.getItem("WordRecord");
-    let now = new Date();
+    let now =new moment().tz("Asia/Seoul");
+    now = now.format('YYYY. MM. DD.');
     if(record == null){
       localStorage.setItem("WordRecord",JSON.stringify(local.NewWordRecord()));
     }
@@ -258,10 +267,10 @@ $(document).ready(function(){
       localStorage.setItem("WordRecord",JSON.stringify(local.NewRate()));
     }
     // 최근 접속 날짜와 다를 때
-    if(recentDate != now.toLocaleDateString()){
+    if(recentDate != now){
       localStorage.removeItem("colorData");
       localStorage.setItem("colorData",JSON.stringify(local.NewLocal()));
-      localStorage.setItem("recentDate", now.toLocaleDateString());
+      localStorage.setItem("recentDate", now);
     }
     // localStorage에 있는 data 적용
     let tryNumber = JSON.parse(localStorage.getItem("colorData")).try;
