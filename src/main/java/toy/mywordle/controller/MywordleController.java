@@ -88,7 +88,7 @@ public class MywordleController {
     @RequestMapping(value={"/ads.txt", "/ads.txt"})
     @ResponseBody
     public String getAdsTxt() {
-        return "google.com, pub-3401835397799823, DIRECT, f08c47fec0942fa0";
+        return "google.com, pub-4925784397064939, DIRECT, f08c47fec0942fa0";
     }
     
     @RequestMapping(value={"/sitemap.xml"})
