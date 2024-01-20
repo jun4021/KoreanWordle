@@ -18,6 +18,8 @@ import * as local from "./localStorageControl.js?ver=1.0.3";
 import * as toast from "./toast.js?ver=1.0.3";
 import * as modal from "./modal.js?ver=1.0.3";
 
+// 서비스 종료 용 코드
+window.onload = toast.toast("모아워들은 2024년 2월 6일 후 서비스가 종료될 예정입니다.\n자세한 내용은 더보기의 공지사항을 참고해주세요.");
 
 // 칸에 현재 입력 받은 문자열 출력
 function PrintLetters(Row, lettersAssemble){
@@ -150,6 +152,7 @@ function EnterLetter() {
         letters = [];
         setTimeout(function () {
           modal.score();
+          toast.toast("모아워들은 2024년 2월 6일 후 서비스가 종료될 예정입니다.\n자세한 내용은 더보기의 공지사항을 참고해주세요.");
           document.getElementsByClassName("score")[0].style.display = "flex";
         }, 2400);
         return;
@@ -172,6 +175,7 @@ function EnterLetter() {
 
         setTimeout(function () {
           modal.score();
+          toast.toast("모아워들은 2024년 2월 6일 후 서비스가 종료될 예정입니다.\n자세한 내용은 더보기의 공지사항을 참고해주세요.");
           document.getElementsByClassName("score")[0].style.display = "flex";
         }, 2800);
 
